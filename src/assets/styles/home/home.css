@@ -1,0 +1,100 @@
+
+.home_header-wrapper{
+    position: relative;
+    background: url('../../images/homeBg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    &::after{
+    position: absolute;
+    content: '';
+    inset: 0;
+    background-color: var(--c3-color);
+    opacity: 80%;
+    }
+
+    &::before{
+        position: absolute;
+        content: '';
+        inset: 0;
+        background: rgba(94, 94, 94, 0.068);
+        backdrop-filter: blur(.5vh);
+        z-index: 3;
+    }
+}
+.home_header{
+    position: relative;
+    height: 35rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    & *{
+        position: relative;
+        z-index: 2;
+    }
+
+}
+
+.home_header_content{
+    z-index: 3;
+    padding-top: 5rem;
+    & > h1{
+        font-family: var(--f1-font);
+        color: white;
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    & > div{
+        display: flex;
+        justify-content: space-around;
+
+        & > button{
+            position: relative;
+            font-family: var(--f1-font);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            width: 8rem;
+            height: 3rem;
+            color: white;
+            background-color: black;
+            border: 1px solid var(--c1-color);
+            border-radius: 5rem;
+
+            &::after{
+                position: absolute;
+                inset: 0;
+                content: '';
+                opacity: 20%;
+                border-radius: 5rem;
+            }
+            &:hover::after{
+                background-color: var(--c1-color);
+            }
+        }
+    }
+}
+
+.home_header_angel-wings{
+    overflow: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    &::before{
+        position: absolute;
+        content: '';
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 100%;
+        background-color: var(--c1-color);
+        opacity: 10%;
+        aspect-ratio: 1 / 1;
+        height: 150%;
+    }
+}

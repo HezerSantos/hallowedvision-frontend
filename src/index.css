@@ -1,3 +1,4 @@
+
 *{
   margin: 0;
   padding: 0;
@@ -6,4 +7,38 @@
 
 button{
   cursor: pointer;
+}
+
+body{
+  background-color: var(--c3-color);
+}
+
+:root{
+  --c1-color: #D294C4;
+  --c2-color: #1E2437;
+  --c3-color-augment: #121212;
+  --c3-color: #000000;
+
+  --f1-font: "Karla", sans-serif;
+  --f2-font: "Red Hat Display", sans-serif;
+}
+
+.page-section{
+  min-width: 20rem;
+  display: flex;
+  justify-content: center;
+}
+
+.page-section__child{
+  max-width: 120rem;
+  width: 100%;
+}
+
+.nav-main{
+  height: 10vh;
+  background: linear-gradient(
+    to top, 
+    var(--c3-color-augment) 40%, 
+    var(--c3-color) 100% 
+  )
 }
