@@ -8,13 +8,15 @@
 button{
   cursor: pointer;
 }
-
+#root{
+  overflow: hidden;
+}
 body{
   background-color: var(--c3-color);
 }
 
 :root{
-  --c1-color: #D294C4;
+  --c1-color: #A6789B;
   --c2-color: #1E2437;
   --c3-color-augment: #121212;
   --c3-color: #000000;
@@ -31,14 +33,117 @@ body{
 
 .page-section__child{
   max-width: 120rem;
+  min-width: 20rem;
   width: 100%;
 }
 
-.nav-main{
-  height: 10vh;
+nav{
   background: linear-gradient(
     to top, 
     var(--c3-color-augment) 40%, 
     var(--c3-color) 100% 
-  )
+  ); 
+  min-height: 5rem;
+}
+.nav-main{
+
+  padding: .5rem clamp(1rem, 10vw, 15rem) .5rem clamp(1rem, 10vw, 15rem);
+
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.nav-main__header{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  & > img{
+    width: clamp(2rem, 3vw, 3rem);
+  }
+
+  & > p{
+    font-family: var(--f1-font);
+    color: white;
+    font-weight: 900;
+    font-size: 1.5rem;
+    
+  }
+}
+
+.nav-main__buttons{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+
+  & > ul{
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+
+    & > li > button{
+      width: 7rem;
+      height: 2.5rem;
+      border-radius: 5rem;
+      background-color: black;
+      font-family: var(--f2-font);
+      color: white;
+      font-weight: 900;
+      border: 1px solid var(--c1-color);
+    }
+
+    & > li:nth-child(2) > button{
+      background-color: var(--c1-color);
+    }
+  }
+}
+
+.nav-side-toggle{
+  background-color: transparent;
+  border: none;
+  display: none;
+  flex-direction: column;
+  gap: .5rem;
+  & > div:nth-child(1){
+    width: 3rem;
+    background-color: white;
+    height: .5rem;
+    border-radius: .5rem;
+  }
+
+  & > div:nth-child(2){
+    width: 1.5rem;
+    background-color: white;
+    height: .5rem;
+    border-radius: .5rem;
+  }
+}
+
+@media (max-width: 965px){
+  .nav-main__header > p{
+    font-size: 1rem;
+  }
+
+  /* .nav-main__header > img{
+    width: 1rem;
+  } */
+}
+
+@media (max-width: 730px){
+  .nav-main__buttons{
+    display: none;
+  }
+
+  .nav-side-toggle{
+    display: flex;
+  }
+
+  .nav-main{
+    grid-template-columns: 1fr;
+  }
+
+  .nav-main__header{
+    justify-content: space-between;
+    
+  }
 }

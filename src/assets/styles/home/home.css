@@ -66,11 +66,12 @@
             border: 1px solid var(--c1-color);
             border-radius: 5rem;
 
+            
             &::after{
                 position: absolute;
                 inset: 0;
                 content: '';
-                opacity: 20%;
+                opacity: 10%;
                 border-radius: 5rem;
             }
             &:hover::after{
@@ -96,5 +97,13 @@
         opacity: 10%;
         aspect-ratio: 1 / 1;
         height: 150%;
+    }
+}
+
+@media (max-width: 965px){
+    .home_header_content{
+        & > h1{
+            font-size: 2rem;
+        }
     }
 }

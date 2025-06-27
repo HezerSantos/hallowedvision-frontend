@@ -11,11 +11,11 @@ const HomeHeader: React.FC = () => {
                         <h1>Foucs on What Matters <br /> Bring Your Vision to Life</h1>
                         <div>
                             <button>
-                                Learn More
+                                <span>Learn More</span>
                                 <FaArrowRight />
                             </button>
                             <button>
-                                Services
+                                <span>Services</span>
                                 <FaArrowRight />
                             </button>
                         </div>
