@@ -13,6 +13,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
+    "mobile": "npx ngrok http 5173",
     "fix": "find .git/objects/ -type f -empty | xargs rm; git fetch -p; git fsck --full"
   },
   "dependencies": {

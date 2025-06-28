@@ -107,3 +107,16 @@
         }
     }
 }
+
+@media (max-width: 450px){
+    .home_header{
+        height: calc(100svh - 5rem);
+        justify-content: center;
+    }
+
+    .home_header_content{
+        & > h1{
+            font-size: 1.7rem;
+        }
+    }
+}
