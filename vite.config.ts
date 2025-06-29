@@ -9,7 +9,7 @@ export default defineConfig({
     sourcemap: true,
   },
   server: {
-    allowedHosts: ['089c-75-48-60-225.ngrok-free.app'],
+    allowedHosts: ['901a-75-48-60-225.ngrok-free.app'],
     port: 5173,
     host: '0.0.0.0'
   },
