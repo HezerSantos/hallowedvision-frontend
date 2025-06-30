@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.5.3 ./public/angelwings.glb --types -o ./src/angelWing.ts
 // @ts-nocheck
 
 import * as THREE from 'three'
+import '@react-three/fiber';
 import React, {useEffect, useRef} from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'

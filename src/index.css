@@ -20,6 +20,7 @@ body{
   --c2-color: #1E2437;
   --c3-color-augment: #121212;
   --c3-color: #000000;
+  --c4-color: #D294C4;
 
   --f1-font: "Karla", sans-serif;
   --f2-font: "Red Hat Display", sans-serif;
@@ -28,7 +29,8 @@ body{
 .page-section{
   min-width: 20rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .page-section__child{
