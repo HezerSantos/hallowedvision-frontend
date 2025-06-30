@@ -34,31 +34,44 @@ const HomeSectionOne:React.FC = () => {
                         <MdSecurity />
                         <p>Security</p>
                     </div>
-                    <div>
+                    <div aria-hidden="true">
                         <FaBagShopping />
                         <p>E-Commerce</p>
                     </div>
-                    <div>
+                    <div aria-hidden="true">
                         <FaBusinessTime />
                         <p>Business</p>
                     </div>
-                    <div>
+                    <div aria-hidden="true">
                         <FaPersonHalfDress />
                         <p>Personal</p>
                     </div>
-                    <div>
+                    <div aria-hidden="true">
                         <FaWrench />
                         <p>Craftmanship</p>
                     </div>
-                    <div>
+                    <div aria-hidden="true">
                         <FaBoxOpen />
                         <p>Out of The Box</p>
                     </div>
-                    <div>
+                    <div aria-hidden="true">
                         <MdSecurity />
                         <p>Security</p>
+                    </div>   
+                </div>
+                <div className="home__section-examples">
+                    <div className="section-example">
+                        <div>BUSINESS</div>
                     </div>
-                    
+                    <div className="section-example">
+                        <div>E-COMMERCE</div>
+                    </div>
+                    <div className="section-example">
+                        <div>PERSONAL</div>
+                    </div>
+                    <div className="section-example">
+                        <div>SERVICE</div>
+                    </div>
                 </div>
             </section>
         </>

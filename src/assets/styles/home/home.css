@@ -1,7 +1,7 @@
 
 .home_header-wrapper{
     position: relative;
-    background: url('../../images/homeBg.jpg');
+    background: url('../../images/homeBg.webp');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -149,14 +149,16 @@
 .home__section-information{
     padding: 5rem 10% 5rem 10%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
 }
 
 .home__section-icons{
     position: relative;
     width: 100%;
     border: 2px solid var(--c1-color);
-    padding: 5% 0 5% 0;
+    padding: 3rem 0 3rem 0;
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: calc(100% / 6);
@@ -237,4 +239,73 @@
                 animation: none;
         }
     }
+}
+
+.home__section-examples{
+    width: 100%;
+    display: grid;
+    column-gap: 1rem;
+    row-gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+}
+
+.section-example{
+    align-self: center;
+    justify-self: center;
+    width: 22rem;
+    position: relative;
+    aspect-ratio: 1/ 1;
+    border: 2px solid var(--c1-color);
+    border-radius: 2rem;
+    padding-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    &::after{
+        position: absolute;
+        content: '';
+        inset: 0;
+        background-color: black;
+        opacity: 40%;
+        border-radius: 2rem;
+    }
+
+    & > div{
+        width: 10rem;
+        padding: .5rem 0 .5rem 0;
+        background-color: black;
+        border: 2px solid var(--c1-color);
+        color: white;
+        font-family: var(--f2-font);
+        font-size: 1.125rem;
+        border-radius: 1rem;
+        z-index: 4;
+        cursor: auto;
+        text-align: center;
+    }
+}
+
+.section-example:nth-child(1){
+    background: url('../../images//business.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.section-example:nth-child(2){
+    background: url('../../images//ecommerce.webp');
+    background-position: 0 -2px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.section-example:nth-child(3){
+    background: url('../../images//personal.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.section-example:nth-child(4){
+    background: url('../../images//service.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
