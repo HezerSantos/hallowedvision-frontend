@@ -48,47 +48,47 @@ function Model(props: GroupProps) {
 
     const mouse = useRef({ x: 0, y: 0 })
 
-    useFrame(() => {
-    if (group.current) {
-        // smooth lerp toward target rotation
-        const temp004 = group.current.getObjectByName('temp004');
-        const temp005 = group.current.getObjectByName('temp005');
+    // useFrame(() => {
+    // if (group.current) {
+    //     // smooth lerp toward target rotation
+    //     const temp004 = group.current.getObjectByName('temp004');
+    //     const temp005 = group.current.getObjectByName('temp005');
 
-      if (temp004) {
-        // Wing 1 moves opposite mouse X direction
-        temp004.position.x = mouse.current.x;  
-        temp004.position.y = mouse.current.y * -1;
-      }
+    //   if (temp004) {
+    //     // Wing 1 moves opposite mouse X direction
+    //     temp004.position.x = mouse.current.x;  
+    //     temp004.position.y = mouse.current.y * -1;
+    //   }
 
-      if (temp005) {
-        // Wing 1 moves opposite mouse X direction
-        temp005.position.x = mouse.current.x;  
-        temp005.position.y = mouse.current.y * -1;
-      }
+    //   if (temp005) {
+    //     // Wing 1 moves opposite mouse X direction
+    //     temp005.position.x = mouse.current.x;  
+    //     temp005.position.y = mouse.current.y * -1;
+    //   }
 
-        group.current.rotation.y += (mouse.current.x * 0.5 - group.current.rotation.y) * 0.05
-        group.current.rotation.x += (mouse.current.y * 0.3 - group.current.rotation.x) * 0.05
+    //     group.current.rotation.y += (mouse.current.x * 0.5 - group.current.rotation.y) * 0.05
+    //     group.current.rotation.x += (mouse.current.y * 0.3 - group.current.rotation.x) * 0.05
 
         
-      }
-    })
+    //   }
+    // })
 
 
-    useEffect(() => {
-      if (typeof window === 'undefined') return;
+    // useEffect(() => {
+    //   if (typeof window === 'undefined') return;
 
-      const handleMouseMove = (event: MouseEvent) => {
-        console.log((event.clientX / window.innerWidth - 0.5) * 2)
-        mouse.current.x = (event.clientX / window.innerWidth - 0.5) * 2;
-        mouse.current.y = (event.clientY / window.innerHeight - 0.5) * 2;
-      };
+    //   const handleMouseMove = (event: MouseEvent) => {
+    //     console.log((event.clientX / window.innerWidth - 0.5) * 2)
+    //     mouse.current.x = (event.clientX / window.innerWidth - 0.5) * 2;
+    //     mouse.current.y = (event.clientY / window.innerHeight - 0.5) * 2;
+    //   };
 
-      window.addEventListener('mousemove', handleMouseMove);
+    //   window.addEventListener('mousemove', handleMouseMove);
 
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-      };
-    }, []);
+    //   return () => {
+    //     window.removeEventListener('mousemove', handleMouseMove);
+    //   };
+    // }, []);
 
     useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
