@@ -5,11 +5,6 @@ export default defineConfig({
   plugins: [react()],
   build: {
     minify: 'terser',
-    terserOptions: {
-      mangle: {
-        keep_fnames: true, // prevents function name mangling
-      },
-    },
     sourcemap: true, // enable source maps for debugging
   },
   server: {
