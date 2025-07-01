@@ -5,8 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
     build: {
-    minify: false,
-    sourcemap: true,
+    minify: 'esbuild',
+    sourcemap: false,
   },
   server: {
     allowedHosts: ['fae5-75-48-60-225.ngrok-free.app'],
