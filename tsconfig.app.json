@@ -12,7 +12,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
     
     /* Linting */
     "strict": true,
@@ -23,8 +22,8 @@
     /* Additional options for React Three Fiber */
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "types": ["vite/client", "@types/three"],
   },
-  "include": ["src", "**/*.ts", "**/*.tsx"],
-  "types": ["vite/client", "@types/three"],
+  "include": ["src", "**/*.ts", "**/*.tsx", "vite.config.ts"],
 }
