@@ -11,11 +11,6 @@ export default defineConfig({
         passes: 2,
         drop_console: true,
         drop_debugger: true,
-        ecma: 2017,
-      },
-      mangle: {
-        toplevel: true,
-        properties: false
       },
       format: {
         comments: false
