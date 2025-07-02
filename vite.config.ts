@@ -6,6 +6,15 @@ export default defineConfig({
   build: {
     minify: 'terser',
     sourcemap: false,
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+      format: {
+        comments: false
+      }
+    }
   },
   server: {
     allowedHosts: ['fae5-75-48-60-225.ngrok-free.app'],
