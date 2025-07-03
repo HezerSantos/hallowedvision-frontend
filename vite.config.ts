@@ -11,6 +11,7 @@ export default defineConfig({
         drop_console: true,
         drop_debugger: true,
       },
+      mangle: false,
       format: {
         comments: false
       }
