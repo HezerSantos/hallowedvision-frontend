@@ -131,26 +131,7 @@
 
 
 
-@keyframes  scrollOne{
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-68vw); }
-}
-@keyframes  scrollTwo{
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-158vw); }
-}
-@keyframes  scrollThree{
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-95vw); }
-}
-@keyframes  scrollFour{
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-80vw); }
-}
-@keyframes  scrollFive{
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-188vw); }
-}
+
 
 .home__section-information{
     padding: 5rem clamp(1rem, 10%, 25rem) 5rem clamp(1rem, 10%, 25rem);
