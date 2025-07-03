@@ -39,7 +39,7 @@ body{
   width: 100%;
 }
 
-nav{
+.nav-main-wrapper{
   background: linear-gradient(
     to top, 
     var(--c3-color-augment) 40%, 
@@ -132,9 +132,125 @@ nav{
   } */
 }
 
+.sidebar-nav{
+  display: none;
+  min-width: 20rem;
+  max-width: 35rem;
+  position: fixed;
+  height: 100svh;
+  width: 50vw;
+  z-index: 8;
+  background: linear-gradient(
+    to top, 
+    var(--c3-color-augment) 40%, 
+    var(--c3-color) 100% 
+  ); 
+  padding: 1rem;
+  transition: 1s ease-in-out;
+}
+
+.toggle{
+  transform: translateX(-100%);
+}
+
+.sidebar-nav__header{
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  & > button{
+    height: min-content;
+    padding: .5rem 1rem .5rem 1rem;
+    font-family: var(--f2-font);
+    color: white;
+    border-radius: 2rem;
+    background-color: transparent;
+    border: 1px solid white;
+  }
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: clamp(.8rem, 4vw, 1.25rem);
+  }
+
+  & > div > h1{
+    font-family: var(--f1-font);
+  }
+  & > div > img{
+    width: 35px;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.sidebar-nav__content{
+  margin-top: 5rem;
+  & > ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  & > ul > li > a{
+    text-decoration: none;
+    color: white;
+    font-family: var(--f1-font);
+    font-size: 3.5rem;
+    font-weight: 500;
+  }
+}
+
+.sidebar-nav__footer{
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  & > p{
+    color: rgb(172, 172, 172);
+    font-family: var(--f2-font);
+  }
+
+  & > h1{
+    font-family: var(--f1-font);
+    color: white;
+    font-size: 1rem;
+  }
+
+  & > ul{
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  & > ul > li{
+    color: white;
+
+    & > button{
+      background-color: transparent;
+      border: none;
+
+      & > svg{
+        fill: white;
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+}
+
+.selected{
+  color: var(--c1-color) !important;
+}
+
 @media (max-width: 730px){
   .nav-main__buttons{
     display: none;
+  }
+
+  .sidebar-nav{
+    display: block;
   }
 
   .nav-side-toggle{
