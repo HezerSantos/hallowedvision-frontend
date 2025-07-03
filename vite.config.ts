@@ -4,18 +4,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    minify: 'terser',
-    sourcemap: false,
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-      mangle: false,
-      format: {
-        comments: false
-      }
-    }
+    minify: false, // Skip Terser minification, as javascript-obfuscator will handle that
+    sourcemap: false, // Disable sourcemaps for security
   },
   server: {
     allowedHosts: ['fae5-75-48-60-225.ngrok-free.app'],
