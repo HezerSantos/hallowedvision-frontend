@@ -1,4 +1,88 @@
 import hezer from '../../assets/images/hezer.png'
+import { FaHtml5 } from "react-icons/fa6";
+import { FaCss3Alt } from "react-icons/fa6";
+import { FaJs } from "react-icons/fa6";
+import { FaReact } from "react-icons/fa6";
+import { SiExpress } from "react-icons/si";
+import { FaNode } from "react-icons/fa6";
+import { FaPython } from "react-icons/fa6";
+import { DiMysql } from "react-icons/di";
+import React from 'react';
+
+const LanguageScroll: React.FC = () => {
+    return(
+        <>
+            <div>
+                <div>
+                    <FaHtml5 />
+                    <p>HTML</p>
+                </div>
+                <div>
+                    <FaCss3Alt />
+                    <p>CSS</p>
+                </div>
+                <div>
+                    <FaJs />
+                    <p>JavaScript</p>
+                </div>
+                <div>
+                    <FaReact />
+                    <p>React.JS</p>
+                </div>
+                <div>
+                    <SiExpress />
+                    <p>Express.JS</p>
+                </div>
+                <div>
+                    <FaNode />
+                    <p>Node.JS</p>
+                </div>
+                <div>
+                    <FaPython />
+                    <p>Python</p>
+                </div>
+                <div>
+                    <DiMysql />
+                    <p>SQL</p>
+                </div>
+                
+                <div>
+                    <FaHtml5 />
+                    <p>HTML</p>
+                </div>
+                <div>
+                    <FaCss3Alt />
+                    <p>CSS</p>
+                </div>
+                <div>
+                    <FaJs />
+                    <p>JavaScript</p>
+                </div>
+                <div>
+                    <FaReact />
+                    <p>React.JS</p>
+                </div>
+                <div>
+                    <SiExpress />
+                    <p>Express.JS</p>
+                </div>
+                <div>
+                    <FaNode />
+                    <p>Node.JS</p>
+                </div>
+                <div>
+                    <FaPython />
+                    <p>Python</p>
+                </div>
+                <div>
+                    <DiMysql />
+                    <p>SQL</p>
+                </div>
+            </div>
+        </>
+    )
+}
+
 const PortfolioHeader: React.FC = () => {
     return(
         <>
@@ -10,11 +94,21 @@ const PortfolioHeader: React.FC = () => {
                     <div className="portfolio-header__content-header">
                         <h1>Hezer Santos</h1>
                         <p>Full-Stack Developer | Scalable Web Architecture</p>
+                        <button>
+                            Download Resume
+                        </button>
                     </div>
                     <div className="portfolio-header__content-hero">
                         <div className='portfolio-picture'>
                             <img src={hezer} alt="" />
                         </div>
+                    </div>
+                    <div className='portfolio-header__info'>
+                        <h1>A Quick Look Into My Work</h1>
+                        <p>
+                            Highlights are nice, but the real value shows up in the systems <br /> that keep delivering every day.
+                        </p>
+                        <LanguageScroll />
                     </div>
                 </div>
             </header>
