@@ -1,0 +1,67 @@
+.portfolio-header__wrapper{
+    margin-top: 5rem;
+    padding: 2rem;
+}
+
+.portfolio-header__content{
+    position: relative;
+    border: 1px solid var(--c1-color);
+    aspect-ratio: 1 / .45;
+    border-radius: 2rem;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    background: linear-gradient(to bottom, black 0%, #2F303D 50%, black 100%);
+}
+.portfolio-header__background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    align-items: flex-end;
+    & > svg{
+        border-radius: 2rem;
+    }
+    & > svg > path{
+        transform: scale(3, 2) translateY(-5%);
+    }
+}
+
+.portfolio-header__content-header{
+    padding: 5rem 0 0 3rem;
+    
+    & > h1{
+        font-family: var(--f1-font);
+        font-weight: 500;
+        font-size: 5rem;
+    }
+
+    & > p{
+        font-family: var(--f2-font);
+        font-weight: 300;
+        font-size: 2rem;
+    }
+    & > *{
+        color: white;
+    }
+}
+
+.portfolio-header__content-hero{
+    display: flex;
+    align-items: center;
+}
+
+.portfolio-picture{
+    width: 25rem;
+    position: relative;
+    border: 3px solid var(--c1-color);
+    padding-top: 5rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(to bottom, #E2E2E2 0%, #7C7C7C 42%, #E2E2E2 100%);
+    & > img{
+        width: 100%;
+        border-radius: .75rem;
+    }
+}
