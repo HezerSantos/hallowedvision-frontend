@@ -87,18 +87,24 @@ body{
     display: flex;
     gap: 1rem;
 
-    & > li > button{
+    & > li{
       width: 7rem;
-      height: 2.5rem;
-      border-radius: 5rem;
-      background-color: black;
-      font-family: var(--f2-font);
-      color: white;
-      font-weight: 900;
       border: 1px solid var(--c1-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-block: .5rem;
+      border-radius: 5rem;
     }
 
-    & > li:nth-child(2) > button{
+    & > li > a{
+      font-family: var(--f2-font);
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    & > li:nth-child(2){
       background-color: var(--c1-color);
     }
   }

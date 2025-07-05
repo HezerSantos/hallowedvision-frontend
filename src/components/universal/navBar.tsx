@@ -65,14 +65,14 @@ const NavBar: React.FC = () => {
                     <div className="nav-main__buttons">
                         <ul>
                             <li>
-                                <button>
+                                <Link to="/portfolio">
                                     Portfolio
-                                </button>
+                                </Link>
                             </li>
                             <li>
-                                <button>
+                                <Link to="/contact">
                                     Get in Touch
-                                </button>
+                                </Link>
                             </li>
                         </ul>
                     </div>
