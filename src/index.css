@@ -68,7 +68,8 @@ body{
     width: clamp(2rem, 3vw, 3rem);
   }
 
-  & > p{
+  & > a{
+    text-decoration: none;
     font-family: var(--f1-font);
     color: white;
     font-weight: 900;
@@ -132,7 +133,7 @@ body{
 }
 
 @media (max-width: 965px){
-  .nav-main__header > p{
+  .nav-main__header > a{
     font-size: 1rem;
   }
 

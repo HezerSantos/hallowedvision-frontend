@@ -56,7 +56,7 @@ const NavBar: React.FC = () => {
                 <div className="nav-main page-section__child">
                     <div className="nav-main__header">
                         <img src={logo} alt="" />
-                        <p>Hallowed Visions</p>
+                        <Link to="/">Hallowed Visions</Link>
                         <button className="nav-side-toggle" onClick={() => toggleSideNav()}>
                             <div></div>
                             <div></div>
