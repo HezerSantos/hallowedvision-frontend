@@ -1,7 +1,9 @@
 import React from "react";
 import PortfolioSectionHeader from "./portfolioSectionHeader"
 import { FaCode } from "react-icons/fa";
-
+import { FaDatabase } from "react-icons/fa6";
+import { FaLock } from "react-icons/fa";
+import { FaClipboard } from "react-icons/fa";
 interface workElement {
     icon: React.ReactElement,
     header: string
@@ -10,7 +12,7 @@ interface workElement {
 const PdcWorkElement: React.FC<workElement> = ({icon, header}) => {
     return(
         <>
-            <div>
+            <div className="pdc-work__element">
                 {icon}
                 <h1>{header}</h1>
             </div>
@@ -39,6 +41,18 @@ const PortfolioDetails: React.FC = () => {
                         <PdcWorkElement 
                             icon={<FaCode />}
                             header="Web Development"
+                        />
+                        <PdcWorkElement 
+                            icon={<FaDatabase />}
+                            header="Database Design"
+                        />
+                        <PdcWorkElement 
+                            icon={<FaLock />}
+                            header="Security"
+                        />
+                        <PdcWorkElement 
+                            icon={<FaClipboard />}
+                            header="CMS"
                         />
                     </div>
                 </div>
