@@ -23,7 +23,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["vite/client", "@types/three"],
+    "types": ["vite/client", "@types/three", "react", "react-dom"],
   },
   "include": ["src", "**/*.ts", "**/*.tsx", "vite.config.ts"],
 }
