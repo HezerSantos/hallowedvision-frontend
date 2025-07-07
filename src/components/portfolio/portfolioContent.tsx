@@ -100,7 +100,7 @@ const PortfolioContent: React.FC = () => {
                         title="SAHNTEK"
                         type="FULL-STACK"
                         demoUrl=""
-                        technologies={["HTML", "CSS", "JavaScript", "ReactJS", "Express.js", "Node.js", "Python", "SQL"]}
+                        technologies={["HTML", "CSS", "JavaScript", "ReactJS", "Express.js", "Node.js", "SQL"]}
                         description="Full-featured E-commerce application built to sell computers with speed, security, and reliability. Developed using React for a smooth, responsive user experience across all devices, the platform integrates Stripe for seamless and secure payments, and PostgreSQL for robust data management. It includes CSRF protection and industry-standard security practices to ensure safe transactions"
                     />
                     <PortfolioItem 
@@ -109,7 +109,7 @@ const PortfolioContent: React.FC = () => {
                         title="SAHNTEK"
                         type="FULL-STACK"
                         demoUrl=""
-                        technologies={["HTML", "CSS", "JavaScript", "ReactJS", "Express.js", "Node.js", "Python", "SQL"]}
+                        technologies={["HTML", "CSS", "JavaScript", "ReactJS", "Express.js", "Node.js", "SQL"]}
                         description="Full-featured E-commerce application built to sell computers with speed, security, and reliability. Developed using React for a smooth, responsive user experience across all devices, the platform integrates Stripe for seamless and secure payments, and PostgreSQL for robust data management. It includes CSRF protection and industry-standard security practices to ensure safe transactions"
                     />
                 </div>

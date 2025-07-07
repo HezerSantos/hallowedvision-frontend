@@ -358,7 +358,7 @@
 .portfolio-item__description{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 1rem;
     border: 2px solid var(--c1-color);
     border-radius: 1rem;
