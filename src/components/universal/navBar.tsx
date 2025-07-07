@@ -31,7 +31,7 @@ const NavBar: React.FC = () => {
                     <div className="sidebar-nav__content">
                         <ul>
                             <li><Link to="" className={location.pathname === "/"? "selected" : ""}>Home</Link></li>
-                            <li><Link to="" className={location.pathname === "/portfolio"? "selected" : ""}>Portfolio</Link></li>
+                            <li><Link to="/portfolio" className={location.pathname === "/portfolio"? "selected" : ""}>Portfolio</Link></li>
                         </ul>
                     </div>
                     <div className="sidebar-nav__footer">
@@ -56,7 +56,7 @@ const NavBar: React.FC = () => {
                 <div className="nav-main page-section__child">
                     <div className="nav-main__header">
                         <img src={logo} alt="" />
-                        <p>Hallowed Visions</p>
+                        <Link to="/">Hallowed Visions</Link>
                         <button className="nav-side-toggle" onClick={() => toggleSideNav()}>
                             <div></div>
                             <div></div>
@@ -65,14 +65,14 @@ const NavBar: React.FC = () => {
                     <div className="nav-main__buttons">
                         <ul>
                             <li>
-                                <button>
+                                <Link to="/portfolio">
                                     Portfolio
-                                </button>
+                                </Link>
                             </li>
                             <li>
-                                <button>
+                                <Link to="/contact">
                                     Get in Touch
-                                </button>
+                                </Link>
                             </li>
                         </ul>
                     </div>

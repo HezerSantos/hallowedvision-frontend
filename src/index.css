@@ -68,12 +68,12 @@ body{
     width: clamp(2rem, 3vw, 3rem);
   }
 
-  & > p{
+  & > a{
+    text-decoration: none;
     font-family: var(--f1-font);
     color: white;
     font-weight: 900;
     font-size: 1.5rem;
-    
   }
 }
 
@@ -87,18 +87,24 @@ body{
     display: flex;
     gap: 1rem;
 
-    & > li > button{
+    & > li{
       width: 7rem;
-      height: 2.5rem;
-      border-radius: 5rem;
-      background-color: black;
-      font-family: var(--f2-font);
-      color: white;
-      font-weight: 900;
       border: 1px solid var(--c1-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-block: .5rem;
+      border-radius: 5rem;
     }
 
-    & > li:nth-child(2) > button{
+    & > li > a{
+      font-family: var(--f2-font);
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    & > li:nth-child(2){
       background-color: var(--c1-color);
     }
   }
@@ -126,7 +132,7 @@ body{
 }
 
 @media (max-width: 965px){
-  .nav-main__header > p{
+  .nav-main__header > a{
     font-size: 1rem;
   }
 
@@ -140,7 +146,7 @@ body{
   min-width: 20rem;
   max-width: 35rem;
   position: fixed;
-  height: 100svh;
+  height: 100vh;
   width: 50vw;
   z-index: 9;
   background: linear-gradient(
@@ -308,4 +314,21 @@ body{
     font-size: .8rem;
   }
   
+}
+
+.loading-skeleton{
+  background-color: grey;
+  animation: load 3s linear infinite;
+}
+
+@keyframes load {
+  0% {
+    opacity: 100%;
+  }
+  50%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 100%;
+  }
 }
