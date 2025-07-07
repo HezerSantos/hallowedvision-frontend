@@ -328,11 +328,127 @@
 }
 
 @media (max-width: 500px){
-    .portfolio-details{
-
-    }
-
     .pdc-work{
         grid-template-columns:  1fr;
     }
 }
+
+.portfolio-content{
+    padding: 0 5rem 5rem 5rem;
+}
+
+.portfolio-content__container{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.portfolio-item{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5rem;
+
+    & > div:first-child > img{
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem;
+    }
+}
+
+.portfolio-item__description{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 2px solid var(--c1-color);
+    border-radius: 1rem;
+}
+
+.portfolio-item__description-header{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    color: white;
+    font-family: var(--f2-font);
+    justify-content: space-between;
+    & > a{
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.portfolio-item__description-technology{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    & > h2{
+        font-family: var(--f1-font);
+        color: white;
+    }
+
+    & > div{
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+}
+
+.technology-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .25rem;
+    & > svg{
+        fill: white;
+        width: 35px;
+        height: 35px;
+    }
+
+    & > p{
+        color: white;
+        font-family: var(--f1-font);
+        width: fit-content;
+    }
+}
+
+.portfolio-item__description-description{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    & > h2{
+        color: white;
+        font-family: var(--f1-font);
+    }
+
+    & > p{
+        color: white;
+        font-family: var(--f2-font);
+    }
+}
+
+@media (max-width: 1390px){
+    .portfolio-item{
+        grid-template-columns: 1fr;
+        row-gap: 1rem;
+    }
+}
+
+@media (max-width: 885px){
+    .portfolio-content{
+        padding: 0 1rem 5rem 1rem;
+    }
+    .portfolio-item__description{
+        gap: 2rem;
+    }
+}
+
+ @media (max-width: 580px){
+    .portfolio-item__description-header{
+        gap: 1rem;
+    }
+ }
+
+ .portfolio__footer{
+    background-color: var(--c2-color);
+ }
