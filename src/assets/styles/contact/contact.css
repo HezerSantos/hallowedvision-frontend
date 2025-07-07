@@ -1,0 +1,11 @@
+.contact-content{
+    margin-top: 5rem;
+    height: calc(100svh - 5rem);
+    background: url('../../images//contactBg.svg') no-repeat center 80%/cover;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-footer{
+    background-color: var(--c2-color);
+}
