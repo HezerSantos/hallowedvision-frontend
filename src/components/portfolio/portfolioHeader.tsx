@@ -83,7 +83,8 @@ const LanguageScroll: React.FC = () => {
 }
 
 const PortfolioHeader: React.FC = () => {
-    const [isLoading, setIsLoading ] = useState<Boolean>(true)
+    // @ts-ignore
+    const [isLoading, setIsLoading ] = useState<Boolean>(true) 
     return(
         <>
             <header className="page-section portfolio-header__wrapper">

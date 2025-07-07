@@ -151,6 +151,7 @@ const LoadingPortfolioItem: React.FC = () => {
 
 
 const PortfolioContent: React.FC = () => {
+    // @ts-ignore
     const [ isLoading, setIsLoading ] = useState<Boolean>(true) //Move loading to top level component
     return (
         <>
