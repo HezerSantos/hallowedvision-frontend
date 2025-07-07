@@ -1,6 +1,8 @@
 import NavBar from "../../components/universal/navBar"
 import '../../assets/styles/contact/contact.css'
 import FooterHV from "../../components/universal/footer"
+import ContactHeader from "../../components/contact/contactHeader"
+import ContactContent from "../../components/contact/contactContent"
 
 const Contact: React.FC = () => {
     return(
@@ -8,12 +10,8 @@ const Contact: React.FC = () => {
             <NavBar />
             <main className="page-section">
                 <section className="page-section__child contact-content">
-                    <div className="contact-content__header">
-                        <h1>Pricing</h1>
-                    </div>
-                    <div className="contact-content__content">
-
-                    </div>
+                    <ContactHeader />
+                    <ContactContent />
                 </section>
             </main>
             <footer className="contact-footer">

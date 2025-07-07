@@ -8,7 +8,7 @@ export default defineConfig({
     sourcemap: false, // Disable sourcemaps for security
   },
   server: {
-    allowedHosts: ['fae5-75-48-60-225.ngrok-free.app'],
+    allowedHosts: ['73d773fa6ab8.ngrok-free.app'],
     port: 5173,
     host: '0.0.0.0'
   }
