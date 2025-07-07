@@ -1,4 +1,5 @@
 import App from "./App";
+import Contact from "./pages/contact/Contact";
 import HomePage from "./pages/home/Home";
 import Portfolio from "./pages/portfolio/Portfolio";
 const routes = [
@@ -10,6 +11,10 @@ const routes = [
             {
                 index: true,
                 element: <HomePage />
+            },
+            {
+                path: "/contact",
+                element: <Contact />
             },
             {
                 path: "/portfolio",
