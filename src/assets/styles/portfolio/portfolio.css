@@ -70,6 +70,7 @@
 
 .portfolio-picture{
     width: 25rem;
+    aspect-ratio: 1 / 1.5;
     position: relative;
     border: 3px solid var(--c1-color);
     padding-top: 5rem;
@@ -451,4 +452,48 @@
 
  .portfolio__footer{
     background-color: var(--c2-color);
+ }
+
+
+ .image-skeleton{
+    width: 100%;
+    aspect-ratio: 1 / .45;
+    border-radius: 1rem;
+ }
+
+ .heading-skeleton{
+    width: 45%;
+    height: 2rem;
+    border-radius: .5rem;
+ }
+
+ .text-skeleton{
+    height: 1.5rem;
+    border-radius: .25rem;
+ }
+
+ .link-skeleton{
+    width: 5rem;
+    height: 1.5rem;
+    border-radius: .25rem;
+ }
+
+ .technology-skeleton{
+
+    & > .ts-svg{
+        width: 2.8rem;
+        aspect-ratio: 1 / 1;
+        margin-bottom: .5rem;
+        border-radius: .25rem;
+    }
+
+     & > .ts-text{
+        width: 100%;
+        height: 1rem;
+        border-radius: .25rem;
+     }
+ }
+
+ .skleton-gap-override{
+    gap: 2rem;
  }

@@ -2,7 +2,7 @@ import React from "react"
 import PortfolioSectionHeader from "./portfolioSectionHeader"
 import testImage from '../../assets/images/testImage.png'
 import { Link } from "react-router-dom"
-
+import { useState } from "react"
 import { FaHtml5 } from "react-icons/fa6";
 import { FaCss3Alt } from "react-icons/fa6";
 import { FaJs } from "react-icons/fa6";
@@ -87,31 +87,89 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({imageUrl, title, type, dem
     )
 }
 
+const LoadingPortfolioItem: React.FC = () => {
+    return(
+        <>
+        <div className="portfolio-item">
+                <div>
+                    <div className="image-skeleton loading-skeleton">
+                    </div>
+                </div>
+                <div className="portfolio-item__description skleton-gap-override">
+                    <div className="portfolio-item__description-header">
+                        <div className="heading-skeleton loading-skeleton"></div>
+                        <div className="link-skeleton loading-skeleton"></div>
+                    </div>
+                    <div className="portfolio-item__description-technology">
+                        <h2 className="heading-skeleton loading-skeleton"></h2>
+                        <div>
+                            <div className="technology-skeleton">
+                                <div className="ts-svg loading-skeleton">
+
+                                </div>
+                                <div className="ts-text loading-skeleton">
+
+                                </div>
+                            </div>
+                            <div className="technology-skeleton">
+                                <div className="ts-svg loading-skeleton">
+
+                                </div>
+                                <div className="ts-text loading-skeleton">
+
+                                </div>
+                            </div>
+                            <div className="technology-skeleton">
+                                <div className="ts-svg loading-skeleton">
+
+                                </div>
+                                <div className="ts-text loading-skeleton">
+
+                                </div>
+                            </div>
+                            <div className="technology-skeleton">
+                                <div className="ts-svg loading-skeleton">
+
+                                </div>
+                                <div className="ts-text loading-skeleton">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="portfolio-item__description-description">
+                        <div className="heading-skeleton loading-skeleton"></div>
+                        <div className="text-skeleton loading-skeleton"></div>
+                        <div className="text-skeleton loading-skeleton"></div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+
 
 const PortfolioContent: React.FC = () => {
+    const [ isLoading, setIsLoading ] = useState<Boolean>(true) //Move loading to top level component
     return (
         <>
             <section className="page-section__child portfolio-content">
                 <PortfolioSectionHeader header="From Idea to Execution"/>
                 <div className="portfolio-content__container">
-                    <PortfolioItem 
-                        // key={"PI1"}
-                        imageUrl={testImage}
-                        title="SAHNTEK"
-                        type="FULL-STACK"
-                        demoUrl=""
-                        technologies={["HTML", "CSS", "JavaScript", "ReactJS", "Express.js", "Node.js", "SQL"]}
-                        description="Full-featured E-commerce application built to sell computers with speed, security, and reliability. Developed using React for a smooth, responsive user experience across all devices, the platform integrates Stripe for seamless and secure payments, and PostgreSQL for robust data management. It includes CSRF protection and industry-standard security practices to ensure safe transactions"
-                    />
-                    <PortfolioItem 
-                        // key={"PI2"}
-                        imageUrl={testImage}
-                        title="SAHNTEK"
-                        type="FULL-STACK"
-                        demoUrl=""
-                        technologies={["HTML", "CSS", "JavaScript", "ReactJS", "Express.js", "Node.js", "SQL"]}
-                        description="Full-featured E-commerce application built to sell computers with speed, security, and reliability. Developed using React for a smooth, responsive user experience across all devices, the platform integrates Stripe for seamless and secure payments, and PostgreSQL for robust data management. It includes CSRF protection and industry-standard security practices to ensure safe transactions"
-                    />
+                    {!isLoading? (
+                        <PortfolioItem 
+                            // key={"PI1"}
+                            imageUrl={testImage}
+                            title="SAHNTEK"
+                            type="FULL-STACK"
+                            demoUrl=""
+                            technologies={["HTML", "CSS", "JavaScript", "ReactJS", "Express.js", "Node.js", "SQL"]}
+                            description="Full-featured E-commerce application built to sell computers with speed, security, and reliability. Developed using React for a smooth, responsive user experience across all devices, the platform integrates Stripe for seamless and secure payments, and PostgreSQL for robust data management. It includes CSRF protection and industry-standard security practices to ensure safe transactions"
+                        />
+                    ) : (
+                        <LoadingPortfolioItem />
+                    )}
                 </div>
             </section>
         </>

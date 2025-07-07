@@ -315,3 +315,20 @@ body{
   }
   
 }
+
+.loading-skeleton{
+  background-color: grey;
+  animation: load 3s linear infinite;
+}
+
+@keyframes load {
+  0% {
+    opacity: 100%;
+  }
+  50%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 100%;
+  }
+}

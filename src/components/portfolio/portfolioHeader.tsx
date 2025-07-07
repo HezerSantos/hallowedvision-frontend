@@ -7,8 +7,7 @@ import { SiExpress } from "react-icons/si";
 import { FaNode } from "react-icons/fa6";
 import { FaPython } from "react-icons/fa6";
 import { DiMysql } from "react-icons/di";
-import React from 'react';
-
+import React, { useState } from 'react';
 const LanguageScroll: React.FC = () => {
     return(
         <>
@@ -84,6 +83,7 @@ const LanguageScroll: React.FC = () => {
 }
 
 const PortfolioHeader: React.FC = () => {
+    const [isLoading, setIsLoading ] = useState<Boolean>(true)
     return(
         <>
             <header className="page-section portfolio-header__wrapper">
@@ -99,8 +99,10 @@ const PortfolioHeader: React.FC = () => {
                         </button>
                     </div>
                     <div className="portfolio-header__content-hero">
-                        <div className='portfolio-picture'>
-                            <img src={hezer} alt="" />
+                        <div className={isLoading? 'portfolio-picture' : 'portfolio-picture loading-skeleton'}>
+                            {isLoading && (
+                                <img src={hezer} alt="" />
+                            )}
                         </div>
                     </div>
                     <div className='portfolio-header__info'>
