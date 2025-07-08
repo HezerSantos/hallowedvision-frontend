@@ -457,8 +457,15 @@
 
  .image-skeleton{
     width: 100%;
-    aspect-ratio: 1 / .45;
+    aspect-ratio: 1 / .6;
+    align-self: center;
     border-radius: 1rem;
+ }
+
+ @media (max-width: 1390px){
+    .image-skeleton{
+        aspect-ratio: 1 / .35;
+    }
  }
 
  .heading-skeleton{
