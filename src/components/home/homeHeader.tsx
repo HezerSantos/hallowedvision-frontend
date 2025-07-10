@@ -1,8 +1,9 @@
 import React from "react";
 import { AngelWings } from "../models/AngelWings";
 import { FaArrowRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const HomeHeader: React.FC = () => {
+    const navigate = useNavigate()
     return (
         <>
             <header className="page-section home_header-wrapper">
@@ -11,14 +12,10 @@ const HomeHeader: React.FC = () => {
                     <div className="home_header_content">
                         <h1>Foucs on What Matters <br /> Bring Your Vision to Life</h1>
                         <div>
-                            <button>
-                                <Link to="/terms-and-conditions">Learn More</Link>
+                            <button onClick={() => navigate("/terms-and-conditions")}>
+                                <span>Learn More</span>
                                 <FaArrowRight />
                             </button>
-                            {/* <div>
-                                <a href="/terms-and-conditions#services">Services</a>
-                                <FaArrowRight />
-                            </div> */}
                         </div>
                     </div>
                 </div>
