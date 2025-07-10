@@ -12,9 +12,9 @@ const FooterHV: React.FC = () => {
                 </div>
                 <div>
                     <h3>Quick Links</h3>
-                    <a href={"/portfolio"}>Portfolio</a>
+                    <Link to={"/portfolio"}>Portfolio</Link>
                     <a href={"/terms-and-conditions#abouthallowedvisions"}>About Us</a>
-                    <a href="/terms-and-conditions">Pricing</a>
+                    <Link to="/terms-and-conditions">Pricing</Link>
                 </div>
                 <div>
                     <h3>Socials</h3>
