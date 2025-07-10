@@ -1,6 +1,7 @@
 import React from "react";
 import { AngelWings } from "../models/AngelWings";
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const HomeHeader: React.FC = () => {
     return (
         <>
@@ -11,13 +12,13 @@ const HomeHeader: React.FC = () => {
                         <h1>Foucs on What Matters <br /> Bring Your Vision to Life</h1>
                         <div>
                             <button>
-                                <span>Learn More</span>
+                                <Link to="/terms-and-conditions">Learn More</Link>
                                 <FaArrowRight />
                             </button>
-                            <button>
-                                <span>Services</span>
+                            {/* <div>
+                                <a href="/terms-and-conditions#services">Services</a>
                                 <FaArrowRight />
-                            </button>
+                            </div> */}
                         </div>
                     </div>
                 </div>

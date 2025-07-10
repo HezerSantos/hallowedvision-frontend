@@ -74,6 +74,11 @@
             &:hover{
                 background-color: var(--c1-color);
             }
+
+            & > a{
+                text-decoration: none;
+                color: white;
+            }
             /* &::after{
                 position: absolute;
                 inset: 0;
