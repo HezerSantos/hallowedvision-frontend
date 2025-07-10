@@ -1,7 +1,7 @@
 import React from "react";
 import { AngelWings } from "../models/AngelWings";
 import { FaArrowRight } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const HomeHeader: React.FC = () => {
     const navigate = useNavigate()
     return (
