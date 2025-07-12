@@ -39,6 +39,25 @@ body{
   width: 100%;
 }
 
+.loading-screen{
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > img{
+    width: 50px;
+    aspect-ratio: 1 / 1;
+    animation: loading 2s ease-in-out infinite;
+  }
+}
+
+@keyframes loading{
+  to{
+    transform: rotate(360deg);
+  }
+}
+
 .nav-main-wrapper{
   position: fixed;
   background: linear-gradient(
