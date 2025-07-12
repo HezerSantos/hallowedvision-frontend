@@ -1,11 +1,28 @@
-import { useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
 import api from './app.config';
 import axios from 'axios'
+import CsrfContext from './context/csrf/csrfContext';
+import logo from './assets/images/logo.webp'
+const LoadingScreen: React.FC = () => {
+  return(
+    <main className='loading-screen'>
+      <img src={logo} alt="logo-loading"/>
+    </main>
+  )
+}
 
 function App() {
   axios.defaults.withCredentials = true
+  const { pathname } = useLocation();
+  const csrfContext = useContext(CsrfContext)
+  const [ isLoading, setIsLoading ] = useState<Boolean>(true)
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   useEffect(() => {
     if (import.meta.env.MODE === 'production') {
       console.warn = () => {}
@@ -14,17 +31,15 @@ function App() {
       console.debug = () => {}
     }
   }, [])
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
 
   useEffect(() => {
     const getCsrf = async() => {
       try{
         await axios.get(`${api.url}/api/csrf`)
-        console.log(document.cookie)
+        if(csrfContext){
+          csrfContext.decodeCookie("__Secure-auth.csrf")
+          setIsLoading(false)
+        }
       } catch(e){
         console.error(e)
       }
@@ -32,9 +47,15 @@ function App() {
 
     getCsrf()
   }, [])
+
+
   return (
     <>
-      <Outlet />
+      {isLoading? (
+        <LoadingScreen />
+      ) : (
+        <Outlet />
+      )}
     </>
   )
 }
