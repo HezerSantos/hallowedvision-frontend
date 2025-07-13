@@ -1,36 +1,38 @@
-// import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import HomeHeader from "../../components/home/homeHeader"
 import '../../assets/styles/home/home.css'
 import NavBar from "../../components/universal/navBar"
 import HomeSectionOne from "../../components/home/homeSectionOne"
 import HomeSectionTwo from "../../components/home/homeSectionTwo"
 import FooterHV from "../../components/universal/footer"
-// import axios from "axios"
-// import api from "../../app.config"
-// import CsrfContext from "../../context/csrf/csrfContext"
+import axios from "axios"
+import api from "../../app.config"
+import CsrfContext from "../../context/csrf/csrfContext"
 const HomePage: React.FC = () => {
-    // const csrfContext = useContext(CsrfContext)
-    // useEffect(() => {
-    //     const fetchData = async() => {
-    //         try{
-    //             const res = await axios.get(`${api.url}/api/home`, {
-    //                 headers: {
-    //                     'csrfToken': csrfContext?.csrfToken
-    //                 }
-    //             })
+    const csrfContext = useContext(CsrfContext)
+    const [ modelUrl, setModelUrl ] = useState<string>("")
+    useEffect(() => {
+        const fetchData = async() => {
+            try{
+                const res = await axios.get(`${api.url}/api/home`, {
+                    headers: {
+                        'csrfToken': csrfContext?.csrfToken
+                    }
+                })
 
-    //             console.log(res)
-    //         } catch(error){
-    //             console.error(error)
-    //         }
-    //     }
+                const modelUrl = res.data.url
+                setModelUrl(modelUrl)
+            } catch(error){
+                console.error(error)
+            }
+        }
 
-    //     fetchData()
-    // }, [])
+        fetchData()
+    }, [])
     return(
         <>
             <NavBar />
-            <HomeHeader />
+            <HomeHeader modelUrl={modelUrl}/>
             <main className="home__main page-section">
                 <HomeSectionOne />
                 <HomeSectionTwo />
