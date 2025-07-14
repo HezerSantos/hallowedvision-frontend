@@ -30,8 +30,10 @@ const NavBar: React.FC = () => {
                     </div>
                     <div className="sidebar-nav__content">
                         <ul>
-                            <li><Link to="" className={location.pathname === "/"? "selected" : ""}>Home</Link></li>
+                            <li><Link to="/" className={location.pathname === "/"? "selected" : ""}>Home</Link></li>
                             <li><Link to="/portfolio" className={location.pathname === "/portfolio"? "selected" : ""}>Portfolio</Link></li>
+                            <li><Link to="/contact" className={location.pathname === "/contact" ? "selected" : ""}>Contact</Link></li>
+                            <li><Link to="/terms-and-conditions">Terms & Conditions</Link></li>
                         </ul>
                     </div>
                     <div className="sidebar-nav__footer">

@@ -39,6 +39,25 @@ body{
   width: 100%;
 }
 
+.loading-screen{
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > img{
+    width: 50px;
+    aspect-ratio: 1 / 1;
+    animation: loading 2s ease-in-out infinite;
+  }
+}
+
+@keyframes loading{
+  to{
+    transform: rotate(360deg);
+  }
+}
+
 .nav-main-wrapper{
   position: fixed;
   background: linear-gradient(
@@ -53,7 +72,7 @@ body{
 }
 .nav-main{
 
-  padding: .5rem clamp(1rem, 10vw, 15rem) .5rem clamp(1rem, 10vw, 15rem);
+  padding-inline: clamp(1rem, 10vw, 15rem);
 
 
   display: grid;
@@ -116,6 +135,8 @@ body{
   display: none;
   flex-direction: column;
   gap: .5rem;
+  height: 5rem;
+  justify-content: center;
   & > div:nth-child(1){
     width: 3rem;
     background-color: white;
@@ -146,7 +167,7 @@ body{
   min-width: 20rem;
   max-width: 35rem;
   position: fixed;
-  height: 100svh;
+  height: 100vh;
   width: 50vw;
   z-index: 9;
   background: linear-gradient(
