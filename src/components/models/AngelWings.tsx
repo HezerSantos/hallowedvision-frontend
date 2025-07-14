@@ -40,105 +40,75 @@ declare global {
   }
 }
 
-function Model(props: GroupProps) {
-  const scaleNumber = 6.5
-  const group = React.useRef<THREE.Group>(null)
-  const { nodes, materials, animations } = useGLTF('/3d/angelwings.glb') as GLTFResult
-  const { actions } = useAnimations(animations, group)
-
-    const mouse = useRef({ x: 0, y: 0 })
-
-    // useFrame(() => {
-    // if (group.current) {
-    //     // smooth lerp toward target rotation
-    //     const temp004 = group.current.getObjectByName('temp004');
-    //     const temp005 = group.current.getObjectByName('temp005');
-
-    //   if (temp004) {
-    //     // Wing 1 moves opposite mouse X direction
-    //     temp004.position.x = mouse.current.x;  
-    //     temp004.position.y = mouse.current.y * -1;
-    //   }
-
-    //   if (temp005) {
-    //     // Wing 1 moves opposite mouse X direction
-    //     temp005.position.x = mouse.current.x;  
-    //     temp005.position.y = mouse.current.y * -1;
-    //   }
-
-    //     group.current.rotation.y += (mouse.current.x * 0.5 - group.current.rotation.y) * 0.05
-    //     group.current.rotation.x += (mouse.current.y * 0.3 - group.current.rotation.x) * 0.05
-
-        
-    //   }
-    // })
 
 
-    // useEffect(() => {
-    //   if (typeof window === 'undefined') return;
-
-    //   const handleMouseMove = (event: MouseEvent) => {
-    //     console.log((event.clientX / window.innerWidth - 0.5) * 2)
-    //     mouse.current.x = (event.clientX / window.innerWidth - 0.5) * 2;
-    //     mouse.current.y = (event.clientY / window.innerHeight - 0.5) * 2;
-    //   };
-
-    //   window.addEventListener('mousemove', handleMouseMove);
-
-    //   return () => {
-    //     window.removeEventListener('mousemove', handleMouseMove);
-    //   };
-    // }, []);
-
-    useEffect(() => {
-    if (actions && Object.keys(actions).length > 0) {
-      // Play first animation
-      const firstActionName = Object.keys(actions)[0]
-      if (firstActionName && actions[firstActionName]) {
-        const action = actions[firstActionName]
-        action.reset()
-        action.timeScale = 0.25
-        action.play()
-      }
-
-      // Play second animation if it exists
-      const secondActionName = Object.keys(actions)[1]
-      if (secondActionName && actions[secondActionName]) {
-        const action = actions[secondActionName]
-        action.reset()
-        action.timeScale = 0.25
-        action.play()
-      }
-    }
-  }, [actions])
-  return (
-    <group 
-      ref={group} 
-      {...props} 
-      dispose={null}
-      scale={[scaleNumber, scaleNumber, scaleNumber]}
-    >
-      <group name="Scene">
-        <mesh 
-          name="temp004" 
-          geometry={nodes.temp004.geometry} 
-          material={materials['Material.001']} 
-          rotation={[Math.PI / 2, 0, 0.234]} 
-        />
-        <mesh 
-          name="temp005" 
-          geometry={nodes.temp005.geometry} 
-          material={materials['Material.001']} 
-          rotation={[Math.PI / 2, 0, -0.234]} 
-        />
-      </group>
-    </group>
-  )
+interface AngelWingsProps {
+  modelUrl: string
 }
+// useGLTF.preload('/angelwings.glb')
 
-useGLTF.preload('/angelwings.glb')
+export const AngelWings: React.FC<AngelWingsProps> = ({modelUrl}) => {
+    if(!modelUrl){
+      return(
+        <>
+        </>
+      )
+    }
+    function Model(props: GroupProps) {
+      const scaleNumber = 6.5
+      const group = React.useRef<THREE.Group>(null)
+      const { nodes, materials, animations } = useGLTF(modelUrl) as GLTFResult
+      const { actions } = useAnimations(animations, group)
 
-export const AngelWings = () => {
+        const mouse = useRef({ x: 0, y: 0 })
+
+        useEffect(() => {
+        if (actions && Object.keys(actions).length > 0) {
+          // Play first animation
+          const firstActionName = Object.keys(actions)[0]
+          if (firstActionName && actions[firstActionName]) {
+            const action = actions[firstActionName]
+            action.reset()
+            action.timeScale = 0.25
+            action.play()
+          }
+
+          // Play second animation if it exists
+          const secondActionName = Object.keys(actions)[1]
+          if (secondActionName && actions[secondActionName]) {
+            const action = actions[secondActionName]
+            action.reset()
+            action.timeScale = 0.25
+            action.play()
+          }
+        }
+      }, [actions])
+      return (
+        <group 
+          ref={group} 
+          {...props} 
+          dispose={null}
+          scale={[scaleNumber, scaleNumber, scaleNumber]}
+        >
+          <group name="Scene">
+            <mesh 
+              name="temp004" 
+              geometry={nodes.temp004.geometry} 
+              material={materials['Material.001']} 
+              rotation={[Math.PI / 2, 0, 0.234]} 
+            />
+            <mesh 
+              name="temp005" 
+              geometry={nodes.temp005.geometry} 
+              material={materials['Material.001']} 
+              rotation={[Math.PI / 2, 0, -0.234]} 
+            />
+          </group>
+        </group>
+      )
+  }
+
+
   return(
     <>
       <div className='home_header_angel-wings'>
