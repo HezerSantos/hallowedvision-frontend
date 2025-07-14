@@ -1,8 +1,6 @@
 import React from "react"
 import PortfolioSectionHeader from "./portfolioSectionHeader"
-import testImage from '../../assets/images/testImage.png'
 import { Link } from "react-router-dom"
-import { useState } from "react"
 import { FaHtml5 } from "react-icons/fa6";
 import { FaCss3Alt } from "react-icons/fa6";
 import { FaJs } from "react-icons/fa6";
@@ -149,27 +147,50 @@ const LoadingPortfolioItem: React.FC = () => {
 }
 
 
+interface PortfolioProjectsDataType {
+    id: number,
+    name: string,
+    description: string,
+    demoUrl: string,
+    type: string,
+    imageUrl: string,
+    languages: string[]
+}
 
-const PortfolioContent: React.FC = () => {
-    // @ts-ignore
-    const [ isLoading, setIsLoading ] = useState<Boolean>(true) //Move loading to top level component
+interface PortfolioContentProps {
+    portfolioItems: PortfolioProjectsDataType[] | null
+    isLoading: boolean
+}
+
+const PortfolioContent: React.FC<PortfolioContentProps> = ({portfolioItems, isLoading}) => {
     return (
         <>
             <section className="page-section__child portfolio-content">
                 <PortfolioSectionHeader header="From Idea to Execution"/>
                 <div className="portfolio-content__container">
                     {!isLoading? (
-                        <PortfolioItem //USE MAP HERE
-                            // key={"PI1"}
-                            imageUrl={testImage}
-                            title="SAHNTEK"
-                            type="FULL-STACK"
-                            demoUrl=""
-                            technologies={["HTML", "CSS", "JavaScript", "ReactJS", "Express.js", "Node.js", "SQL"]}
-                            description="Full-featured E-commerce application built to sell computers with speed, security, and reliability. Developed using React for a smooth, responsive user experience across all devices, the platform integrates Stripe for seamless and secure payments, and PostgreSQL for robust data management. It includes CSRF protection and industry-standard security practices to ensure safe transactions"
-                        />
+                        <>
+                            {portfolioItems?.map(item => {
+                                return(
+                                    <PortfolioItem 
+                                        key={`P${item.id}`}
+                                        imageUrl={item.imageUrl}
+                                        title={item.name}
+                                        type={item.type}
+                                        demoUrl={item.demoUrl}
+                                        technologies={item.languages}
+                                        description={item.description}
+                                    />
+                                )
+                            })}
+                        </>
                     ) : (
+                       <>
                         <LoadingPortfolioItem />
+                        <LoadingPortfolioItem />
+                        <LoadingPortfolioItem />
+                        <LoadingPortfolioItem />
+                       </>
                     )}
                 </div>
             </section>
