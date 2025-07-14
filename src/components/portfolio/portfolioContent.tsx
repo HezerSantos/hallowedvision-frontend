@@ -159,7 +159,7 @@ const PortfolioContent: React.FC = () => {
                 <PortfolioSectionHeader header="From Idea to Execution"/>
                 <div className="portfolio-content__container">
                     {!isLoading? (
-                        <PortfolioItem 
+                        <PortfolioItem //USE MAP HERE
                             // key={"PI1"}
                             imageUrl={testImage}
                             title="SAHNTEK"
