@@ -1,4 +1,3 @@
-import hezer from '../../assets/images/hezer.png'
 import { FaHtml5 } from "react-icons/fa6";
 import { FaCss3Alt } from "react-icons/fa6";
 import { FaJs } from "react-icons/fa6";
@@ -7,7 +6,7 @@ import { SiExpress } from "react-icons/si";
 import { FaNode } from "react-icons/fa6";
 import { FaPython } from "react-icons/fa6";
 import { DiMysql } from "react-icons/di";
-import React, { useState } from 'react';
+import React from 'react';
 const LanguageScroll: React.FC = () => {
     return(
         <>
@@ -82,9 +81,12 @@ const LanguageScroll: React.FC = () => {
     )
 }
 
-const PortfolioHeader: React.FC = () => {
-    // @ts-ignore
-    const [isLoading, setIsLoading ] = useState<Boolean>(true) 
+interface PortfolioHeaderProps {
+    profileImage: string
+    isLoading: boolean
+}
+
+const PortfolioHeader: React.FC<PortfolioHeaderProps> = ({profileImage, isLoading}) => {
     return(
         <>
             <header className="page-section portfolio-header__wrapper">
@@ -100,9 +102,9 @@ const PortfolioHeader: React.FC = () => {
                         </button>
                     </div>
                     <div className="portfolio-header__content-hero">
-                        <div className={isLoading? 'portfolio-picture' : 'portfolio-picture loading-skeleton'}>
-                            {isLoading && (
-                                <img src={hezer} alt="" />
+                        <div className={isLoading? 'portfolio-picture loading-skeleton' : 'portfolio-picture'}>
+                            {(!isLoading) && (
+                                <img src={profileImage} alt="" />
                             )}
                         </div>
                     </div>
