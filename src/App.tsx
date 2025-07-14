@@ -5,6 +5,7 @@ import api from './app.config';
 import axios from 'axios'
 import CsrfContext from './context/csrf/csrfContext';
 import logo from './assets/images/logo.webp'
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 const LoadingScreen: React.FC = () => {
   return(
     <main className='loading-screen'>
@@ -25,6 +26,7 @@ function App() {
 
   useEffect(() => {
     if (import.meta.env.MODE === 'production') {
+      disableReactDevTools()
       console.warn = () => {}
       console.error = () => {}
       console.info = () => {}
