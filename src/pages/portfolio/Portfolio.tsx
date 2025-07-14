@@ -10,10 +10,21 @@ import api from "../../app.config"
 import CsrfContext from "../../context/csrf/csrfContext"
 
 
+interface PortfolioProjectsDataType {
+    id: number,
+    name: string,
+    description: string,
+    demoUrl: string,
+    type: string,
+    imageUrl: string,
+    languages: string[]
+}
+
 const Portfolio: React.FC = () => {
     const csrfContext = useContext(CsrfContext)
     const [ isLoading, setIsLoading ] = useState<boolean>(true)
     const [ profileImage, setProfileImage ] = useState<string>("")
+    const [ portfolioProjectsData, setPortfolioProjectsData ] = useState<PortfolioProjectsDataType[] | null>(null)
     useEffect(() => {
         const fetchData = async() => {
             try{
@@ -23,6 +34,7 @@ const Portfolio: React.FC = () => {
                     }
                 })
                 setProfileImage(res.data.profileImageUrl)
+                setPortfolioProjectsData(res.data.portfolioProjects)
                 setIsLoading(false)
             } catch(error){
                 console.error(error)
@@ -37,7 +49,7 @@ const Portfolio: React.FC = () => {
             <PortfolioHeader isLoading={isLoading} profileImage={profileImage}/>
             <main className="page-section">
                 <PortfolioDetails />
-                <PortfolioContent />
+                <PortfolioContent portfolioItems={portfolioProjectsData} isLoading={isLoading}/>
             </main>
             <footer className="page-section portfolio__footer">
                 <FooterHV />

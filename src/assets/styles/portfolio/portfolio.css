@@ -433,14 +433,14 @@
         grid-template-columns: 1fr;
         row-gap: 1rem;
     }
+    .portfolio-item__description{
+        gap: 2rem;
+    }
 }
 
 @media (max-width: 885px){
     .portfolio-content{
         padding: 0 1rem 5rem 1rem;
-    }
-    .portfolio-item__description{
-        gap: 2rem;
     }
 }
 
@@ -464,7 +464,7 @@
 
  @media (max-width: 1390px){
     .image-skeleton{
-        aspect-ratio: 1 / .35;
+        aspect-ratio: 1 / .5;
     }
  }
 
