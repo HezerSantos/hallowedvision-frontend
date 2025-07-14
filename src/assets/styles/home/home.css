@@ -19,7 +19,7 @@
         content: '';
         inset: 0;
         background: rgba(94, 94, 94, 0.068);
-        backdrop-filter: blur(.5vh);
+        backdrop-filter: blur(.15rem);
         z-index: 3;
     }
 }
