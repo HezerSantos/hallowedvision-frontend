@@ -8,15 +8,16 @@ import FooterHV from "../../components/universal/footer"
 import axios from "axios"
 import api from "../../app.config"
 import CsrfContext from "../../context/csrf/csrfContext"
+import { AxiosError } from "axios"
 const HomePage: React.FC = () => {
     const csrfContext = useContext(CsrfContext)
     const [ modelUrl, setModelUrl ] = useState<string>("")
     useEffect(() => {
-        const fetchData = async() => {
+        const fetchData = async(retry: boolean, newCsrf: null | string = null) => {
             try{
                 const res = await axios.get(`${api.url}/api/home`, {
                     headers: {
-                        'csrfToken': csrfContext?.csrfToken
+                        csrftoken: newCsrf? newCsrf : csrfContext?.csrfToken
                     }
                 })
 
@@ -24,10 +25,15 @@ const HomePage: React.FC = () => {
                 setModelUrl(modelUrl)
             } catch(error){
                 console.error(error)
+                const axiosError = error as AxiosError
+                if(axiosError.status === 403 && retry){
+                    const newCsrf = await csrfContext?.getCsrf()
+                    await fetchData(false, newCsrf)
+                }
             }
         }
 
-        fetchData()
+        fetchData(true)
     }, [])
     return(
         <>

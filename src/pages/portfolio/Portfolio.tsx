@@ -8,7 +8,7 @@ import FooterHV from "../../components/universal/footer"
 import axios from "axios"
 import api from "../../app.config"
 import CsrfContext from "../../context/csrf/csrfContext"
-
+import { AxiosError } from "axios"
 
 interface PortfolioProjectsDataType {
     id: number,
@@ -26,22 +26,26 @@ const Portfolio: React.FC = () => {
     const [ profileImage, setProfileImage ] = useState<string>("")
     const [ portfolioProjectsData, setPortfolioProjectsData ] = useState<PortfolioProjectsDataType[] | null>(null)
     useEffect(() => {
-        const fetchData = async() => {
+        const fetchData = async(retry: boolean, newCsrf: null | string = null) => {
             try{
                 const res = await axios.get(`${api.url}/api/portfolio`, {
                     headers: {
-                        csrftoken: csrfContext?.csrfToken
+                        csrftoken: newCsrf? newCsrf : csrfContext?.csrfToken
                     }
                 })
                 setProfileImage(res.data.profileImageUrl)
                 setPortfolioProjectsData(res.data.portfolioProjects)
                 setIsLoading(false)
             } catch(error){
-                console.error(error)
+                const axiosError = error as AxiosError
+                if(axiosError.status === 403 && retry){
+                    const newCsrf = await csrfContext?.getCsrf()
+                    await fetchData(false, newCsrf)
+                }
             }
         }
 
-        fetchData()
+        fetchData(true)
     }, [])
     return(
         <>

@@ -19,7 +19,7 @@ function App() {
   const { pathname } = useLocation();
   const csrfContext = useContext(CsrfContext)
   const [ isLoading, setIsLoading ] = useState<Boolean>(true)
-
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -38,10 +38,8 @@ function App() {
     const getCsrf = async() => {
       try{
         await axios.get(`${api.url}/api/csrf`)
-        if(csrfContext){
-          csrfContext.decodeCookie("__Secure-auth.csrf")
-          setIsLoading(false)
-        }
+        csrfContext?.decodeCookie("__Secure-auth.csrf")
+        setIsLoading(false)
       } catch(e){
         console.error(e)
       }
