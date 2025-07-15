@@ -1,6 +1,8 @@
 import { ReactNode, useState } from "react";
 import CsrfContext from "./csrfContext";
 import { jwtDecode } from 'jwt-decode'
+import axios from "axios";
+import api from "../../app.config";
 
 interface CsrfProviderProps {
     children: ReactNode
@@ -11,7 +13,7 @@ interface GetCookieType {
 }
 
 interface DecodeCookieType {
-    (cookie: string): void
+    (cookie: string): string
 }
 
 interface DecodedType {
@@ -36,10 +38,21 @@ const CsrfProvider:React.FC<CsrfProviderProps> = ({children}) => {
         const targetCookie: string | undefined = getCookie(cookie)
         const decoded: DecodedType = jwtDecode(String(targetCookie))
         setCsrfToken(decoded.csrfToken)
+        return decoded.csrfToken
+    }
+
+    const getCsrf = async() => {
+        try{
+            await axios.get(`${api.url}/api/csrf`)
+            const newCsrf = decodeCookie("__Secure-auth.csrf")
+            return newCsrf
+        } catch(error){
+            console.error(error)
+        }
     }
 
     return(
-        <CsrfContext.Provider value={{csrfToken, decodeCookie}}>
+        <CsrfContext.Provider value={{csrfToken, decodeCookie, getCsrf}}>
             {children}
         </CsrfContext.Provider>
     )
