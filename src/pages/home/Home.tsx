@@ -31,7 +31,7 @@ const HomePage: React.FC = () => {
                     await fetchData(false, newCsrf)
                 } else if(axiosError.status === 401 && retry){
                     await axios.get(`${api.url}/api/auth`)
-                    await fetchData(false)
+                    await fetchData(true)
                 }
             }
         }
