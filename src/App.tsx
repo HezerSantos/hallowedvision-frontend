@@ -37,6 +37,7 @@ function App() {
   useEffect(() => {
     const getCsrf = async() => {
       try{
+        await axios.get(`${api.url}/api/auth`)
         await axios.get(`${api.url}/api/csrf`)
         csrfContext?.decodeCookie("__Secure-auth.csrf")
         setIsLoading(false)
