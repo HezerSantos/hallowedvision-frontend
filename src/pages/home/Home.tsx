@@ -9,6 +9,59 @@ import axios from "axios"
 import api from "../../app.config"
 import CsrfContext from "../../context/csrf/csrfContext"
 import { AxiosError } from "axios"
+import { data } from "react-router-dom"
+
+
+interface EmailFormElements extends HTMLFormControlsCollection {
+  firstName: HTMLInputElement;
+  lastName: HTMLInputElement;
+  phoneNumber: HTMLInputElement;
+  email: HTMLInputElement;
+  company: HTMLInputElement;
+  websiteType: HTMLInputElement;
+  message: HTMLTextAreaElement;
+
+}
+
+interface EmailForm extends HTMLFormElement {
+  elements: EmailFormElements;
+}
+
+interface CsrfContextType {
+    csrfToken: string | null
+    decodeCookie: (cookie: string) => void
+    getCsrf: () => Promise<string | undefined>
+}
+
+type HandleEmailType = (e: React.FormEvent<HTMLFormElement>, csrfContext: CsrfContextType | null) => Promise<void>
+
+const handleEmail: HandleEmailType = async(e, csrfContext) => {
+    e.preventDefault()
+    const form = e.target as EmailForm
+
+    const {firstName, lastName, phoneNumber, email, company, websiteType, message } = form.elements
+
+    const axiosBody = {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        phoneNumber: phoneNumber.value,
+        email: email.value,
+        company: company.value,
+        websiteType: websiteType.value,
+        message: message.value
+    }
+    try{
+        const res = await axios.post(`${api.url}/api/email`, 
+            axiosBody
+        , {
+            headers: {
+                csrftoken: csrfContext?.csrfToken
+            }
+        })
+    } catch(error) {
+        console.error(error)
+    }
+}
 const HomePage: React.FC = () => {
     const csrfContext = useContext(CsrfContext)
     const [ modelUrl, setModelUrl ] = useState<string>("")
@@ -38,6 +91,8 @@ const HomePage: React.FC = () => {
 
         fetchData(true)
     }, [])
+
+
     return(
         <>
             <NavBar />
@@ -53,7 +108,7 @@ const HomePage: React.FC = () => {
                         <p>Whether you're starting from scratch or scaling up, we’re ready to help bring your vision to life.</p>
                     </div>
                     <div className="home__footer-contact-content">
-                        <form>
+                        <form onSubmit={(e) => handleEmail(e, csrfContext)}>
                             <div>
                                 <label htmlFor="first-name">First Name</label>
                                 <input type="text" name="firstName" id="first-name"/>
