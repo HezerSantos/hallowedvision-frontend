@@ -9,7 +9,7 @@ import axios from "axios"
 import api from "../../app.config"
 import CsrfContext from "../../context/csrf/csrfContext"
 import { AxiosError } from "axios"
-import { data } from "react-router-dom"
+import { AiOutlineLoading } from "react-icons/ai";
 
 
 interface EmailFormElements extends HTMLFormControlsCollection {
@@ -33,9 +33,13 @@ interface CsrfContextType {
     getCsrf: () => Promise<string | undefined>
 }
 
-type HandleEmailType = (e: React.FormEvent<HTMLFormElement>, csrfContext: CsrfContextType | null) => Promise<void>
+type HandleEmailType = (
+    e: React.FormEvent<HTMLFormElement>, 
+    csrfContext: CsrfContextType | null, 
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+) => Promise<void>
 
-const handleEmail: HandleEmailType = async(e, csrfContext) => {
+const handleEmail: HandleEmailType = async(e, csrfContext, setIsLoading) => {
     e.preventDefault()
     const form = e.target as EmailForm
 
@@ -51,20 +55,29 @@ const handleEmail: HandleEmailType = async(e, csrfContext) => {
         message: message.value
     }
     try{
+        setIsLoading(true)
         const res = await axios.post(`${api.url}/api/email`, 
             axiosBody
         , {
             headers: {
                 csrftoken: csrfContext?.csrfToken
             }
+        })  
+        Array.from(form.elements).forEach((element) => {
+            if(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement){
+                element.value = ""
+            }
         })
     } catch(error) {
         console.error(error)
+    } finally {
+        setIsLoading(false)
     }
 }
 const HomePage: React.FC = () => {
     const csrfContext = useContext(CsrfContext)
     const [ modelUrl, setModelUrl ] = useState<string>("")
+    const [ isLoading, setIsLoading ] = useState<boolean>(false)
     useEffect(() => {
         const fetchData = async(retry: boolean, newCsrf: null | string = null) => {
             try{
@@ -108,37 +121,45 @@ const HomePage: React.FC = () => {
                         <p>Whether you're starting from scratch or scaling up, we’re ready to help bring your vision to life.</p>
                     </div>
                     <div className="home__footer-contact-content">
-                        <form onSubmit={(e) => handleEmail(e, csrfContext)}>
+                        <form onSubmit={(e) => handleEmail(e, csrfContext, setIsLoading)}>
                             <div>
                                 <label htmlFor="first-name">First Name</label>
-                                <input type="text" name="firstName" id="first-name"/>
+                                <input type="text" name="firstName" id="first-name" disabled={isLoading}/>
                             </div>
                             <div>
                                 <label htmlFor="last-name">Last Name</label>
-                                <input type="text" name="lastName" id="last-name"/>
+                                <input type="text" name="lastName" id="last-name" disabled={isLoading}/>
                             </div>
                             <div>
                                 <label htmlFor="phone-number">Phone</label>
-                                <input type="text" name="phoneNumber" id="phone-number"/>
+                                <input type="text" name="phoneNumber" id="phone-number" disabled={isLoading}/>
                             </div>
                             <div>
                                 <label htmlFor="email">Email</label>
-                                <input type="text" name="email" id="email"/>
+                                <input type="text" name="email" id="email" disabled={isLoading}/>
                             </div>
                             <div>
                                 <label htmlFor="company">Company</label>
-                                <input type="text" name="company" id="company"/>
+                                <input type="text" name="company" id="company" disabled={isLoading}/>
                             </div>
                             <div>
                                 <label htmlFor="website-type">Website Type</label>
-                                <input type="text" name="websiteType" id="website-type"/>
+                                <input type="text" name="websiteType" id="website-type" disabled={isLoading}/>
                             </div>
                             <div>
                                 <label htmlFor="message">Message</label>
-                                <textarea name="message" id="message"/>
+                                <textarea name="message" id="message" disabled={isLoading}/>
                             </div>
                             <div>
-                                <button>SUBMIT</button>
+                                <button disabled={isLoading}>
+                                    {isLoading? (
+                                        <AiOutlineLoading />
+                                    ) : (
+                                        <>
+                                            SUBMIT
+                                        </>
+                                    )}
+                                </button>
                             </div>
                         </form>
                     </div>
