@@ -97,9 +97,9 @@ const PortfolioHeader: React.FC<PortfolioHeaderProps> = ({profileImage, isLoadin
                     <div className="portfolio-header__content-header">
                         <h1>Hezer Santos</h1>
                         <p>Full-Stack Developer | Scalable Web Architecture</p>
-                        <button>
+                        {/* <button>
                             Download Resume
-                        </button>
+                        </button> */}
                     </div>
                     <div className="portfolio-header__content-hero">
                         <div className={isLoading? 'portfolio-picture loading-skeleton' : 'portfolio-picture'}>

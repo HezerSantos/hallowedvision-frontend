@@ -100,7 +100,7 @@ const handleEmail: HandleEmailType = async(e, csrfContext, setIsLoading, retry, 
         const axiosError = error as AxiosError
         if(axiosError.status === 403 && retry){
             const newCsrf = await csrfContext?.getCsrf()
-            await handleEmail(e, csrfContext, setIsLoading, true, newCsrf, setErrors, setEmailMessage, setIsLimit)
+            await handleEmail(e, csrfContext, setIsLoading, false, newCsrf, setErrors, setEmailMessage, setIsLimit)
         } else if(axiosError.status === 401 && retry){
             await axios.get(`${api.url}/api/auth`)
             await handleEmail(e, csrfContext, setIsLoading, true, null, setErrors, setEmailMessage, setIsLimit)
