@@ -36,10 +36,23 @@ interface CsrfContextType {
 type HandleEmailType = (
     e: React.FormEvent<HTMLFormElement>, 
     csrfContext: CsrfContextType | null, 
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    retry: boolean,
+    newCsrf: null | string | undefined,
+    setErrors: React.Dispatch<React.SetStateAction<Map<string, string> | null>>
 ) => Promise<void>
 
-const handleEmail: HandleEmailType = async(e, csrfContext, setIsLoading) => {
+
+interface DataErrors {
+    errors: {
+        type: string,
+        value: string,
+        msg: string,
+        path: string,
+        location: string
+    }[]
+}
+const handleEmail: HandleEmailType = async(e, csrfContext, setIsLoading, retry, newCsrf, setErrors) => {
     e.preventDefault()
     const form = e.target as EmailForm
 
@@ -60,7 +73,7 @@ const handleEmail: HandleEmailType = async(e, csrfContext, setIsLoading) => {
             axiosBody
         , {
             headers: {
-                csrftoken: csrfContext?.csrfToken
+                csrftoken: newCsrf? newCsrf : csrfContext?.csrfToken
             }
         })  
         Array.from(form.elements).forEach((element) => {
@@ -69,17 +82,34 @@ const handleEmail: HandleEmailType = async(e, csrfContext, setIsLoading) => {
             }
         })
     } catch(error) {
-        console.error(error)
+        // console.error(error)
+        const axiosError = error as AxiosError
+        if(axiosError.status === 403 && retry){
+            const newCsrf = await csrfContext?.getCsrf()
+            await handleEmail(e, csrfContext, setIsLoading, true, newCsrf, setErrors)
+        } else if(axiosError.status === 401 && retry){
+            await axios.get(`${api.url}/api/auth`)
+            await handleEmail(e, csrfContext, setIsLoading, true, null, setErrors)
+        } else if (axiosError.status === 400){
+            const axiosData = axiosError.response?.data as DataErrors
+            const errors = axiosData.errors.map(({msg, path}) => {
+                return [path, msg] as [string, string]
+            })
+            setErrors(new Map(errors))
+
+        }
     } finally {
         setIsLoading(false)
     }
 }
+
 const HomePage: React.FC = () => {
     const csrfContext = useContext(CsrfContext)
     const [ modelUrl, setModelUrl ] = useState<string>("")
     const [ isLoading, setIsLoading ] = useState<boolean>(false)
+    const [ errors, setErrors ] = useState<Map<string, string> | null>(null)
     useEffect(() => {
-        const fetchData = async(retry: boolean, newCsrf: null | string = null) => {
+        const fetchData = async(retry: boolean, newCsrf: null | string | undefined = null) => {
             try{
                 const res = await axios.get(`${api.url}/api/home`, {
                     headers: {
@@ -121,34 +151,76 @@ const HomePage: React.FC = () => {
                         <p>Whether you're starting from scratch or scaling up, we’re ready to help bring your vision to life.</p>
                     </div>
                     <div className="home__footer-contact-content">
-                        <form onSubmit={(e) => handleEmail(e, csrfContext, setIsLoading)}>
+                        <form onSubmit={(e) => handleEmail(e, csrfContext, setIsLoading, true, null, setErrors)}>
                             <div>
                                 <label htmlFor="first-name">First Name</label>
-                                <input type="text" name="firstName" id="first-name" disabled={isLoading}/>
+                                <input className={errors?.has("firstName")? "input-error" : ""} type="text" name="firstName" id="first-name" disabled={isLoading}/>
+                                { errors?.has("firstName")? (
+                                    <p>{errors.get("firstName")}</p>
+                                ) : (
+                                    <></>
+                                )
+                                }
                             </div>
                             <div>
                                 <label htmlFor="last-name">Last Name</label>
-                                <input type="text" name="lastName" id="last-name" disabled={isLoading}/>
+                                <input className={errors?.has("lastName")? "input-error" : ""} type="text" name="lastName" id="last-name" disabled={isLoading}/>
+                                { errors?.has("lastName")? (
+                                    <p>{errors.get("lastName")}</p>
+                                ) : (
+                                    <></>
+                                )
+                                }
                             </div>
                             <div>
                                 <label htmlFor="phone-number">Phone</label>
-                                <input type="text" name="phoneNumber" id="phone-number" disabled={isLoading}/>
+                                <input className={errors?.has("phoneNumber")? "input-error" : ""} type="text" name="phoneNumber" id="phone-number" disabled={isLoading}/>
+                                 { errors?.has("phoneNumber")? (
+                                    <p>{errors.get("phoneNumber")}</p>
+                                ) : (
+                                    <></>
+                                )
+                                }                           
                             </div>
                             <div>
                                 <label htmlFor="email">Email</label>
-                                <input type="text" name="email" id="email" disabled={isLoading}/>
+                                <input className={errors?.has("email")? "input-error" : ""} type="text" name="email" id="email" disabled={isLoading}/>
+                                 { errors?.has("email")? (
+                                    <p>{errors.get("email")}</p>
+                                ) : (
+                                    <></>
+                                )
+                                }                           
                             </div>
                             <div>
                                 <label htmlFor="company">Company</label>
-                                <input type="text" name="company" id="company" disabled={isLoading}/>
+                                <input className={errors?.has("company")? "input-error" : ""} type="text" name="company" id="company" disabled={isLoading}/>
+                                { errors?.has("company")? (
+                                    <p>{errors.get("company")}</p>
+                                ) : (
+                                    <></>
+                                )
+                                }                            
                             </div>
                             <div>
                                 <label htmlFor="website-type">Website Type</label>
-                                <input type="text" name="websiteType" id="website-type" disabled={isLoading}/>
+                                <input className={errors?.has("websiteType")? "input-error" : ""} type="text" name="websiteType" id="website-type" disabled={isLoading}/>
+                                { errors?.has("websiteType")? (
+                                    <p>{errors.get("websiteType")}</p>
+                                ) : (
+                                    <></>
+                                )
+                                }                            
                             </div>
                             <div>
                                 <label htmlFor="message">Message</label>
-                                <textarea name="message" id="message" disabled={isLoading}/>
+                                <textarea className={errors?.has("message")? "input-error" : ""} name="message" id="message" disabled={isLoading}/>
+                                { errors?.has("message")? (
+                                    <p>{errors.get("message")}</p>
+                                ) : (
+                                    <></>
+                                )
+                                }                            
                             </div>
                             <div>
                                 <button disabled={isLoading}>
