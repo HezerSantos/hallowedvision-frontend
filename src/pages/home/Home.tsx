@@ -10,6 +10,7 @@ import api from "../../app.config"
 import CsrfContext from "../../context/csrf/csrfContext"
 import { AxiosError } from "axios"
 import { AiOutlineLoading } from "react-icons/ai";
+import EmailMessage from "../../components/errors/emailMessage"
 
 
 interface EmailFormElements extends HTMLFormControlsCollection {
@@ -39,7 +40,9 @@ type HandleEmailType = (
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
     retry: boolean,
     newCsrf: null | string | undefined,
-    setErrors: React.Dispatch<React.SetStateAction<Map<string, string> | null>>
+    setErrors: React.Dispatch<React.SetStateAction<Map<string, string> | null>>,
+    setEmailMessage: React.Dispatch<React.SetStateAction<string>>,
+    setIsLimit:  React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void>
 
 
@@ -52,7 +55,13 @@ interface DataErrors {
         location: string
     }[]
 }
-const handleEmail: HandleEmailType = async(e, csrfContext, setIsLoading, retry, newCsrf, setErrors) => {
+
+interface EmailErrorType {
+    errors:{
+        msg: string
+    }[]
+}
+const handleEmail: HandleEmailType = async(e, csrfContext, setIsLoading, retry, newCsrf, setErrors, setEmailMessage, setIsLimit) => {
     e.preventDefault()
     const form = e.target as EmailForm
 
@@ -75,28 +84,37 @@ const handleEmail: HandleEmailType = async(e, csrfContext, setIsLoading, retry, 
             headers: {
                 csrftoken: newCsrf? newCsrf : csrfContext?.csrfToken
             }
-        })  
+        })
+        setErrors(null)  
         Array.from(form.elements).forEach((element) => {
             if(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement){
                 element.value = ""
             }
         })
+        
+        const responseMessage = res.data[0].msg
+        setEmailMessage(responseMessage)
+        setIsLimit(true)
     } catch(error) {
-        // console.error(error)
+        console.error(error)
         const axiosError = error as AxiosError
         if(axiosError.status === 403 && retry){
             const newCsrf = await csrfContext?.getCsrf()
-            await handleEmail(e, csrfContext, setIsLoading, true, newCsrf, setErrors)
+            await handleEmail(e, csrfContext, setIsLoading, true, newCsrf, setErrors, setEmailMessage, setIsLimit)
         } else if(axiosError.status === 401 && retry){
             await axios.get(`${api.url}/api/auth`)
-            await handleEmail(e, csrfContext, setIsLoading, true, null, setErrors)
+            await handleEmail(e, csrfContext, setIsLoading, true, null, setErrors, setEmailMessage, setIsLimit)
         } else if (axiosError.status === 400){
             const axiosData = axiosError.response?.data as DataErrors
             const errors = axiosData.errors.map(({msg, path}) => {
                 return [path, msg] as [string, string]
             })
             setErrors(new Map(errors))
-
+        } else if (axiosError.status === 429){
+            const axiosData = axiosError.response?.data as EmailErrorType
+            const error = axiosData.errors[0].msg
+            setEmailMessage(error)
+            setIsLimit(true)
         }
     } finally {
         setIsLoading(false)
@@ -108,6 +126,8 @@ const HomePage: React.FC = () => {
     const [ modelUrl, setModelUrl ] = useState<string>("")
     const [ isLoading, setIsLoading ] = useState<boolean>(false)
     const [ errors, setErrors ] = useState<Map<string, string> | null>(null)
+    const [ isLimit, setIsLimit ] = useState(false)
+    const [ emailMessage, setEmailMessage ] = useState("")
     useEffect(() => {
         const fetchData = async(retry: boolean, newCsrf: null | string | undefined = null) => {
             try{
@@ -135,9 +155,24 @@ const HomePage: React.FC = () => {
         fetchData(true)
     }, [])
 
+    useEffect(() => {
+        if(isLimit){
+            const timeoutId = setTimeout(() => {
+                setIsLimit(false)
+            }, 8000)
+
+            return () => clearTimeout(timeoutId)
+        }
+    }, [isLimit])
+
 
     return(
         <>
+            {isLimit && (
+                <EmailMessage 
+                    message={emailMessage}
+                />
+            )}
             <NavBar />
             <HomeHeader modelUrl={modelUrl}/>
             <main className="home__main page-section">
@@ -151,7 +186,7 @@ const HomePage: React.FC = () => {
                         <p>Whether you're starting from scratch or scaling up, we’re ready to help bring your vision to life.</p>
                     </div>
                     <div className="home__footer-contact-content">
-                        <form onSubmit={(e) => handleEmail(e, csrfContext, setIsLoading, true, null, setErrors)}>
+                        <form onSubmit={(e) => handleEmail(e, csrfContext, setIsLoading, true, null, setErrors, setEmailMessage, setIsLimit)}>
                             <div>
                                 <label htmlFor="first-name">First Name</label>
                                 <input className={errors?.has("firstName")? "input-error" : ""} type="text" name="firstName" id="first-name" disabled={isLoading}/>

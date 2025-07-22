@@ -357,3 +357,32 @@ body{
 .input-error{
   border: 1px solid red !important;
 }
+
+.email-error{
+  max-width: 20rem;
+  margin-top: 6rem;
+  position: fixed;
+  right: 0;
+  background-color: var(--c2-color);
+  z-index: 10;
+  color: white;
+  font-family: var(--f1-font);
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  border: 1px solid white;
+  animation: show-email-error 8s ease-in-out forwards;
+}
+
+@keyframes show-email-error{
+  0%{
+    transform: translateX(100%);
+  }
+  10%{
+    transform: translateX(0%);
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
