@@ -8,28 +8,23 @@ const FooterHV: React.FC = () => {
                 <div className="footer-column__header">
                     <img src={logo} alt="logo" className="logo"/>
                     <h3>Hallowed Visions</h3>
+                    <p>contact@hallowedvisions.com</p>
                     <p>© 2025 Hallowed Visions. All rights reserved.</p>
                 </div>
                 <div>
                     <h3>Quick Links</h3>
                     <Link to={"/portfolio"}>Portfolio</Link>
-                    <a href={"/terms-and-conditions#abouthallowedvisions"}>About Us</a>
+                    <Link to={"/terms-and-conditions#abouthallowedvisions"}>About Us</Link>
                     <Link to="/terms-and-conditions">Pricing</Link>
                 </div>
                 <div>
                     <h3>Socials</h3>
-                    <Link to={""}>Instagram</Link>
-                    <Link to={""}>YouTube</Link>
-                    <Link to={""}>TikTok</Link>
-                </div>
-                <div>
-                    <h3>Side Cache</h3>
-                    <Link to={""}>Blog</Link>
+                    <a href={"https://linkedin.com/in/hezer-santos"} target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </div>
                 <div>
                     <h3>Additional Info</h3>
-                    <a href={"/terms-and-conditions"}>Terms</a>
-                    <Link to={""}>Privacy Policy</Link>
+                    <Link to={"/terms-and-conditions"}>Terms</Link>
+                    {/* <Link to={""}>Privacy Policy</Link> */}
                 </div>
             </div>
         </>
