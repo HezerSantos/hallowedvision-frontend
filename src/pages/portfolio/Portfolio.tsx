@@ -9,6 +9,7 @@ import axios from "axios"
 import api from "../../app.config"
 import CsrfContext from "../../context/csrf/csrfContext"
 import { AxiosError } from "axios"
+import { Helmet } from "react-helmet-async"
 
 interface PortfolioProjectsDataType {
     id: number,
@@ -52,6 +53,9 @@ const Portfolio: React.FC = () => {
     }, [])
     return(
         <>
+            <Helmet>
+                <title>Portfolio | HallowedVisions</title>
+            </Helmet>
             <NavBar />
             <PortfolioHeader isLoading={isLoading} profileImage={profileImage}/>
             <main className="page-section">
