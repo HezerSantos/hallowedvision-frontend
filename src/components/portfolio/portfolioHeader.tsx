@@ -6,6 +6,8 @@ import { SiExpress } from "react-icons/si";
 import { FaNode } from "react-icons/fa6";
 import { FaPython } from "react-icons/fa6";
 import { DiMysql } from "react-icons/di";
+import { GrStripe } from "react-icons/gr";
+import { SiSocketdotio } from "react-icons/si";
 import React from 'react';
 const LanguageScroll: React.FC = () => {
     return(
@@ -43,6 +45,14 @@ const LanguageScroll: React.FC = () => {
                     <DiMysql />
                     <p>SQL</p>
                 </div>
+                <div>
+                    <GrStripe />
+                    <p>Stripe</p>
+                </div>
+                <div>
+                    <SiSocketdotio />
+                    <p>WebSocket</p>
+                </div>
                 
                 <div>
                     <FaHtml5 />
@@ -75,6 +85,14 @@ const LanguageScroll: React.FC = () => {
                 <div>
                     <DiMysql />
                     <p>SQL</p>
+                </div>
+                <div>
+                    <GrStripe />
+                    <p>Stripe</p>
+                </div>
+                <div>
+                    <SiSocketdotio />
+                    <p>WebSocket</p>
                 </div>
             </div>
         </>

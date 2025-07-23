@@ -11,6 +11,7 @@ import { FaPython } from "react-icons/fa6";
 import { DiMysql } from "react-icons/di";
 import { GrStripe } from "react-icons/gr";
 import { SiSocketdotio } from "react-icons/si";
+import { FaCloudflare } from "react-icons/fa6";
 interface PortfolioItemProps {
     imageUrl: string,
     title: string,
@@ -33,7 +34,7 @@ technologyMap.set("Python", <FaPython />)
 technologyMap.set("SQL", <DiMysql />)
 technologyMap.set("Stripe", <GrStripe />)
 technologyMap.set("WebSocket", <SiSocketdotio />)
-
+technologyMap.set("Cloudflare R2", <FaCloudflare />)
 
 interface TechnologyItemProps {
     techName: string,
