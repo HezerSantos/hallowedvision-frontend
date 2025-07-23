@@ -127,7 +127,7 @@
         justify-content: center;
         gap: .5rem;
         min-width: 5rem;
-        animation: scroll 10s linear infinite;
+        animation: scroll2 10s linear infinite;
     }
 
 
@@ -148,6 +148,12 @@
 @keyframes scroll {
     to{
         transform: translateX(calc((1rem * 12) + -60rem)); /*FUTURE REFERENCE THIS IS THE MOST IMPORTANT */
+    }
+}
+
+@keyframes scroll2 {
+    to {
+        transform: translateX(calc((1rem * 15) + -75rem));
     }
 }
 
