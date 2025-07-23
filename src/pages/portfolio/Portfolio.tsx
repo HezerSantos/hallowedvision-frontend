@@ -54,7 +54,7 @@ const Portfolio: React.FC = () => {
     return(
         <>
             <Helmet>
-                <title>Portfolio | HallowedVisions</title>
+                <title>Hezer Santos - Portfolio | HallowedVisions</title>
             </Helmet>
             <NavBar />
             <PortfolioHeader isLoading={isLoading} profileImage={profileImage}/>
