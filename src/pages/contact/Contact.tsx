@@ -5,6 +5,7 @@ import ContactHeader from "../../components/contact/contactHeader"
 import ContactContent from "../../components/contact/contactContent"
 import { useState, useEffect } from "react"
 import EmailMessage from "../../components/errors/emailMessage"
+import { Helmet } from "react-helmet-async"
 const Contact: React.FC = () => {
     const [ isLimit, setIsLimit ] = useState<boolean>(false)
     const [ emailMessage, setEmailMessage ] = useState<string>("")
@@ -20,6 +21,9 @@ const Contact: React.FC = () => {
     }, [isLimit])
     return(
         <>
+            <Helmet>
+                <title>Contact Us | HallowedVisions</title>
+            </Helmet>
             {isLimit && (
                 <EmailMessage 
                     message={emailMessage}

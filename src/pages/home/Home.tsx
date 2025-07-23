@@ -11,7 +11,7 @@ import CsrfContext from "../../context/csrf/csrfContext"
 import { AxiosError } from "axios"
 import { AiOutlineLoading } from "react-icons/ai";
 import EmailMessage from "../../components/errors/emailMessage"
-
+import { Helmet } from 'react-helmet-async'
 
 interface EmailFormElements extends HTMLFormControlsCollection {
   firstName: HTMLInputElement;
@@ -168,6 +168,9 @@ const HomePage: React.FC = () => {
 
     return(
         <>
+            <Helmet>
+                <title>Home | HallowedVisions</title>
+            </Helmet>
             {isLimit && (
                 <EmailMessage 
                     message={emailMessage}
