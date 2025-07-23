@@ -9,8 +9,8 @@ import { SiExpress } from "react-icons/si";
 import { FaNode } from "react-icons/fa6";
 import { FaPython } from "react-icons/fa6";
 import { DiMysql } from "react-icons/di";
-
-
+import { GrStripe } from "react-icons/gr";
+import { SiSocketdotio } from "react-icons/si";
 interface PortfolioItemProps {
     imageUrl: string,
     title: string,
@@ -31,6 +31,8 @@ technologyMap.set("Express.js", <SiExpress />)
 technologyMap.set("Node.js", <FaNode />)
 technologyMap.set("Python", <FaPython />)
 technologyMap.set("SQL", <DiMysql />)
+technologyMap.set("Stripe", <GrStripe />)
+technologyMap.set("WebSocket", <SiSocketdotio />)
 
 
 interface TechnologyItemProps {
