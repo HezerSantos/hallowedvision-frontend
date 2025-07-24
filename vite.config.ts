@@ -6,13 +6,13 @@ export default defineConfig({
   build: {
     minify: true, // Skip Terser minification, as javascript-obfuscator will handle that
     sourcemap: false, // Disable sourcemaps for security
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'axios', '@react-three/drei', '@react-three/fiber', 'react-icons'],
-        },
-      },
-    },
+    // rollupOptions: {
+    //   output: {
+    //     manualChunks: {
+    //       vendor: ['react', 'react-dom', 'axios', '@react-three/drei', '@react-three/fiber', 'react-icons'],
+    //     },
+    //   },
+    // },
   },
   server: {
     allowedHosts: ['73d773fa6ab8.ngrok-free.app'],

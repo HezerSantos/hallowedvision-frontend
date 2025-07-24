@@ -6,8 +6,8 @@ Command: npx gltfjsx@6.5.3 ./public/angelwings.glb --types -o ./src/angelWing.ts
 
 import * as THREE from 'three'
 import '@react-three/fiber';
-import React, {useEffect, useRef} from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import React, {useEffect, useRef, useMemo} from 'react'
+import { useGLTF, useAnimations, Preload } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { GroupProps } from '@react-three/fiber'
 import { ReactThreeFiber } from '@react-three/fiber'
@@ -54,10 +54,13 @@ export const AngelWings: React.FC<AngelWingsProps> = ({modelUrl}) => {
         </>
       )
     }
+    
     function Model(props: GroupProps) {
       const scaleNumber = 6.5
       const group = React.useRef<THREE.Group>(null)
-      const { nodes, materials, animations } = useGLTF(modelUrl) as GLTFResult
+      const { nodes, materials, animations } = useMemo(() => {
+        return useGLTF(modelUrl) as GLTFResult;
+      }, [modelUrl]);
       const { actions } = useAnimations(animations, group)
 
         const mouse = useRef({ x: 0, y: 0 })
@@ -115,6 +118,7 @@ export const AngelWings: React.FC<AngelWingsProps> = ({modelUrl}) => {
         <Canvas>
           <directionalLight position={[0, 0, 5]} intensity={1} />
           <ambientLight intensity={0.5} />
+          <Preload all/>
           <Model />
         </Canvas>
       </div>

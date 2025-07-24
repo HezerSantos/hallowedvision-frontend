@@ -59,7 +59,7 @@ const NavBar: React.FC = () => {
                     <div className="nav-main__header">
                         <img src={logo} alt="" />
                         <Link to="/">Hallowed Visions</Link>
-                        <button className="nav-side-toggle" onClick={() => toggleSideNav()}>
+                        <button className="nav-side-toggle" aria-label="Toggle navigation menu" onClick={() => toggleSideNav()}>
                             <div></div>
                             <div></div>
                         </button>

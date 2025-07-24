@@ -170,6 +170,12 @@ const HomePage: React.FC = () => {
         <>
             <Helmet>
                 <title>Home | HallowedVisions</title>
+                <meta name="description" content="Hallowed Visions - Bringing your vision to life with creativity and technology."/>
+                <meta name="keywords" content="Hallowed Visions, web design, creative services, portfolio, contact, business"/>
+                <meta name="author" content="Hallowed Visions"/>
+                <meta name="robots" content="index, follow"/>
+
+                <link rel="canonical" href="https://www.hallowedvisions.com"/>
             </Helmet>
             {isLimit && (
                 <EmailMessage 
