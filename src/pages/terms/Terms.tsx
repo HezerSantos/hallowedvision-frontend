@@ -11,7 +11,29 @@ const Terms: React.FC = () => {
     return(
         <>
             <Helmet>
-                <title>Termas and Service | HallowedVisions</title>
+            <title>Terms and Service | Hallowed Visions</title>
+            <meta
+                name="description"
+                content="Read the official Terms and Conditions for using Hallowed Visions services. Learn about our technology stack, payments, responsibilities, and legal policies."
+            />
+            <link rel="canonical" href="https://www.hallowedvisions.com/terms-and-conditions" />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    "name": "Hallowed Visions",
+                    "url": "https://www.hallowedvisions.com",
+                    "logo": "https://www.hallowedvisions.com/src/assets/images/logo.webp",
+                    "contactPoint": {
+                    "@type": "ContactPoint",
+                    "email": "contact@hallowedvisions.com",
+                    "contactType": "customer support",
+                    },
+                }),
+                }}
+            />
             </Helmet>
             <NavBar />
             <div className="page-section term__wrapper-parent">
