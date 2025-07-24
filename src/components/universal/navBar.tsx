@@ -1,7 +1,6 @@
 import React, { useRef } from "react"
 import logo from '../../assets/images/logo.webp'
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 
 const NavBar: React.FC = () => {
