@@ -1,13 +1,13 @@
 import React, { useRef } from "react"
 import logo from '../../assets/images/logo.webp'
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 
 const NavBar: React.FC = () => {
     const location = useLocation()
     const sideBar = useRef<HTMLElement>(null)
-
+    const navigate = useNavigate()
     const toggleSideNav = ():void => {
         if(sideBar.current?.classList.contains("toggle")){
             sideBar.current?.classList.remove("toggle")
@@ -41,12 +41,7 @@ const NavBar: React.FC = () => {
                         <h1>contact@hallowedvisions.com</h1>
                         <ul>
                             <li>
-                                <button>
-                                    <FaInstagram />
-                                </button>
-                            </li>
-                            <li>
-                                <button>
+                                <button aria-label="LinkedIn Profile" onClick={() => navigate("https://www.linkedin.com/in/hezer-santos")}>
                                     <FaLinkedin />
                                 </button>
                             </li>
