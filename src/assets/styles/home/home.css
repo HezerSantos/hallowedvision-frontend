@@ -136,50 +136,35 @@
 
 
 
-@keyframes  scrollOne{
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-68vw); }
-}
-@keyframes  scrollTwo{
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-158vw); }
-}
-@keyframes  scrollThree{
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-95vw); }
-}
-@keyframes  scrollFour{
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-80vw); }
-}
-@keyframes  scrollFive{
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-188vw); }
-}
+
+
 
 .home__section-information{
-    padding: 5rem clamp(1rem, 10%, 25rem) 5rem clamp(1rem, 10%, 25rem);
+    padding: 3rem clamp(1rem, 10%, 25rem) 3rem clamp(1rem, 10%, 25rem);
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 3rem;
     background: linear-gradient(to bottom, var(--c3-color-augment) 5%, var(--c3-color) 50%, var(--c3-color-augment) 100%);
+}
+
+.animation-wrapper{
+    overflow: hidden;
+    width: clamp(20rem, 50vw, 40rem);
+    --webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    display: flex;
 }
 
 .home__section-icons{
     position: relative;
-    width: 100%;
-    border: 2px solid var(--c1-color);
-    padding: 3rem 0 3rem 0;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: calc(100% / 6);
-    overflow: auto;
-    max-width: 82rem;
+    padding-bottom: 3rem;
+    display: flex;
     scrollbar-width: none;
     border-radius: 1rem;
     pointer-events: none;
-    
+    gap: 2rem;
+    /* transform: translateX(calc((-8rem * 6) - 12rem)); */
+    animation: scrollOne 10s linear infinite;
     & > div > svg{
         fill: white;
         width: 4rem;
@@ -193,8 +178,9 @@
         flex-direction: column;
         gap: 1rem;
         scroll-snap-align: start;
-        animation: scrollOne 10s linear infinite;
+        /* animation: scrollOne 10s linear infinite; */
         & > p{
+            width: 8rem;
             color: white;
             font-family: var(--f2-font);
             text-align: center;
@@ -202,57 +188,19 @@
     }
 }
 
-
-
-@media (max-width: 1350px){
-    .home__section-icons{
-        grid-auto-columns: calc(100% / 5);
-        & > div{
-                animation: scrollThree 10s linear infinite;
-        }
+@keyframes  scrollOne{
+    to{
+        transform: translateX(calc((-8rem * 6) - 10rem));
     }
 }
 
-@media (max-width: 1150px){
-    .home__section-icons{
-        grid-auto-columns: calc(100% / 4);
-    }
-}
 
-@media (max-width: 960px){
-    .home__section-icons{
-        grid-auto-columns: calc(100% / 3);
-
-        & > div{
-                animation: scrollTwo 10s linear infinite;
-        }
-    }
-}
-
-@media (min-width: 2000px){
-    .home__section-icons{
-        min-width: max-content;
-        & > div{
-                animation: none;
-        }
-    }
-}
 
 @media (max-width: 500px){
 
     .home__section-information{
         padding: 5rem 1% 5rem 1%;
 
-    }
-    .home__section-icons{
-        & > div > svg{
-            width: 2rem;
-            height: 2rem;
-        }
-
-        & > div{
-            animation: scrollFive 10s linear infinite;
-        }
     }
 }
 
