@@ -1,4 +1,5 @@
 import App from "./App";
+import NotFound from "./pages/404/404";
 import Contact from "./pages/contact/Contact";
 import HomePage from "./pages/home/Home";
 import Portfolio from "./pages/portfolio/Portfolio";
@@ -24,6 +25,10 @@ const routes = [
             {
                 path: "/terms-and-conditions",
                 element: <Terms />
+            },
+            {
+                path: "*",
+                element: <NotFound />
             }
         ]
     }
