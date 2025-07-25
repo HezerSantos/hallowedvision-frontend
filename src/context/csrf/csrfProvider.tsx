@@ -54,10 +54,11 @@ type TransformCookieType = (csrfToken: string, key: number) => string
 
 const transformCookie: TransformCookieType = (csrfToken, key) => {
     const mappedToken = Array.from(csrfToken)
+    
     const transformedToken = mappedToken.map((char, index) => {
         return char + tokens[key][index]
     })
-
+    
     return transformedToken.join("")
 }   
 
