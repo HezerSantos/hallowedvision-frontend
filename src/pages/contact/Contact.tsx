@@ -22,8 +22,7 @@ const Contact: React.FC = () => {
     return(
         <>
             <Helmet>
-                <title>Contact Us | HallowedVisions</title>
-                <title>Contact & Pricing | Hallowed Visions – Custom Web Design Solutions</title>
+                <title>Contact & Pricing | Hallowed Visions</title>
                 <meta name="title" content="Contact & Pricing | Hallowed Visions – Custom Web Design Solutions"/>
                 <meta name="description" content="Get in touch with Hallowed Visions to discuss your custom web design needs. Flexible pricing based on team size, integrations, and project complexity. Let's create together."/>
                 <meta name="keywords" content="Hallowed Visions, web design, pricing, contact, custom websites, digital solutions, creative agency, project quote, website development, onboarding support"/>
