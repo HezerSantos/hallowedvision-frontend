@@ -11,7 +11,7 @@ const Terms: React.FC = () => {
     return(
         <>
             <Helmet>
-            <title>Terms and Service | Hallowed Visions</title>
+            <title>Terms of Service | Hallowed Visions</title>
             <meta
                 name="description"
                 content="Read the official Terms and Conditions for using Hallowed Visions services. Learn about our technology stack, payments, responsibilities, and legal policies."
@@ -25,7 +25,6 @@ const Terms: React.FC = () => {
                     "@type": "Organization",
                     "name": "Hallowed Visions",
                     "url": "https://www.hallowedvisions.com",
-                    "logo": "https://www.hallowedvisions.com/src/assets/images/logo.webp",
                     "contactPoint": {
                     "@type": "ContactPoint",
                     "email": "contact@hallowedvisions.com",
