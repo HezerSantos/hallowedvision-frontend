@@ -12,6 +12,7 @@ import { DiMysql } from "react-icons/di";
 import { GrStripe } from "react-icons/gr";
 import { SiSocketdotio } from "react-icons/si";
 import { FaCloudflare } from "react-icons/fa6";
+import { BiLogoTypescript } from "react-icons/bi";
 interface PortfolioItemProps {
     imageUrl: string,
     title: string,
@@ -35,6 +36,7 @@ technologyMap.set("SQL", <DiMysql />)
 technologyMap.set("Stripe", <GrStripe />)
 technologyMap.set("WebSocket", <SiSocketdotio />)
 technologyMap.set("Cloudflare R2", <FaCloudflare />)
+technologyMap.set("TypeScript", <BiLogoTypescript />)
 
 interface TechnologyItemProps {
     techName: string,
