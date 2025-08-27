@@ -359,6 +359,8 @@
         width: 100%;
         height: 100%;
         border-radius: 1rem;
+        border: 2px solid var(--c1-color);
+        padding: .5rem;
     }
 }
 
