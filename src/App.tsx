@@ -37,8 +37,16 @@ function App() {
   useEffect(() => {
     const getCsrf = async() => {
       try{
-        await axios.get(`${api.url}/api/auth`)
-        await axios.get(`${api.url}/api/csrf`)
+        await axios.get(`${api.url}/api/auth`, {
+          headers: {
+            ['Server-Id']: "HV002"
+          }
+        })
+        await axios.get(`${api.url}/api/csrf`, {
+          headers: {
+            ['Server-Id']: "HV002"
+          }
+        })
         csrfContext?.decodeCookie("__Secure-auth.csrf")
         setIsLoading(false)
       } catch(e){
