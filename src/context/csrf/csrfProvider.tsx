@@ -86,7 +86,11 @@ const CsrfProvider:React.FC<CsrfProviderProps> = ({children}) => {
 
     const getCsrf = async() => {
         try{
-            await axios.get(`${api.url}/api/csrf`)
+            await axios.get(`${api.url}/api/csrf`, {
+                headers: {
+                    ['Server-Id']: "HV002"
+                }
+            })
             const btoa = 'X19TZWN1cmUtYXV0aC5jc3Jm' //__Secure-auth.csrf
             const newCsrf = decodeCookie(atob(btoa))
             return newCsrf

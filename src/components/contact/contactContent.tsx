@@ -119,7 +119,8 @@ const handleEmailSubmit:HandleEmailSubmitType = async(params) => {
             axiosBody,
             {
                 headers: {
-                    csrftoken: params.newCsrf? params.newCsrf : params.csrfContext?.csrfToken
+                    csrftoken: params.newCsrf? params.newCsrf : params.csrfContext?.csrfToken,
+                    ['Server-Id']: "HV002"
                 }
             }
         )
@@ -149,7 +150,11 @@ const handleEmailSubmit:HandleEmailSubmitType = async(params) => {
                     retry: false
             })
         } else if(axiosError.status === 401 && params.retry){
-            await axios.get(`${api.url}/api/auth`)
+            await axios.get(`${api.url}/api/auth`, {
+                headers: {
+                    ['Server-Id']: "HV002"
+                }
+            })
             await handleEmailSubmit(
                 {
                     e: params.e, 

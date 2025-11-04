@@ -82,7 +82,8 @@ const handleEmail: HandleEmailType = async(e, csrfContext, setIsLoading, retry, 
             axiosBody
         , {
             headers: {
-                csrftoken: newCsrf? newCsrf : csrfContext?.csrfToken
+                csrftoken: newCsrf? newCsrf : csrfContext?.csrfToken,
+                ['Server-Id']: "HV002"
             }
         })
         setErrors(null)  
@@ -102,7 +103,7 @@ const handleEmail: HandleEmailType = async(e, csrfContext, setIsLoading, retry, 
             const newCsrf = await csrfContext?.getCsrf()
             await handleEmail(e, csrfContext, setIsLoading, false, newCsrf, setErrors, setEmailMessage, setIsLimit)
         } else if(axiosError.status === 401 && retry){
-            await axios.get(`${api.url}/api/auth`)
+            await axios.get(`${api.url}/api/auth`, { headers: { ['Server-Id']: "HV002" }})
             await handleEmail(e, csrfContext, setIsLoading, true, null, setErrors, setEmailMessage, setIsLimit)
         } else if (axiosError.status === 400){
             const axiosData = axiosError.response?.data as DataErrors
@@ -133,7 +134,8 @@ const HomePage: React.FC = () => {
             try{
                 const res = await axios.get(`${api.url}/api/home`, {
                     headers: {
-                        csrftoken: newCsrf? newCsrf : csrfContext?.csrfToken
+                        csrftoken: newCsrf? newCsrf : csrfContext?.csrfToken,
+                        ['Server-Id']: "HV002"
                     }
                 })
 
@@ -146,7 +148,11 @@ const HomePage: React.FC = () => {
                     const newCsrf = await csrfContext?.getCsrf()
                     await fetchData(false, newCsrf)
                 } else if(axiosError.status === 401 && retry){
-                    await axios.get(`${api.url}/api/auth`)
+                    await axios.get(`${api.url}/api/auth`, {
+                        headers: {
+                            ['Server-Id']: "HV002"
+                        }
+                    })
                     await fetchData(true)
                 }
             }

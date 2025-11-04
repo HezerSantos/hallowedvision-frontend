@@ -31,7 +31,8 @@ const Portfolio: React.FC = () => {
             try{
                 const res = await axios.get(`${api.url}/api/portfolio`, {
                     headers: {
-                        csrftoken: newCsrf? newCsrf : csrfContext?.csrfToken
+                        csrftoken: newCsrf? newCsrf : csrfContext?.csrfToken,
+                        ['Server-Id']: "HV002"
                     }
                 })
                 setProfileImage(res.data.profileImageUrl)
@@ -43,7 +44,11 @@ const Portfolio: React.FC = () => {
                     const newCsrf = await csrfContext?.getCsrf()
                     await fetchData(false, newCsrf)
                 } else if(axiosError.status === 401 && retry){
-                    await axios.get(`${api.url}/api/auth`)
+                    await axios.get(`${api.url}/api/auth`, {
+                        headers: {
+                            ['Server-Id']: "HV002"
+                        }
+                    })
                     await fetchData(true)
                 }
             }
