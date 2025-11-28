@@ -5,6 +5,7 @@ import ProjectAbout from "./components/projectAbout"
 
 import imageUrl from '../../assets/testImages/projectHighlight.png'
 import ProjectDetail from "./components/projectDetail"
+import ProjectGallery from "./components/projectGallery"
 const Project: React.FC = () => {
     return(
         <>
@@ -27,6 +28,7 @@ const Project: React.FC = () => {
                         imageUrl={imageUrl}
                         description="Sahntek offers a seamless platform for browsing and purchasing high-performance, custom-built computers. The site features curated builds organized by performance tiers — Pro, Advanced, and Premium — making it easy for users to find the perfect machine for gaming, streaming, or productivity. A responsive, interactive interface powered by React.JS ensures smooth browsing and dynamic interactions, while Node.JS and Express.JS handle backend logic and APIs with speed and scalability. PostgreSQL reliably manages all product and user data, and Stripe integration enables secure, effortless payments. Every build showcases detailed specifications, pricing, and performance levels, delivering an engaging, trustworthy, and modern shopping experience from start to finish."
                     />
+                    <ProjectGallery />
                 </main>
             </div>
 

@@ -17,15 +17,17 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({projectName, demoLink, git
                     <h1>
                         {projectName}
                     </h1>
-                    <Link className="header-link" to={demoLink}>
+                    <div>
+                        <Link className="header-link" to={demoLink}>
                         <FaExternalLinkAlt />
                         <p>Live Demo</p>
-                    </Link>
-                    <Link className="header-link" to={githubLink}>
-                        <FaGithub />
-                        <p>Github</p>
-                    </Link>
-                    <p>{month} {year}</p>
+                        </Link>
+                        <Link className="header-link" to={githubLink}>
+                            <FaGithub />
+                            <p>Github</p>
+                        </Link>
+                        <p>{month} {year}</p>
+                    </div>
                 </div>
             </header>
         </>

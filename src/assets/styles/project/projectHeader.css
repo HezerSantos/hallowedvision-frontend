@@ -5,6 +5,13 @@
     display: flex;
     gap: 2rem;
     align-items: center;
+
+    & > div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
 }
 
 .header-link{
@@ -21,5 +28,11 @@
         width: 1rem;
         height: 1rem;
         fill: white;
+    }
+}
+
+@media (max-width: 670px) {
+    .project-header {
+        flex-direction: column;
     }
 }
