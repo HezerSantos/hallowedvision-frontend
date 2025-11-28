@@ -1,0 +1,24 @@
+.project-detail{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+    padding-inline: 5rem;
+    & > div > p {
+        color: white;
+        font-family: var(--f2-font);
+    }
+    & > div > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 1rem;
+    }
+}
+
+@media (max-width: 1080px){
+    .project-detail {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 1rem;
+    }
+}

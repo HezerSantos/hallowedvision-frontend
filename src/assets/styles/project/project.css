@@ -1,1 +1,16 @@
-@import './projectHeader.css'
+@import './projectHeader.css';
+@import './projectAbout.css';
+@import './projectDetail.css';
+.project-page{
+    margin-top: 5rem;
+    background: url('../../images/projectBackground.svg');
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    & > main {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+}

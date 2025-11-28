@@ -1,0 +1,33 @@
+<svg width="1908" height="1844" viewBox="0 0 1908 1844" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_141_327)">
+<g filter="url(#filter0_f_141_327)">
+<path d="M1908 581.782C1843.36 552.893 1778.51 524.003 1716 479.133C1653.49 434.262 1593.12 373.41 1558.35 290.737C1523.36 208.372 1513.76 104.186 1504.16 0H1908V581.782Z" fill="url(#paint0_radial_141_327)"/>
+</g>
+<g filter="url(#filter1_f_141_327)">
+<path d="M-12 1262.69C58.8267 1277.75 129.653 1292.81 189.813 1340.75C250.187 1388.39 299.68 1469.22 331.68 1558.65C363.467 1648.08 377.76 1746.43 391.84 1844.47H-12V1262.69Z" fill="url(#paint1_radial_141_327)"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_141_327" x="1404.16" y="-100" width="603.84" height="781.782" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="50" result="effect1_foregroundBlur_141_327"/>
+</filter>
+<filter id="filter1_f_141_327" x="-112" y="1162.69" width="603.84" height="781.782" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="50" result="effect1_foregroundBlur_141_327"/>
+</filter>
+<radialGradient id="paint0_radial_141_327" cx="0" cy="0" r="1" gradientTransform="matrix(-541.904 49.2007 -34.1523 -530.436 1706.08 290.891)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#111827"/>
+<stop offset="1" stop-color="#3D578D"/>
+</radialGradient>
+<radialGradient id="paint1_radial_141_327" cx="0" cy="0" r="1" gradientTransform="matrix(-100.063 -435.687 302.429 -97.9451 153.768 1544.58)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D294C4"/>
+<stop offset="1"/>
+</radialGradient>
+<clipPath id="clip0_141_327">
+<rect width="1920" height="1844" fill="white" transform="translate(-12)"/>
+</clipPath>
+</defs>
+</svg>
