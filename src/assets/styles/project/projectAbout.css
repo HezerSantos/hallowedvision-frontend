@@ -63,3 +63,9 @@
         padding-inline: clamp(1rem, 10vw, 5rem);
     }
 }
+
+@media (max-width: 500px){
+    .project-about {
+        padding-inline: .5rem;
+    }
+}

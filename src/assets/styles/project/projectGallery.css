@@ -136,7 +136,7 @@
 }
 @media (max-width: 1080px){
     .project-gallery {
-        padding-inline: clamp(1rem, 10vw, 5rem);
+        padding-inline: clamp(.5rem, 10vw, 5rem);
     }
     .gallery-content{ 
         padding-inline: 0rem;
@@ -186,3 +186,9 @@
         height: 15rem;
     }
 }        
+
+@media (max-width: 500px){
+    .project-gallery {
+        padding-inline: .55rem;
+    }
+}
