@@ -371,6 +371,18 @@
     padding: 1rem;
     border: 2px solid var(--c1-color);
     border-radius: 1rem;
+    gap: 1rem;
+    
+    & > a {
+        background-color: var(--c1-color);
+        border: none;
+        color: white;
+        padding-block: .5rem;
+        border-radius: .5rem;
+        font-family: var(--f1-font);
+        text-align: center;
+        text-decoration: none;
+    }
 }
 
 .portfolio-item__description-header{
