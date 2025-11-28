@@ -6,6 +6,7 @@ import ProjectAbout from "./components/projectAbout"
 import imageUrl from '../../assets/testImages/projectHighlight.png'
 import ProjectDetail from "./components/projectDetail"
 import ProjectGallery from "./components/projectGallery"
+import FooterHV from "../../components/universal/footer"
 const Project: React.FC = () => {
     return(
         <>
@@ -30,6 +31,9 @@ const Project: React.FC = () => {
                     />
                     <ProjectGallery />
                 </main>
+                <footer className="page-section">
+                    <FooterHV />
+                </footer>
             </div>
 
         </>

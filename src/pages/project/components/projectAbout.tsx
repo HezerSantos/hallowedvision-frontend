@@ -62,11 +62,12 @@ const ProjectAbout: React.FC<ProjectAboutProps> = ({imageUrl, description, techn
                         <div className="project-technologies">
                             <p>Technologies</p>
                             <div>
-                                {technologies?.map(name => {
+                                {technologies?.map((name, index) => {
                                     return(
                                         <TechnologyItem 
                                             techName={name}
                                             icon={technologyMap.get(name)}
+                                            key={index}
                                         />
                                     )
                                 })}
