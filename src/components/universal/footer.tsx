@@ -8,7 +8,13 @@ const FooterHV: React.FC = () => {
                 <div className="footer-column__header">
                     <img src={logo} alt="logo" className="logo"/>
                     <h3>Hallowed Visions</h3>
-                    <p>contact@hallowedvisions.com</p>
+                    <a
+                    href="https://mail.google.com/mail/?view=cm&to=contact@hallowedvisions.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >
+                        contact@hallowedvisions.com
+                    </a>
                     <p>© 2025 Hallowed Visions. All rights reserved.</p>
                 </div>
                 <div>
