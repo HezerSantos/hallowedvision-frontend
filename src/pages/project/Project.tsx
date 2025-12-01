@@ -15,12 +15,15 @@ import { useParams } from "react-router-dom"
 interface ProjectDataType {
     name: string,
     demoUrl: string,
+    githubUrl: string,
     imageOne: string,
     imageTwo: string,
     aboutDescription: string,
     extendedDescription: string,
     technologies: string[],
-    gallery: string[]
+    gallery: string[],
+    month: string,
+    year: string,
 }
 const Project: React.FC = () => {
     const [ projectData, setProjectData ] = useState<ProjectDataType | null>(null)
@@ -65,9 +68,9 @@ const Project: React.FC = () => {
                     <ProjectHeader 
                         projectName={projectData?.name}
                         demoLink={projectData?.demoUrl}
-                        githubLink={""}
-                        year="2025"
-                        month="March"
+                        githubLink={projectData?.githubUrl}
+                        year={projectData?.year}
+                        month={projectData?.month}
                     />
                     <main>
                         <ProjectAbout 
