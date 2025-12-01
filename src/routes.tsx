@@ -3,6 +3,7 @@ import NotFound from "./pages/404/404";
 import Contact from "./pages/contact/Contact";
 import HomePage from "./pages/home/Home";
 import Portfolio from "./pages/portfolio/Portfolio";
+import Project from "./pages/project/Project";
 import Terms from "./pages/terms/Terms";
 const routes = [
     {
@@ -25,6 +26,10 @@ const routes = [
             {
                 path: "/terms-and-conditions",
                 element: <Terms />
+            },
+            {
+                path: "/portfolio/:id",
+                element: <Project />
             },
             {
                 path: "*",

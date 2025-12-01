@@ -1,0 +1,37 @@
+import { FaGithub } from "react-icons/fa6";
+import { FaExternalLinkAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
+interface ProjectHeaderProps {
+    projectName: string | undefined,
+    demoLink: string | undefined,
+    githubLink: string | undefined,
+    month: string | undefined,
+    year: string | undefined
+}
+
+const ProjectHeader: React.FC<ProjectHeaderProps> = ({projectName, demoLink, githubLink, month, year}) => {
+    return(
+        <>
+            <header className="page-section">
+                <div className="page-section__child project-header">
+                    <h1>
+                        {projectName}
+                    </h1>
+                    <div>
+                        <Link className="header-link" to={`${demoLink}`}>
+                        <FaExternalLinkAlt />
+                        <p>Live Demo</p>
+                        </Link>
+                        <Link className="header-link" to={`${githubLink}`}>
+                            <FaGithub />
+                            <p>Github</p>
+                        </Link>
+                        <p>{month} {year}</p>
+                    </div>
+                </div>
+            </header>
+        </>
+    )
+}
+
+export default ProjectHeader

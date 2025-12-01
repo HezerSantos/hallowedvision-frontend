@@ -1,0 +1,38 @@
+.project-header{
+    padding: 3rem 5rem;
+    color: white;
+    font-family: var(--f2-font);
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+
+    & > div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
+.header-link{
+    display: flex;
+    gap: .5rem;
+    color: white;
+    text-decoration: none;
+    height: max-content;
+    align-items: center;
+    & > p{
+        height: max-content;
+    }
+    & > svg {
+        width: 1rem;
+        height: 1rem;
+        fill: white;
+    }
+}
+
+@media (max-width: 670px) {
+    .project-header {
+        flex-direction: column;
+    }
+}

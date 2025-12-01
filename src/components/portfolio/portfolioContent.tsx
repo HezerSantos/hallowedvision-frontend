@@ -19,7 +19,8 @@ interface PortfolioItemProps {
     type: string,
     demoUrl: string,
     technologies: string[],
-    description: string
+    description: string,
+    pId: number
 }
 
 const technologyMap: Map<string, React.ReactElement> = new Map()
@@ -53,7 +54,7 @@ const TechnologyItem: React.FC<TechnologyItemProps> = ({techName, icon}) => {
     )
 }
 
-const PortfolioItem: React.FC<PortfolioItemProps> = ({imageUrl, title, type, demoUrl, technologies, description}) => {
+const PortfolioItem: React.FC<PortfolioItemProps> = ({imageUrl, title, type, demoUrl, technologies, description, pId}) => {
     return(
         <>
             <div className="portfolio-item">
@@ -84,6 +85,9 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({imageUrl, title, type, dem
                         <h2>Description</h2>
                         <p>{description}</p>
                     </div>
+                    <Link to={`/portfolio/${pId}`}>
+                        View More
+                    </Link>
                 </div>
             </div>
         </>
@@ -185,6 +189,7 @@ const PortfolioContent: React.FC<PortfolioContentProps> = ({portfolioItems, isLo
                                         demoUrl={item.demoUrl}
                                         technologies={item.languages}
                                         description={item.description}
+                                        pId={item.id}
                                     />
                                 )
                             })}
