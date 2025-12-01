@@ -2,11 +2,11 @@ import { FaGithub } from "react-icons/fa6";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 interface ProjectHeaderProps {
-    projectName: string,
-    demoLink: string,
-    githubLink: string,
-    month: string,
-    year: string
+    projectName: string | undefined,
+    demoLink: string | undefined,
+    githubLink: string | undefined,
+    month: string | undefined,
+    year: string | undefined
 }
 
 const ProjectHeader: React.FC<ProjectHeaderProps> = ({projectName, demoLink, githubLink, month, year}) => {
@@ -18,11 +18,11 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({projectName, demoLink, git
                         {projectName}
                     </h1>
                     <div>
-                        <Link className="header-link" to={demoLink}>
+                        <Link className="header-link" to={`${demoLink}`}>
                         <FaExternalLinkAlt />
                         <p>Live Demo</p>
                         </Link>
-                        <Link className="header-link" to={githubLink}>
+                        <Link className="header-link" to={`${githubLink}`}>
                             <FaGithub />
                             <p>Github</p>
                         </Link>

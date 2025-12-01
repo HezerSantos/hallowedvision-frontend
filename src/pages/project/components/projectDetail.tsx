@@ -1,6 +1,6 @@
 interface ProjectDetailProps {
-    imageUrl: string
-    description: string
+    imageUrl: string | undefined
+    description: string | undefined
 }
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({imageUrl, description}) => {

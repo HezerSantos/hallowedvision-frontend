@@ -2,39 +2,90 @@ import NavBar from "../../components/universal/navBar"
 import ProjectHeader from "./components/projectHeader"
 import '../../assets/styles/project/project.css'
 import ProjectAbout from "./components/projectAbout"
-
-import imageUrl from '../../assets/testImages/projectHighlight.png'
 import ProjectDetail from "./components/projectDetail"
 import ProjectGallery from "./components/projectGallery"
 import FooterHV from "../../components/universal/footer"
+import { useEffect, useContext, useState } from "react"
+import api from "../../app.config"
+import axios, { AxiosError } from "axios"
+import CsrfContext from "../../context/csrf/csrfContext"
+import { useParams } from "react-router-dom"
+
+
+interface ProjectDataType {
+    name: string,
+    demoUrl: string,
+    imageOne: string,
+    imageTwo: string,
+    aboutDescription: string,
+    extendedDescription: string,
+    technologies: string[],
+    gallery: string[]
+}
 const Project: React.FC = () => {
+    const [ projectData, setProjectData ] = useState<ProjectDataType | null>(null)
+    const [ isLoading, setIsLoading ] = useState(true)
+    const csrfContext = useContext(CsrfContext)
+    const params = useParams()
+    useEffect(() => {
+        const fetchData = async(retry: boolean, newCsrf: null | string = null) => {
+            try{
+                const res = await axios.get(`${api.url}/api/portfolio/${params.id}`, {
+                    headers: {
+                        csrftoken: newCsrf? newCsrf : csrfContext?.csrfToken,
+                        ['Server-Id']: "HV002"
+                    }
+                })
+                setProjectData(res.data)
+                setIsLoading(false)
+            } catch(error){
+                const axiosError = error as AxiosError
+                if(axiosError.status === 403 && retry){
+                    const newCsrf = await csrfContext?.getCsrf()
+                    await fetchData(false, newCsrf)
+                } else if(axiosError.status === 401 && retry){
+                    await axios.get(`${api.url}/api/auth`, {
+                        headers: {
+                            ['Server-Id']: "HV002"
+                        }
+                    })
+                    await fetchData(true)
+                }
+            }
+        }
+
+        fetchData(true)
+    }, [])
+
     return(
         <>
             <NavBar />
-            <div className="project-page">
-                <ProjectHeader 
-                    projectName="SAHNTEK"
-                    demoLink=""
-                    githubLink=""
-                    year="2025"
-                    month="March"
-                />
-                <main>
-                    <ProjectAbout 
-                        imageUrl={imageUrl} 
-                        description="Full-featured E-commerce application built to sell computers with speed, security, and reliability. Developed using React for a smooth, responsive user experience across all devices, the platform integrates Stripe for seamless and secure payments, and PostgreSQL for robust data management. It includes CSRF protection and industry-standard security practices to ensure safe transactions"
-                        technologies={["HTML", "CSS", "JavaScript", "ReactJS", "Express.js", "Node.js", "SQL", "Stripe", "Cloudflare R2"]}
+            {!isLoading && (
+                <div className="project-page">
+                    <ProjectHeader 
+                        projectName={projectData?.name}
+                        demoLink={projectData?.demoUrl}
+                        githubLink={""}
+                        year="2025"
+                        month="March"
                     />
-                    <ProjectDetail 
-                        imageUrl={imageUrl}
-                        description="Sahntek offers a seamless platform for browsing and purchasing high-performance, custom-built computers. The site features curated builds organized by performance tiers — Pro, Advanced, and Premium — making it easy for users to find the perfect machine for gaming, streaming, or productivity. A responsive, interactive interface powered by React.JS ensures smooth browsing and dynamic interactions, while Node.JS and Express.JS handle backend logic and APIs with speed and scalability. PostgreSQL reliably manages all product and user data, and Stripe integration enables secure, effortless payments. Every build showcases detailed specifications, pricing, and performance levels, delivering an engaging, trustworthy, and modern shopping experience from start to finish."
-                    />
-                    <ProjectGallery />
-                </main>
-                <footer className="page-section">
-                    <FooterHV />
-                </footer>
-            </div>
+                    <main>
+                        <ProjectAbout 
+                            imageUrl={projectData?.imageOne} 
+                            description={projectData?.aboutDescription}
+                            technologies={projectData?.technologies}
+                        />
+                        <ProjectDetail 
+                            imageUrl={projectData?.imageTwo}
+                            description={projectData?.extendedDescription}
+                        />
+                        <ProjectGallery galleryImages={projectData?.gallery}/>
+                    </main>
+                    <footer className="page-section">
+                        <FooterHV />
+                    </footer>
+                </div>
+            )}
 
         </>
     )

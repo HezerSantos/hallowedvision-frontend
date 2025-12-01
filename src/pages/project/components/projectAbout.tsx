@@ -28,9 +28,9 @@ technologyMap.set("Cloudflare R2", <FaCloudflare />)
 technologyMap.set("TypeScript", <BiLogoTypescript />)
 
 interface ProjectAboutProps {
-    imageUrl: string,
-    description: string,
-    technologies: string[]
+    imageUrl: string | undefined,
+    description: string | undefined,
+    technologies: string[] | undefined
 }
 
 interface TechnologyItemProps {
