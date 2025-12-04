@@ -22,6 +22,7 @@ const FooterHV: React.FC = () => {
                     <Link to={"/portfolio"}>Portfolio</Link>
                     <Link to={"/terms-and-conditions#abouthallowedvisions"}>About Us</Link>
                     <Link to="/terms-and-conditions">Pricing</Link>
+                    <Link to="/packages">Packages</Link>
                 </div>
                 <div>
                     <h3>Socials</h3>

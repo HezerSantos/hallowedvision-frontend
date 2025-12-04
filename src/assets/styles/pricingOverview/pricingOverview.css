@@ -1,0 +1,5 @@
+@import './pricingHeader.css';
+@import './pricingTable.css';
+.pricing-overview{
+    background: linear-gradient(to right, var(--c3-color) 0%, var(--c5-color) 50%, var(--c3-color) 100%);
+}

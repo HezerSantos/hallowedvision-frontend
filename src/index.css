@@ -22,6 +22,7 @@ body{
   --c3-color: #000000;
   --c4-color: #D294C4;
 
+  --c5-color: #2F303D;
   --f1-font: "Karla", sans-serif;
   --f2-font: "Red Hat Display", sans-serif;
 }
@@ -177,6 +178,7 @@ body{
   ); 
   padding: 1rem;
   transition: 1s ease-in-out;
+  overflow: auto;
 }
 
 .toggle{
@@ -207,6 +209,7 @@ body{
 
   & > div > h1{
     font-family: var(--f1-font);
+    font-size: 1.5rem;
   }
   & > div > img{
     width: 35px;

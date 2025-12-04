@@ -16,7 +16,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({modelUrl}) => {
                     <div className="home_header_content">
                         <h1>Foucs on What Matters <br /> Bring Your Vision to Life</h1>
                         <div>
-                            <button onClick={() => navigate("/terms-and-conditions")}>
+                            <button onClick={() => navigate("/packages")}>
                                 <span>Learn More</span>
                                 <FaArrowRight />
                             </button>
