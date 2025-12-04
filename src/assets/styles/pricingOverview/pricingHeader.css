@@ -1,0 +1,45 @@
+.pricing-header {
+    margin-top: 5rem;
+    height: 40rem;
+    background: url('../../images/pricingHeader.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    padding: 15rem 5rem;
+    & > h1 {
+        color: white;
+        font-family: var(--f2-font);
+        font-weight: 500;
+        font-style: italic;
+        font-size: 3rem
+    }
+}
+
+
+
+
+
+@media (max-width: 1250px) {
+    .pricing-header {
+        padding: 2rem 1rem;
+        align-items: flex-start;
+        justify-content: center;
+        & > h1 {
+            text-align: center;
+            font-size: 2rem
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .pricing-header {
+        padding: 5rem 1rem;
+        background: url('../../images/pricingBackgroundSmall.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: clamp(30rem, 75svh, 50rem);
+    }
+}

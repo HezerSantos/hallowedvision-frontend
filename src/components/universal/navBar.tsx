@@ -32,7 +32,8 @@ const NavBar: React.FC = () => {
                             <li><Link to="/" className={location.pathname === "/"? "selected" : ""}>Home</Link></li>
                             <li><Link to="/portfolio" className={location.pathname === "/portfolio"? "selected" : ""}>Portfolio</Link></li>
                             <li><Link to="/contact" className={location.pathname === "/contact" ? "selected" : ""}>Contact</Link></li>
-                            <li><Link to="/terms-and-conditions">Terms & Conditions</Link></li>
+                            <li><Link to="/terms-and-conditions" className={location.pathname === "/terms-and-conditions" ? "selected" : ""}>Terms & Conditions</Link></li>
+                            <li><Link to="/packages" className={location.pathname === "/packages" ? "selected" : ""}>Packages</Link></li>
                         </ul>
                     </div>
                     <div className="sidebar-nav__footer">
