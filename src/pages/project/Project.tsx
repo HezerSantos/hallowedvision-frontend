@@ -10,6 +10,7 @@ import api from "../../app.config"
 import axios, { AxiosError } from "axios"
 import CsrfContext from "../../context/csrf/csrfContext"
 import { useParams } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
 
 
 interface ProjectDataType {
@@ -62,6 +63,42 @@ const Project: React.FC = () => {
 
     return(
         <>
+            <Helmet>
+                <title>
+                    {projectData
+                        ? `Project: ${projectData.name} | HallowedVisions`
+                        : "Project | HallowedVisions"}
+                </title>
+
+                <meta name="robots" content="index, follow" />
+
+                <meta
+                    name="description"
+                    content={
+                        projectData
+                            ? `Explore details about ${projectData.name} — including technologies used, project goals, and visual showcases. A Hallowed Visions development project.`
+                            : "Explore this Hallowed Visions project — full details coming soon."
+                    }
+                />
+
+                <meta
+                    name="keywords"
+                    content={
+                        projectData
+                            ? `${projectData.name}, web development project, full-stack project, React project, portfolio project, Hallowed Visions`
+                            : "web development project, Hallowed Visions portfolio"
+                    }
+                />
+
+                <link
+                    rel="canonical"
+                    href={
+                        projectData
+                            ? `https://www.hallowedvisions.com/portfolio/${params.id}`
+                            : "https://www.hallowedvisions.com/portfolio"
+                    }
+                />
+            </Helmet>
             <NavBar />
             {!isLoading && (
                 <div className="project-page">
