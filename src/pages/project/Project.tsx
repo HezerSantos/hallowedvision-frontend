@@ -9,7 +9,7 @@ import { useEffect, useContext, useState } from "react"
 import api from "../../app.config"
 import axios, { AxiosError } from "axios"
 import CsrfContext from "../../context/csrf/csrfContext"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 
 
@@ -31,6 +31,7 @@ const Project: React.FC = () => {
     const [ isLoading, setIsLoading ] = useState(true)
     const csrfContext = useContext(CsrfContext)
     const params = useParams()
+    const navigate = useNavigate()
     useEffect(() => {
         const fetchData = async(retry: boolean, newCsrf: null | string = null) => {
             try{
@@ -54,6 +55,9 @@ const Project: React.FC = () => {
                         }
                     })
                     await fetchData(true)
+                } else if (axiosError.status === 404 ) {
+                    navigate("/project-not-found")
+                    return
                 }
             }
         }
