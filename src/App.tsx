@@ -28,7 +28,6 @@ function App() {
   const isPackages = useMatch({ path: "/packages", end: true });
   const isTerms = useMatch({ path: "/terms-and-conditions", end: true });
   const isContact = useMatch({path: "/contact", end: true})
-  const isNotFound = useMatch("*");
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -73,12 +72,19 @@ function App() {
         <LoadingScreen />
       ) : (
         <>
-          {isHome && <Helmet.HomeHelmet />}
-          {isPortfolio && <Helmet.PortfolioHelmet />}
-          {isPackages && <Helmet.PackagesHelmet />}
-          {isTerms && <Helmet.TermsHelmet />}
-          {isContact && <Helmet.ContactHelmet />}
-          {isNotFound && <Helmet.NotFoundHelmet />}
+          {isHome ? (
+            <Helmet.HomeHelmet />
+          ) : isPortfolio ? (
+            <Helmet.PortfolioHelmet />
+          ) : isPackages ? (
+            <Helmet.PackagesHelmet />
+          ) : isTerms ? (
+            <Helmet.TermsHelmet />
+          ) : isContact ? (
+            <Helmet.ContactHelmet />
+          ) : (
+            <Helmet.NotFoundHelmet />
+          )}
           <Outlet />
         </>
         
