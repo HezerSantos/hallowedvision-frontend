@@ -11,18 +11,13 @@ import { LoadingScreen } from './App.js'
 const router = createBrowserRouter(routes)
 
 createRoot(document.getElementById('root')!).render(
-  // <StrictMode>
-  //   <HelmetProvider>
-  //     <CsrfProvider>
-  //       <RouterProvider router={router} />
-  //     </CsrfProvider>
-  //   </HelmetProvider>
-  // </StrictMode>
-<Suspense fallback={<LoadingScreen />}>
-  <HelmetProvider>
-    <CsrfProvider>
-      <RouterProvider router={router} />
-    </CsrfProvider>
-  </HelmetProvider>
-</Suspense>
+  <StrictMode>
+    <Suspense fallback={<LoadingScreen />}>
+      <HelmetProvider>
+        <CsrfProvider>
+          <RouterProvider router={router} />
+        </CsrfProvider>
+      </HelmetProvider>
+    </Suspense>
+  </StrictMode>
 )
