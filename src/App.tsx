@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useMatch } from 'react-router-dom';
 import api from './app.config';
 import axios from 'axios'
 import CsrfContext from './context/csrf/csrfContext';
 import logo from './assets/images/logo.webp'
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+import * as Helmet from './components/universal/helmet'
 export const LoadingScreen: React.FC = () => {
   return(
     <main className='loading-screen'>
@@ -20,6 +21,14 @@ function App() {
   const csrfContext = useContext(CsrfContext)
   const [ isLoading, setIsLoading ] = useState<Boolean>(true)
   
+
+  const isHome = useMatch({ path: "/", end: true });
+  const isPortfolio = useMatch({ path: "/portfolio", end: true });
+  // const isPortfolioId = useMatch("/portfolio/:id");
+  const isPackages = useMatch({ path: "/packages", end: true });
+  const isTerms = useMatch({ path: "/terms-and-conditions", end: true });
+  const isContact = useMatch({path: "/contact", end: true})
+  const isNotFound = useMatch("*");
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -63,7 +72,16 @@ function App() {
       {isLoading? (
         <LoadingScreen />
       ) : (
-        <Outlet />
+        <>
+          {isHome && <Helmet.HomeHelmet />}
+          {isPortfolio && <Helmet.PortfolioHelmet />}
+          {isPackages && <Helmet.PackagesHelmet />}
+          {isTerms && <Helmet.TermsHelmet />}
+          {isContact && <Helmet.ContactHelmet />}
+          {isNotFound && <Helmet.NotFoundHelmet />}
+          <Outlet />
+        </>
+        
       )}
     </>
   )
