@@ -109,7 +109,7 @@ body{
 
     & > li{
       width: 7rem;
-      border: 1px solid var(--c1-color);
+      border: 1px solid #7A4E6F;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -125,7 +125,7 @@ body{
     }
 
     & > li:nth-child(2){
-      background-color: var(--c1-color);
+      background-color: #7A4E6F;
     }
   }
 }
@@ -324,6 +324,11 @@ body{
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+
+  & > div > p:nth-of-type(1) {
+    font-weight: 600;
+    font-size: 1.2rem;
   }
 }
 

@@ -6,7 +6,7 @@ import axios from 'axios'
 import CsrfContext from './context/csrf/csrfContext';
 import logo from './assets/images/logo.webp'
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
-const LoadingScreen: React.FC = () => {
+export const LoadingScreen: React.FC = () => {
   return(
     <main className='loading-screen'>
       <img src={logo} alt="logo-loading"/>

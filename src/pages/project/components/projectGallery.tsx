@@ -119,8 +119,8 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({galleryImages}) => {
                     </div>
                     <div className="gallery-buttons">
                         <div>
-                            <button disabled={animationState.toggle} onClick={() => shiftLeft(setImageList, setAnimationState)}><CiCircleChevLeft /></button>
-                            <button disabled={animationState.toggle} onClick={() => shiftRight(setImageList, setAnimationState)}><CiCircleChevRight /></button>
+                            <button aria-label="Previous image" disabled={animationState.toggle} onClick={() => shiftLeft(setImageList, setAnimationState)}><CiCircleChevLeft /></button>
+                            <button aria-label="Next image" disabled={animationState.toggle} onClick={() => shiftRight(setImageList, setAnimationState)}><CiCircleChevRight /></button>
                         </div>
                     </div>
                 </div>

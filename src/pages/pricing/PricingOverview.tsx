@@ -24,7 +24,9 @@ const PricingOverview: React.FC = () => {
             <NavBar />
             <div className="pricing-overview">
                 <PricingHeader />
-                <PriceTable />
+                <main>
+                    <PriceTable />
+                </main>
                 <footer className="page-section">
                     <FooterHV />
                 </footer>
