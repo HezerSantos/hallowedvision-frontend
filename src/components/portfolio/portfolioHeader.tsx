@@ -1,13 +1,8 @@
-import { FaHtml5 } from "react-icons/fa6";
-import { FaCss3Alt } from "react-icons/fa6";
-import { FaJs } from "react-icons/fa6";
-import { FaReact } from "react-icons/fa6";
-import { SiExpress } from "react-icons/si";
-import { FaNode } from "react-icons/fa6";
-import { FaPython } from "react-icons/fa6";
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNode, FaPython } from "react-icons/fa6";
+import { SiExpress, SiSocketdotio } from "react-icons/si";
 import { DiMysql } from "react-icons/di";
 import { GrStripe } from "react-icons/gr";
-import { SiSocketdotio } from "react-icons/si";
+
 import React from 'react';
 const LanguageScroll: React.FC = () => {
     return(
@@ -122,7 +117,7 @@ const PortfolioHeader: React.FC<PortfolioHeaderProps> = ({profileImage, isLoadin
                     <div className="portfolio-header__content-hero">
                         <div className={isLoading? 'portfolio-picture loading-skeleton' : 'portfolio-picture'}>
                             {(!isLoading) && (
-                                <img src={profileImage} alt="" />
+                                <img src={profileImage} alt="portfolio-image" data-fetchpriority="high" />
                             )}
                         </div>
                     </div>
