@@ -1,0 +1,10 @@
+@use "../../common/styles/colors";
+
+.pricing-overview {
+  min-height: 100vh;
+  background: colors.$dark-background;
+  margin-top: 5.5rem;
+  &__main {
+    width: 100%;
+  }
+}

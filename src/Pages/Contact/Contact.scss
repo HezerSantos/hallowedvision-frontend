@@ -1,0 +1,550 @@
+@use "../../common/styles/colors";
+
+.contact {
+  margin-top: 5.5rem;
+  min-height: 100vh;
+  padding: 5rem clamp(1rem, 5vw, 5rem);
+  color: colors.$white;
+  background:
+    radial-gradient(ellipse at 85% 10%, colors.$purple-glow, transparent 35%),
+    colors.$dark-background;
+
+  &__container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid colors.$subtle-border;
+  }
+
+  &__header-copy {
+    max-width: 52rem;
+
+    h1 {
+      margin: 1rem 0;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+
+      span {
+        color: colors.$light-purple;
+      }
+    }
+
+    > p {
+      max-width: 39rem;
+      margin: 0;
+      color: colors.$muted-text;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+  }
+
+  &__eyebrow {
+    color: colors.$light-purple;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+
+  &__header-index {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    padding-bottom: 0.4rem;
+
+    span:first-child {
+      color: colors.$light-purple;
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.1em;
+    }
+
+    span:last-child {
+      color: colors.$muted-text;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+    }
+  }
+
+  &__workspace {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    padding-top: 3rem;
+  }
+
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__sidebar-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid colors.$subtle-border;
+    color: colors.$muted-text;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+  }
+
+  &__sidebar-indicator {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: colors.$light-purple;
+    box-shadow: 0 0 0.8rem colors.$purple-glow;
+  }
+
+  &__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  &__step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    opacity: 0.48;
+
+    &--active {
+      opacity: 1;
+
+      .contact__step-number {
+        border-color: colors.$light-purple;
+        color: colors.$light-purple;
+        background: rgba(colors.$muted-purple, 0.12);
+      }
+
+      h3 {
+        color: colors.$white;
+      }
+    }
+
+    h3 {
+      margin: 0 0 0.4rem;
+      color: colors.$white;
+      font-size: 0.9rem;
+      font-weight: 650;
+    }
+
+    p {
+      margin: 0;
+      color: colors.$muted-text;
+      font-size: 0.75rem;
+      line-height: 1.5;
+    }
+  }
+
+  &__step-number {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid colors.$purple-border;
+    border-radius: 0.65rem;
+    color: colors.$muted-text;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  &__sidebar-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-top: 4rem;
+    padding: 1.1rem;
+    border: 1px solid colors.$subtle-border;
+    border-radius: 0.8rem;
+    background: colors.$surface-background;
+
+    p {
+      margin: 0;
+      color: colors.$muted-text;
+      font-size: 0.76rem;
+      line-height: 1.7;
+    }
+  }
+
+  &__sidebar-note-icon {
+    color: colors.$light-purple;
+    font-size: 1.2rem;
+  }
+
+  &__sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 3rem;
+
+    span:first-child {
+      color: colors.$light-purple;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+    }
+
+    span:last-child {
+      color: colors.$muted-text;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+    }
+  }
+
+  &__form-panel {
+    min-width: 0;
+    padding: clamp(1.5rem, 4vw, 3.5rem);
+    border: 1px solid colors.$subtle-border;
+    border-radius: 1rem;
+    background:
+      linear-gradient(
+        145deg,
+        rgba(colors.$muted-purple, 0.055),
+        transparent 40%
+      ),
+      colors.$surface-background;
+    box-shadow: 0 1.5rem 4rem rgba(colors.$black, 0.2);
+  }
+
+  &__form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+
+    h2 {
+      margin: 0.7rem 0 0.5rem;
+      color: colors.$white;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 750;
+      letter-spacing: -0.035em;
+    }
+
+    p {
+      margin: 0;
+      color: colors.$muted-text;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+  }
+
+  &__section-index {
+    color: colors.$light-purple;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+  }
+
+  &__form-symbol {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 1px solid colors.$subtle-border;
+    border-radius: 0.9rem;
+    color: colors.$light-purple;
+    background: rgba(colors.$muted-purple, 0.12);
+    font-size: 1.2rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+  }
+
+  &__form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid colors.$subtle-border;
+
+    span:first-child {
+      color: colors.$light-purple;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+    }
+
+    span:last-child {
+      color: colors.$muted-text;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+  }
+
+  &__field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    min-width: 0;
+
+    &--full {
+      grid-column: 1 / -1;
+    }
+
+    // Styles both the shared TextInput and native form controls.
+    input,
+    select,
+    textarea,
+    .contact__input {
+      box-sizing: border-box;
+      width: 100%;
+      min-width: 0;
+      border: 1px solid colors.$purple-border;
+      border-radius: 0.55rem;
+      outline: none;
+      color: colors.$white;
+      background: colors.$dark-background;
+      font-family: inherit;
+      font-size: 0.88rem;
+      transition:
+        border-color 180ms ease,
+        background 180ms ease,
+        box-shadow 180ms ease;
+
+      &:focus {
+        border-color: colors.$light-purple;
+        background: colors.$near-black;
+        box-shadow: 0 0 0 3px colors.$purple-glow;
+      }
+
+      &::placeholder {
+        color: colors.$gray;
+        opacity: 1;
+      }
+    }
+
+    input,
+    select {
+      min-height: 3.2rem;
+      padding: 0 1rem;
+    }
+  }
+
+  &__label {
+    color: colors.$white;
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    span {
+      margin-left: 0.25rem;
+      color: colors.$light-purple;
+    }
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+  }
+
+  &__select-wrapper {
+    position: relative;
+
+    select {
+      appearance: none;
+      padding-right: 3rem;
+      cursor: pointer;
+
+      &:invalid {
+        color: colors.$gray;
+      }
+
+      option {
+        color: colors.$white;
+        background: colors.$dark-background;
+      }
+    }
+  }
+
+  &__select-arrow {
+    position: absolute;
+    top: 50%;
+    right: 1.1rem;
+    color: colors.$light-purple;
+    font-size: 0.75rem;
+    pointer-events: none;
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  &__textarea {
+    min-height: 11rem;
+    padding: 1rem;
+    resize: vertical;
+    line-height: 1.7;
+
+    &::placeholder {
+      color: colors.$gray;
+      line-height: 1.7;
+    }
+  }
+
+  &__error {
+    color: colors.$light-red;
+    font-size: 0.75rem;
+  }
+
+  &__form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid colors.$subtle-border;
+  }
+
+  &__footer-copy {
+    span {
+      color: colors.$light-purple;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+    }
+
+    p {
+      margin: 0.4rem 0 0;
+      color: colors.$muted-text;
+      font-size: 0.8rem;
+    }
+  }
+
+  &__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    min-height: 3.2rem;
+    padding: 0.9rem 1.5rem;
+    border: 1px solid colors.$light-purple;
+    border-radius: 0.55rem;
+    color: colors.$white;
+    background: colors.$muted-purple;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    transition:
+      background 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+
+    &:hover {
+      background: colors.$deep-purple;
+      box-shadow: 0 0 1.5rem colors.$purple-glow;
+      transform: translateY(-2px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid colors.$light-purple;
+      outline-offset: 4px;
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .contact {
+    &__workspace {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    &__sidebar {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .contact {
+    padding: 3rem 1rem;
+
+    &__header {
+      align-items: flex-start;
+      padding-bottom: 2rem;
+    }
+
+    &__header-copy {
+      h1 {
+        font-size: clamp(2.5rem, 11vw, 3.5rem);
+      }
+
+      > p {
+        font-size: 0.9rem;
+      }
+    }
+
+    &__header-index {
+      span:first-child {
+        font-size: 1.7rem;
+      }
+    }
+
+    &__workspace {
+      padding-top: 2rem;
+    }
+
+    &__form-panel {
+      padding: 1.4rem 1rem;
+    }
+
+    &__field-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    &__form-footer {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    &__submit {
+      width: 100%;
+    }
+
+    &__form-symbol {
+      width: 2.8rem;
+      height: 2.8rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__field input,
+  .contact__field select,
+  .contact__field textarea,
+  .contact__submit {
+    transition: none;
+  }
+}

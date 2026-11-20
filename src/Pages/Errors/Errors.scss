@@ -1,24 +1,104 @@
 @use "../../common/styles/colors";
 
 .error {
-  width: 100vw;
-  height: 100vh;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  overflow: hidden;
+  color: colors.$white;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 42%, colors.$purple-glow 0%, transparent 35%),
+    linear-gradient(145deg, colors.$dark-background 0%, colors.$near-black 100%);
 
-  gap: 1rem;
+  &::before,
+  &::after {
+    position: absolute;
+    width: 22rem;
+    height: 22rem;
+    content: "";
+    border: 1px solid colors.$subtle-border;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: -14rem;
+    right: -8rem;
+  }
+
+  &::after {
+    bottom: -15rem;
+    left: -9rem;
+  }
+
+  & > svg {
+    position: relative;
+    z-index: 1;
+    max-width: min(15rem, 65vw);
+    max-height: min(15rem, 65vw);
+    filter: drop-shadow(0 0 2rem colors.$purple-glow);
+  }
 
   & > p {
-    font-size: 2rem;
+    position: relative;
+    z-index: 1;
+    max-width: 36rem;
+    margin: 0;
+    color: colors.$muted-text;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     font-weight: 500;
+    line-height: 1.6;
   }
 }
 
 .back-to-home {
-  padding: 1rem 1rem;
+  position: relative;
+  z-index: 1;
+  padding: 0.9rem 1.75rem;
+  border: 1px solid colors.$light-purple;
   border-radius: 0.5rem;
   color: colors.$white;
-  background-color: colors.$blue;
+  background: colors.$muted-purple;
+  font-weight: 600;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+
+  &:hover {
+    border-color: colors.$light-purple;
+    background: colors.$deep-purple;
+    box-shadow: 0 0 1.5rem colors.$purple-glow;
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid colors.$light-purple;
+    outline-offset: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .error {
+    gap: 1.25rem;
+    padding: 1.5rem;
+
+    & > p {
+      max-width: 22rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-home {
+    transition: none;
+  }
 }

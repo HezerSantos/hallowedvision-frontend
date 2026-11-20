@@ -1,6 +1,6 @@
 import logo from "./logo.png";
-import logo404NF from "./logo404_NF.png";
-import logo404ND from "./logo404_ND.png";
+import logo4xx from "./logo_4xx.png";
+import logo5xx from "./logo_5xx.png";
 import logo401 from "./logo401.png";
 
 interface IconLogoProps {
@@ -11,12 +11,12 @@ interface IconLogoProps {
   aspectRatio?: string;
 }
 
-type LogoKeys = "401" | "404_NF" | "404_ND" | "BASE";
+type LogoKeys = "401" | "4XX" | "BASE" | "500";
 const LOGOS = new Map<LogoKeys, string>([
   ["BASE", logo],
   ["401", logo401],
-  ["404_NF", logo404NF],
-  ["404_ND", logo404ND],
+  ["4XX", logo4xx],
+  ["500", logo5xx],
 ]);
 
 const IconLogo = ({

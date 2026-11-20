@@ -1,0 +1,89 @@
+@use "../../../common/styles/colors";
+
+.pricing-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 23rem;
+  padding: 5rem 1.5rem;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 100%, colors.$purple-glow, transparent 65%),
+    colors.$near-black;
+
+  &::before,
+  &::after {
+    position: absolute;
+    width: 18rem;
+    height: 18rem;
+    content: "";
+    border: 1px solid colors.$subtle-border;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: -13rem;
+    left: -6rem;
+  }
+
+  &::after {
+    right: -7rem;
+    bottom: -14rem;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 48rem;
+    text-align: center;
+  }
+
+  &__eyebrow {
+    color: colors.$light-purple;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+  }
+
+  h1 {
+    margin: 1rem 0;
+    color: colors.$white;
+    font-size: clamp(2.3rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.15;
+
+    span {
+      color: colors.$light-purple;
+    }
+  }
+
+  p {
+    max-width: 35rem;
+    margin: 0 auto;
+    color: colors.$muted-text;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  &__divider {
+    width: 4rem;
+    height: 3px;
+    margin: 2rem auto 0;
+    border-radius: 2rem;
+    background: linear-gradient(
+      90deg,
+      colors.$muted-purple,
+      colors.$light-purple
+    );
+    box-shadow: 0 0 1rem colors.$purple-glow;
+  }
+}
+
+@media (max-width: 600px) {
+  .pricing-header {
+    min-height: 19rem;
+    padding: 4rem 1.25rem;
+  }
+}

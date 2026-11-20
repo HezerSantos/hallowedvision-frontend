@@ -1,0 +1,72 @@
+@use "../../common/styles/colors";
+
+.project-page {
+  min-height: 100vh;
+  margin-top: 5rem;
+  background:
+    linear-gradient(to bottom, rgba(18, 18, 18, 0.2), colors.$near-black 95%),
+    url("../../images/projectBackground.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+.project-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 75vh;
+  padding: 2rem;
+  text-align: center;
+
+  &__eyebrow {
+    color: colors.$light-purple;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+
+  h1 {
+    margin: 1rem 0 0.5rem;
+    color: colors.$white;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  p {
+    color: colors.$muted-text;
+  }
+}
+
+@keyframes project-loading-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 1130px) {
+  .project-page {
+    background-image:
+      linear-gradient(to bottom, rgba(18, 18, 18, 0.2), colors.$near-black 95%),
+      url("../../images/projectBackgroundSlim.svg");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-loading__heading,
+  .project-loading__image,
+  .project-loading__text {
+    animation: none;
+  }
+}

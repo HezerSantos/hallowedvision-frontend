@@ -1,0 +1,162 @@
+@use "../../../common/styles/colors";
+
+.price-table {
+  width: 100%;
+  padding: 4rem clamp(1rem, 5vw, 5rem) 6rem;
+  color: colors.$white;
+  background: colors.$dark-background;
+
+  &__container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+  }
+
+  &__heading {
+    max-width: 42rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+
+    h2 {
+      margin: 0.75rem 0;
+      color: colors.$white;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+      color: colors.$muted-text;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+  }
+
+  &__eyebrow {
+    color: colors.$light-purple;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+
+  &__scroll {
+    overflow-x: auto;
+    border: 1px solid colors.$subtle-border;
+    border-radius: 1rem;
+    background: colors.$surface-background;
+    box-shadow: 0 1rem 3rem rgba(colors.$black, 0.2);
+  }
+
+  &__table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: collapse;
+    text-align: center;
+
+    th,
+    td {
+      padding: 1.4rem 1.25rem;
+      border-bottom: 1px solid colors.$subtle-border;
+    }
+
+    thead th {
+      height: 6rem;
+      background: colors.$near-black;
+    }
+
+    tbody tr:last-child {
+      th,
+      td {
+        border-bottom: 0;
+      }
+    }
+
+    tbody tr {
+      transition: background 180ms ease;
+
+      &:hover {
+        background: colors.$surface-hover;
+      }
+    }
+  }
+
+  &__feature-heading {
+    width: 25%;
+    color: colors.$muted-text;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  &__package-heading {
+    position: relative;
+    color: colors.$white;
+    font-size: 1.15rem;
+    font-weight: 700;
+
+    &--premium {
+      color: colors.$light-purple !important;
+      background: rgba(colors.$muted-purple, 0.12) !important;
+    }
+  }
+
+  &__recommended {
+    display: block;
+    margin-top: 0.45rem;
+    color: colors.$light-purple;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  &__feature {
+    color: colors.$white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  &__value {
+    color: colors.$muted-text;
+    font-size: 0.88rem;
+    line-height: 1.8;
+    white-space: normal;
+
+    &--premium {
+      color: colors.$white;
+      background: rgba(colors.$muted-purple, 0.045);
+    }
+  }
+
+  &__disclaimer {
+    max-width: 55rem;
+    margin: 1.5rem auto 0;
+    color: colors.$muted-text;
+    font-size: 0.78rem;
+    line-height: 1.7;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .price-table {
+    padding: 3rem 1rem 4rem;
+
+    &__heading {
+      margin-bottom: 2rem;
+    }
+
+    &__table {
+      th,
+      td {
+        padding: 1.1rem 0.9rem;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .price-table__table tbody tr {
+    transition: none;
+  }
+}

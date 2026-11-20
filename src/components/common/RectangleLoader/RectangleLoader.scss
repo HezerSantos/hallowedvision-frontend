@@ -1,5 +1,12 @@
+@use "../../../common/styles/colors";
+
 .rectangle-loader {
-  background: linear-gradient(90deg, #e8e8e8 25%, #f5f5f5 50%, #e8e8e8 75%);
+  background: linear-gradient(
+    90deg,
+    colors.$loader-background 25%,
+    colors.$loader-highlight 50%,
+    colors.$loader-background 75%
+  );
   background-size: 200% 100%;
   animation: rectangle-loader-shimmer 1.5s infinite;
   border-radius: 4px;

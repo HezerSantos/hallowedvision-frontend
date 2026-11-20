@@ -1,19 +1,11 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { useLocation, useMatch } from "react-router-dom";
-import logo from "./assets/images/logo.webp";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 import * as Helmet from "./components/universal/helmet";
 import AuthLayer from "./components/Layers/AuthLayer";
 import DefaultNav from "./components/common/DefaultNav/DefaultNav";
 import DefaultFooter from "./components/common/DefaultFooter/DefaultFooter";
-export const LoadingScreen: React.FC = () => {
-  return (
-    <main className="loading-screen">
-      <img src={logo} alt="logo-loading" />
-    </main>
-  );
-};
 
 function App() {
   const { pathname } = useLocation();

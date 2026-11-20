@@ -9,7 +9,7 @@ const NotFound = () => {
   const targetUrl: string = "/";
   return (
     <div className="error">
-      <IconLogo width={"15rem"} height={"15rem"} logoKey="404_NF" />
+      <IconLogo width={"15rem"} height={"15rem"} logoKey="4XX" />
       <p>{defaultContent.notFound}</p>
       <Button
         text={defaultContent.backToHome}

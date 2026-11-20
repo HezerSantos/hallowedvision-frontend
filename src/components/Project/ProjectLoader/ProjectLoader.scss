@@ -1,0 +1,101 @@
+.project-page--loading {
+  .project-header--loading {
+    .project-header__title {
+      flex: 1;
+    }
+
+    .project-header__meta {
+      min-width: max-content;
+    }
+  }
+
+  .project-about--loading {
+    .project-about__image-loader {
+      width: 100%;
+    }
+
+    .project-about__heading {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .project-about__description {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin: 0;
+    }
+
+    .project-technologies__heading {
+      h3,
+      span {
+        display: none;
+      }
+    }
+
+    .project-technologies__list {
+      .rectangle-loader {
+        flex: 0 0 auto;
+      }
+    }
+  }
+
+  .project-detail--loading {
+    .project-detail__content {
+      .rectangle-loader:first-child {
+        margin-bottom: 0.25rem;
+      }
+    }
+
+    .project-detail__description {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .project-detail__image-loader {
+      width: 100%;
+    }
+  }
+
+  .project-gallery--loading {
+    .project-gallery__heading {
+      & > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+    }
+
+    .project-gallery__viewport-loader {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .project-page--loading {
+    .project-header--loading {
+      .project-header__meta {
+        align-items: flex-start;
+      }
+    }
+  }
+}
+
+@media (max-width: 1080px) {
+  .project-page--loading {
+    .project-about--loading {
+      .project-about__image-loader {
+        min-height: 0;
+      }
+    }
+
+    .project-detail--loading {
+      .project-detail__image-loader {
+        min-height: 0;
+      }
+    }
+  }
+}

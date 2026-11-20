@@ -1,12 +1,12 @@
 import { lazy } from "react";
 import App from "./App";
 const HomePage = lazy(() => import("./Pages/Home/Home"));
-const Contact = lazy(() => import("./Pages/contact/Contact"));
-const Portfolio = lazy(() => import("./Pages/portfolio/Portfolio"));
-const PricingOverview = lazy(() => import("./Pages/pricing/PricingOverview"));
-const Project = lazy(() => import("./Pages/project/Project"));
+const Contact = lazy(() => import("./Pages/Contact/Contact"));
+const Portfolio = lazy(() => import("./Pages/Portfolio/Portfolio"));
+const PricingOverview = lazy(() => import("./Pages/Pricing/PricingOverview"));
+const Project = lazy(() => import("./Pages/Project/Project"));
 const Terms = lazy(() => import("./Pages/terms/Terms"));
-const NotFound = lazy(() => import("./Pages/404/404"));
+const NotFound = lazy(() => import("./Pages/Errors/NotFound"));
 const routes = [
   {
     path: "/",

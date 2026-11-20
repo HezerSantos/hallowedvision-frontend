@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaLinkedin } from "react-icons/fa";
 import { HiArrowUpRight, HiXMark } from "react-icons/hi2";
-import logo from "../../../assets/images/logo.webp";
 import useWidth from "../../../common/hooks/useWidth";
 import "./DefaultNav.scss";
+import IconLogo from "../Icons/IconLogo/IconLogo";
 
 const NAV_BREAKPOINT = 700;
 
@@ -101,7 +101,7 @@ const DefaultNav: React.FC = () => {
             className="nav__brand"
             aria-label="Hallowed Visions home"
           >
-            <img className="nav__logo" src={logo} alt="" />
+            <IconLogo width={"3rem"} />
 
             <span className="nav__brand-name">
               Hallowed <span>Visions.</span>
@@ -173,7 +173,7 @@ const DefaultNav: React.FC = () => {
                 onClick={closeMenu}
                 tabIndex={isMenuOpen ? 0 : -1}
               >
-                <img src={logo} alt="" className="nav__logo" />
+                <IconLogo width={"3rem"} />
                 <span className="nav__brand-name">
                   Hallowed <span>Visions.</span>
                 </span>
