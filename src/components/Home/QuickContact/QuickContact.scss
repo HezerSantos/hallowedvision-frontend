@@ -1,0 +1,237 @@
+@use "../../../common/styles/colors";
+
+.quick-contact {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  width: 100%;
+  min-height: 38rem;
+  overflow: hidden;
+  padding: 5rem clamp(2rem, 10%, 12rem);
+  background:
+    radial-gradient(circle at 15% 90%, colors.$purple-glow, transparent 40%),
+    colors.$dark-background;
+  isolation: isolate;
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    max-width: 38rem;
+    gap: 1.25rem;
+  }
+
+  &__eyebrow {
+    color: colors.$light-purple;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+
+  &__title {
+    margin: 0.5rem 0;
+    color: colors.$white;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+
+    span {
+      color: colors.$light-purple;
+    }
+  }
+
+  &__subtitle {
+    margin: 0;
+    color: colors.$white;
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  &__description {
+    max-width: 32rem;
+    margin: 0;
+    color: colors.$muted-text;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    border: 1px solid colors.$light-purple;
+    border-radius: 0.5rem;
+    background: colors.$light-purple;
+    color: colors.$near-black;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    transition:
+      background 250ms ease,
+      color 250ms ease,
+      transform 250ms ease;
+
+    svg {
+      transition: transform 250ms ease;
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      background: transparent;
+      color: colors.$white;
+
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  &__visual {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 29rem;
+    overflow: hidden;
+    padding: 2rem;
+    border: 1px solid colors.$subtle-border;
+    border-radius: 1.5rem;
+    background-image: url("../../../assets/images/redirectImage.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 1.5rem 5rem rgba(colors.$black, 0.35);
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(colors.$black, 0.05) 15%,
+        rgba(colors.$black, 0.2) 45%,
+        rgba(colors.$black, 0.85) 100%
+      );
+      content: "";
+    }
+  }
+
+  &__visual-overlay {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(colors.$light-purple, 0.2);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  &__visual-text {
+    position: relative;
+    z-index: 1;
+    color: colors.$white;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+  }
+
+  &__visual-caption {
+    position: absolute;
+    z-index: 1;
+    top: 2rem;
+    right: 2rem;
+    color: colors.$white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    writing-mode: vertical-rl;
+  }
+
+  &__decoration {
+    position: absolute;
+    z-index: -1;
+    right: 4%;
+    bottom: -5rem;
+    color: rgba(colors.$light-purple, 0.035);
+    font-size: clamp(15rem, 30vw, 30rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.12em;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .quick-contact {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 6rem 7%;
+
+    &__content {
+      max-width: 42rem;
+    }
+
+    &__visual {
+      min-height: 24rem;
+    }
+
+    &__decoration {
+      right: -5%;
+      bottom: 20%;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .quick-contact {
+    gap: 2.5rem;
+    padding: 5rem 1.25rem;
+
+    &__title {
+      font-size: clamp(3rem, 13vw, 4rem);
+    }
+
+    &__subtitle {
+      font-size: 1.2rem;
+    }
+
+    &__description {
+      font-size: 0.95rem;
+    }
+
+    &__button {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    &__visual {
+      min-height: 19rem;
+      padding: 1.5rem;
+      border-radius: 1rem;
+    }
+
+    &__visual-text {
+      font-size: 2.5rem;
+    }
+
+    &__visual-caption {
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quick-contact__button,
+  .quick-contact__button svg {
+    transition: none;
+  }
+}

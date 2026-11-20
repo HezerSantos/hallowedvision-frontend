@@ -4,24 +4,45 @@
 .footer-wrapper {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(125deg, colors.$jade 0%, colors.$forest 72%);
+  border-top: 1px solid colors.$subtle-border;
+  background:
+    radial-gradient(ellipse at 85% 0%, colors.$purple-glow, transparent 40%),
+    linear-gradient(135deg, colors.$dark-background, colors.$near-black 65%);
 
   &::before {
     position: absolute;
-    top: -10rem;
+    top: -12rem;
     right: -8rem;
-    width: 25rem;
-    height: 25rem;
-    content: "";
-    background: rgba(colors.$white, 0.045);
-    border: 1px solid rgba(colors.$white, 0.08);
+    width: 28rem;
+    height: 28rem;
+    border: 1px solid colors.$subtle-border;
     border-radius: 50%;
+    background: rgba(colors.$light-purple, 0.025);
+    content: "";
+    pointer-events: none;
+  }
+
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      colors.$muted-purple,
+      transparent
+    );
+    content: "";
+    opacity: 0.4;
     pointer-events: none;
   }
 }
 
 .footer-content {
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: minmax(15rem, 1.5fr) repeat(3, minmax(8rem, 1fr));
   gap: clamp(2rem, 4vw, 4rem);
@@ -37,8 +58,8 @@
 
   & > div {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
+    flex-direction: column;
     gap: 0.9rem;
     min-width: 0;
   }
@@ -53,7 +74,7 @@
 
   a {
     width: fit-content;
-    color: rgba(colors.$white, 0.8);
+    color: colors.$muted-text;
     font-size: 0.9rem;
     line-height: 1.6;
     text-decoration: none;
@@ -62,12 +83,12 @@
       transform 180ms ease;
 
     &:hover {
-      color: colors.$white;
+      color: colors.$light-purple;
       transform: translateX(3px);
     }
 
     &:focus-visible {
-      outline: 2px solid colors.$white;
+      outline: 2px solid colors.$light-purple;
       outline-offset: 4px;
       border-radius: 2px;
     }
@@ -84,11 +105,12 @@
 
   & > h3 {
     font-size: 1.3rem;
+    color: colors.$white;
   }
 
   & > p {
     margin: 0.25rem 0 0;
-    color: rgba(colors.$white, 0.7);
+    color: colors.$muted-text;
     font-size: 0.8rem;
     line-height: 1.7;
   }
@@ -124,7 +146,7 @@
   .footer-column__header {
     grid-column: 1 / -1;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(colors.$white, 0.18);
+    border-bottom: 1px solid colors.$subtle-border;
 
     & > h3 {
       font-size: 1.2rem;

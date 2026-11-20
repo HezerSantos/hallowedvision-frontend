@@ -11,8 +11,6 @@ interface TextInputProps {
     left: string;
     fontSize: string;
   };
-  onChange?: (value: string) => void;
-  onChangeLoad?: () => void;
   initialValue?: string;
   errorMessage?: string;
 }
@@ -23,8 +21,6 @@ const TextInput = ({
   className,
   required,
   labelFormat,
-  onChange,
-  onChangeLoad,
   initialValue = "",
   errorMessage,
 }: TextInputProps) => {
@@ -37,29 +33,6 @@ const TextInput = ({
     }
   }, [initialValue]);
 
-  const timeoutRef = useRef<number | null>(null);
-  useEffect(() => {
-    // Clear any existing timeout before setting a new one
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    if (onChange) {
-      if (value) {
-        onChangeLoad?.();
-      }
-      timeoutRef.current = setTimeout(() => {
-        onChange(value);
-      }, 1000);
-    }
-
-    // Cleanup function runs when component unmounts or value/onChange changes
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [value, onChange]);
   return (
     <div className="input-container">
       {value && (

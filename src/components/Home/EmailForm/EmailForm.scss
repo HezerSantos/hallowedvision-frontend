@@ -1,0 +1,319 @@
+@use "../../../common/styles/colors";
+
+.email-form {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(3rem, 7vw, 7rem);
+  width: 100%;
+  overflow: hidden;
+  padding: 7rem clamp(1.5rem, 10%, 12rem);
+  background:
+    radial-gradient(ellipse at 10% 20%, colors.$purple-glow, transparent 40%),
+    colors.$dark-background;
+
+  &__intro {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 1.5rem 0;
+  }
+
+  &__eyebrow,
+  &__panel-eyebrow {
+    color: colors.$light-purple;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+
+  &__title {
+    margin: 1.5rem 0;
+    color: colors.$white;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+
+    span {
+      color: colors.$light-purple;
+    }
+  }
+
+  &__description {
+    max-width: 28rem;
+    margin: 0;
+    color: colors.$muted-text;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  &__contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    margin-top: 3rem;
+  }
+
+  &__contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    p {
+      margin: 0.35rem 0 0;
+      color: colors.$muted-text;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+  }
+
+  &__contact-icon {
+    display: grid;
+    flex: 0 0 3rem;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid colors.$subtle-border;
+    border-radius: 0.85rem;
+    background: colors.$surface-background;
+    color: colors.$light-purple;
+
+    svg {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+  }
+
+  &__contact-label {
+    color: colors.$white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  &__signature {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: auto;
+    padding-top: 4rem;
+
+    span {
+      color: colors.$light-purple;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.1em;
+    }
+
+    p {
+      color: colors.$muted-text;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+    }
+  }
+
+  &__panel {
+    align-self: center;
+    width: 100%;
+    padding: clamp(1.5rem, 3vw, 3rem);
+    border: 1px solid colors.$subtle-border;
+    border-radius: 1.5rem;
+    background: colors.$surface-background;
+    box-shadow: 0 2rem 5rem rgba(colors.$black, 0.25);
+  }
+
+  &__panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid colors.$subtle-border;
+
+    h3 {
+      margin: 0.65rem 0 0;
+      color: colors.$white;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+    }
+  }
+
+  &__panel-icon {
+    display: grid;
+    flex: 0 0 3rem;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
+    background: colors.$purple-glow;
+    color: colors.$light-purple;
+
+    svg {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .input-container {
+      width: 100%;
+    }
+
+    .text-input {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 3.5rem;
+      padding: 1rem;
+      border: 1px solid colors.$purple-border;
+      border-radius: 0.65rem;
+      background: colors.$dark-background;
+      color: colors.$white;
+      font-size: 0.9rem;
+      transition:
+        border-color 200ms ease,
+        background 200ms ease;
+
+      &::placeholder {
+        color: colors.$muted-text;
+        opacity: 1;
+      }
+
+      &:focus {
+        border-color: colors.$light-purple;
+        background: colors.$near-black;
+      }
+    }
+
+    .label-comp {
+      color: colors.$muted-text;
+    }
+  }
+
+  &__field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  &__field {
+    min-width: 0;
+  }
+
+  &__submit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  &__submit-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 3.5rem;
+    padding: 0 1.5rem;
+    border-radius: 0.65rem;
+    background: colors.$light-purple;
+    color: colors.$near-black;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    transition:
+      background 200ms ease,
+      transform 200ms ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      background: colors.$white;
+    }
+
+    svg {
+      width: 0.9rem;
+      height: 0.9rem;
+    }
+  }
+
+  &__submit-note {
+    color: colors.$muted-text;
+    font-size: 0.75rem;
+    text-align: right;
+  }
+}
+
+@media (max-width: 1000px) {
+  .email-form {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 6rem 6%;
+
+    &__intro {
+      padding: 0;
+    }
+
+    &__signature {
+      padding-top: 2rem;
+    }
+
+    &__description {
+      max-width: 38rem;
+    }
+
+    &__contact-details {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .email-form {
+    gap: 2.5rem;
+    padding: 5rem 1rem;
+
+    &__title {
+      font-size: clamp(3rem, 13vw, 4rem);
+    }
+
+    &__panel {
+      padding: 1.25rem;
+      border-radius: 1rem;
+    }
+
+    &__panel-heading {
+      margin-bottom: 1.5rem;
+    }
+
+    &__field-grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__submit {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    &__submit-button {
+      width: 100%;
+    }
+
+    &__submit-note {
+      text-align: center;
+    }
+
+    &__contact-details {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+}

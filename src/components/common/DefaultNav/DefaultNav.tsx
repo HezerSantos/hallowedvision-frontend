@@ -1,240 +1,251 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-
-import PageSection from "../PageSection/PageSection";
-import IconLogo from "../Icons/IconLogo/IconLogo";
-import IconPerson from "../Icons/IconPerson/IconPerson";
-import IconMenu from "../Icons/IconMenu/IconMenu";
-import Button from "../Button/Button";
+import { FaLinkedin } from "react-icons/fa";
+import { HiArrowUpRight, HiXMark } from "react-icons/hi2";
+import logo from "../../../assets/images/logo.webp";
 import useWidth from "../../../common/hooks/useWidth";
-import defaultContent from "../../../content/defaultNav";
-import { useAppSelector } from "../../../reducers/hooks";
 import "./DefaultNav.scss";
-import useLogout from "../../../common/hooks/useLogout";
 
-const navLinks = [
-  {
-    name: defaultContent.links.home,
-    link: "/",
+const NAV_BREAKPOINT = 700;
+
+const NAV_LINKS = {
+  home: {
+    label: "Home",
+    path: "/",
   },
-  {
-    name: defaultContent.links.myDashboard,
-    link: "/dashboard",
+  portfolio: {
+    label: "Portfolio",
+    path: "/portfolio",
   },
-  {
-    name: defaultContent.links.termsAndPrivacy,
-    link: "/terms-and-privacy",
+  packages: {
+    label: "Packages",
+    path: "/packages",
   },
-];
+  contact: {
+    label: "Contact",
+    path: "/contact",
+  },
+  terms: {
+    label: "Terms & Conditions",
+    path: "/terms-and-conditions",
+  },
+} as const;
 
-interface NavLinksProps {
-  onNavigate?: () => void;
-}
+const SOCIAL_LINKS = {
+  linkedin: {
+    label: "LinkedIn",
+    url: "https://www.linkedin.com/in/hezer-santos",
+  },
+} as const;
 
-const NavLinks = ({ onNavigate }: NavLinksProps) => {
-  const { pathname } = useLocation();
+const DefaultNav: React.FC = () => {
+  const width = useWidth();
+  const location = useLocation();
 
-  return (
-    <>
-      {navLinks.map(({ name, link }) => {
-        const selected = pathname === link;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-        return (
-          <Link
-            key={link}
-            to={link}
-            onClick={onNavigate}
-            className={`default-nav__link${
-              selected ? " default-nav__link--active" : ""
-            }`}
-            aria-current={selected ? "page" : undefined}
-          >
-            {name}
-          </Link>
-        );
-      })}
-    </>
-  );
-};
+  const isMobile = width <= NAV_BREAKPOINT;
 
-interface AccountActionProps {
-  authorized: boolean;
-  onLogout: () => void;
-}
+  const isActive = (path: string): boolean => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
 
-const AccountAction = ({ authorized, onLogout }: AccountActionProps) => {
-  if (authorized) {
     return (
-      <div className="default-nav__account">
-        <span className="default-nav__account-icon" aria-hidden="true">
-          <IconPerson width="1.35rem" height="1.35rem" />
-        </span>
-        <Button text={defaultContent.links.logout} onClick={onLogout} />
-      </div>
+      location.pathname === path || location.pathname.startsWith(`${path}/`)
     );
-  }
+  };
 
-  return (
-    <Link className="default-nav__login" to="/login">
-      <IconPerson width="1.35rem" height="1.35rem" />
-      <span>{defaultContent.links.login}</span>
-    </Link>
-  );
-};
-
-const Desktop = () => {
-  const auth = useAppSelector((state) => state.auth);
-  const { userLogout } = useLogout();
-
-  return (
-    <PageSection fixed={true}>
-      <nav className="default-nav" aria-label="Main navigation">
-        <div className="default-nav__inner">
-          <div className="default-nav__brand-group">
-            <Link
-              to="/"
-              className="default-nav__brand"
-              aria-label="Alzher home"
-            >
-              <IconLogo width="2.8rem" height="2.8rem" borderRadius="50%" />
-            </Link>
-
-            <div className="default-nav__links">
-              <NavLinks />
-            </div>
-          </div>
-
-          <div className="default-nav__actions">
-            <AccountAction
-              authorized={auth.isAuthorized}
-              onLogout={userLogout}
-            />
-          </div>
-        </div>
-      </nav>
-    </PageSection>
-  );
-};
-
-const Mobile = () => {
-  const [navOpen, setNavOpen] = useState(false);
-  const auth = useAppSelector((state) => state.auth);
-  const { userLogout } = useLogout();
-
-  const navRef = useRef<HTMLElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const toggleRef = useRef<HTMLButtonElement>(null);
-
-  const closeMenu = useCallback(() => {
-    setNavOpen(false);
-  }, []);
-
-  const toggleMenu = () => {
-    setNavOpen((previous) => !previous);
+  const closeMenu = (): void => {
+    setIsMenuOpen(false);
   };
 
   useEffect(() => {
-    if (menuRef.current) {
-      menuRef.current.inert = !navOpen;
-    }
+    closeMenu();
+  }, [location.pathname]);
 
-    if (!navOpen) {
+  useEffect(() => {
+    if (!isMobile) {
+      closeMenu();
+    }
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
       return;
     }
 
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (event: KeyboardEvent): void => {
       if (event.key === "Escape") {
-        closeMenu();
-        toggleRef.current?.focus();
-      }
-    };
-
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (
-        navRef.current &&
-        event.target instanceof Node &&
-        !navRef.current.contains(event.target)
-      ) {
         closeMenu();
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.body.style.overflow = "";
     };
-  }, [navOpen, closeMenu]);
+  }, [isMenuOpen]);
+
+  const navigationLinks = Object.entries(NAV_LINKS);
 
   return (
-    <nav
-      ref={navRef}
-      className="default-nav--mobile"
-      aria-label="Main navigation"
-    >
-      <div className="default-nav--mobile__header">
-        <button
-          ref={toggleRef}
-          className={`default-nav--mobile__toggle${
-            navOpen ? " default-nav--mobile__toggle--open" : ""
-          }`}
-          type="button"
-          onClick={toggleMenu}
-          aria-label={
-            navOpen ? "Close navigation menu" : "Open navigation menu"
-          }
-          aria-expanded={navOpen}
-          aria-controls="default-mobile-nav-menu"
-        >
-          <IconMenu width={28} height={28} />
-        </button>
+    <>
+      <header className="nav">
+        <div className="nav__container">
+          <Link
+            to={NAV_LINKS.home.path}
+            className="nav__brand"
+            aria-label="Hallowed Visions home"
+          >
+            <img className="nav__logo" src={logo} alt="" />
 
-        <Link
-          to="/"
-          className="default-nav--mobile__brand"
-          onClick={closeMenu}
-          aria-label="Alzher home"
-        >
-          <IconLogo width={44} height={44} borderRadius="50%" />
-        </Link>
+            <span className="nav__brand-name">
+              Hallowed <span>Visions.</span>
+            </span>
+          </Link>
 
-        <div className="default-nav--mobile__account">
-          <AccountAction authorized={auth.isAuthorized} onLogout={userLogout} />
+          {!isMobile && (
+            <>
+              <nav className="nav__desktop">
+                {navigationLinks
+                  .filter(([key]) => key !== "terms" && key !== "home")
+                  .map(([key, item]) => (
+                    <Link
+                      key={key}
+                      to={item.path}
+                      className={`nav__link ${
+                        isActive(item.path) ? "nav__link--active" : ""
+                      }`}
+                      aria-current={isActive(item.path) ? "page" : undefined}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+              </nav>
+
+              <Link to={NAV_LINKS.contact.path} className="nav__cta">
+                <span>Let's Talk</span>
+                <HiArrowUpRight />
+              </Link>
+            </>
+          )}
+
+          {isMobile && (
+            <button
+              className={`nav__toggle ${
+                isMenuOpen ? "nav__toggle--active" : ""
+              }`}
+              onClick={() => setIsMenuOpen((previous) => !previous)}
+              aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation"
+            >
+              <span />
+              <span />
+            </button>
+          )}
         </div>
-      </div>
+      </header>
 
-      <div
-        ref={menuRef}
-        id="default-mobile-nav-menu"
-        className={`default-nav--mobile__panel${
-          navOpen ? " default-nav--mobile__panel--open" : ""
-        }`}
-        aria-hidden={!navOpen}
-      >
-        <div className="default-nav--mobile__links">
-          <p className="default-nav--mobile__eyebrow">Navigation</p>
-          <NavLinks onNavigate={closeMenu} />
-        </div>
-      </div>
+      {isMobile && (
+        <>
+          <div
+            className={`nav__backdrop ${
+              isMenuOpen ? "nav__backdrop--visible" : ""
+            }`}
+            onClick={closeMenu}
+            aria-hidden="true"
+          />
 
-      {navOpen && (
-        <button
-          type="button"
-          className="default-nav--mobile__backdrop"
-          aria-label="Close navigation menu"
-          onClick={closeMenu}
-        />
+          <aside
+            id="mobile-navigation"
+            className={`nav__sidebar ${isMenuOpen ? "nav__sidebar--open" : ""}`}
+            aria-hidden={!isMenuOpen}
+          >
+            <div className="nav__sidebar-header">
+              <Link
+                to={NAV_LINKS.home.path}
+                className="nav__brand"
+                onClick={closeMenu}
+                tabIndex={isMenuOpen ? 0 : -1}
+              >
+                <img src={logo} alt="" className="nav__logo" />
+                <span className="nav__brand-name">
+                  Hallowed <span>Visions.</span>
+                </span>
+              </Link>
+
+              <button
+                className="nav__close"
+                onClick={closeMenu}
+                aria-label="Close navigation"
+                tabIndex={isMenuOpen ? 0 : -1}
+              >
+                <HiXMark />
+              </button>
+            </div>
+
+            <div className="nav__sidebar-content">
+              <span className="nav__eyebrow">EXPLORE</span>
+
+              <nav className="nav__mobile">
+                {navigationLinks.map(([key, item], index) => (
+                  <Link
+                    key={key}
+                    to={item.path}
+                    onClick={closeMenu}
+                    tabIndex={isMenuOpen ? 0 : -1}
+                    aria-current={isActive(item.path) ? "page" : undefined}
+                    className={`nav__mobile-link ${
+                      isActive(item.path) ? "nav__mobile-link--active" : ""
+                    }`}
+                  >
+                    <span className="nav__mobile-number">0{index + 1}</span>
+
+                    <span>{item.label}</span>
+
+                    <HiArrowUpRight className="nav__mobile-arrow" />
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            <div className="nav__sidebar-footer">
+              <span className="nav__eyebrow">HAVE A PROJECT IN MIND?</span>
+
+              <Link
+                to={NAV_LINKS.contact.path}
+                className="nav__sidebar-contact"
+                onClick={closeMenu}
+                tabIndex={isMenuOpen ? 0 : -1}
+              >
+                Let's create something.
+                <HiArrowUpRight />
+              </Link>
+
+              <div className="nav__sidebar-bottom">
+                <span>© {new Date().getFullYear()} Hallowed Visions</span>
+
+                <a
+                  href={SOCIAL_LINKS.linkedin.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={SOCIAL_LINKS.linkedin.label}
+                  tabIndex={isMenuOpen ? 0 : -1}
+                >
+                  <FaLinkedin />
+                </a>
+              </div>
+            </div>
+          </aside>
+        </>
       )}
-    </nav>
+    </>
   );
-};
-
-const DefaultNav = () => {
-  const width = useWidth();
-
-  return width >= 1250 ? <Desktop /> : <Mobile />;
 };
 
 export default DefaultNav;

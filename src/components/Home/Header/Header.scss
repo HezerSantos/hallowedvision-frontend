@@ -1,0 +1,178 @@
+@use "../../../common/styles/colors";
+
+.home-header {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 35rem;
+  margin-top: 5rem;
+
+  &::before,
+  &::after {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    content: "";
+    pointer-events: none;
+  }
+
+  &::before {
+    background: rgba(colors.$near-black, 0.82);
+  }
+
+  &::after {
+    background: rgba(colors.$dark-slate, 0.07);
+  }
+
+  &__content {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: 35rem;
+    padding: 4rem 1rem;
+  }
+
+  &__content > div:first-child {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  &__content > div:first-child canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  &__text {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__eyebrow {
+    margin-bottom: 1.5rem;
+    color: colors.$light-purple;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+  }
+
+  h1 {
+    margin: 0;
+    color: colors.$white;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.045em;
+
+    span {
+      color: colors.$light-purple;
+    }
+  }
+
+  &__text p {
+    max-width: 36rem;
+    margin: 1.5rem 0 2rem;
+    color: rgba(colors.$white, 0.75);
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    line-height: 1.7;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    min-height: 3.5rem;
+    padding: 0.65rem 0.75rem 0.65rem 1.5rem;
+    border: 1px solid colors.$muted-purple;
+    border-radius: 3rem;
+    background: colors.$near-black;
+    color: colors.$white;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease;
+
+    svg {
+      box-sizing: content-box;
+      width: 1rem;
+      height: 1rem;
+      padding: 0.65rem;
+      border-radius: 50%;
+      background: colors.$muted-purple;
+      color: colors.$white;
+      transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    &:hover {
+      border-color: colors.$light-purple;
+      background: colors.$muted-purple;
+      transform: translateY(-3px);
+
+      svg {
+        background: colors.$white;
+        color: colors.$near-black;
+        transform: translateX(3px);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid colors.$light-purple;
+      outline-offset: 4px;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .home-header {
+    min-height: calc(100svh - 5rem);
+
+    &__content {
+      min-height: calc(100svh - 5rem);
+      padding: 3rem 1rem;
+    }
+
+    &__eyebrow {
+      font-size: 0.65rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    &__text p {
+      max-width: 28rem;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-header__button,
+  .home-header__button svg {
+    transition: none;
+  }
+}

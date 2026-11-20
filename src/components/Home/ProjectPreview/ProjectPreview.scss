@@ -1,0 +1,381 @@
+@use "../../../common/styles/colors";
+
+.project-preview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  width: 100%;
+  overflow: hidden;
+  padding: 7rem clamp(1.5rem, 10%, 12rem);
+  background:
+    radial-gradient(ellipse at 85% 5%, colors.$purple-glow, transparent 35%),
+    colors.$near-black;
+
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 3rem;
+    width: 100%;
+  }
+
+  &__heading {
+    h2 {
+      margin: 1rem 0 0;
+      color: colors.$white;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 700;
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+
+      span {
+        color: colors.$light-purple;
+      }
+    }
+  }
+
+  &__eyebrow {
+    color: colors.$light-purple;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+
+  &__description {
+    max-width: 25rem;
+    margin: 0 0 0.4rem;
+    color: colors.$muted-text;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  &__marquee {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 1.5rem 0;
+    border-top: 1px solid colors.$subtle-border;
+    border-bottom: 1px solid colors.$subtle-border;
+    contain: layout paint;
+
+    &::before,
+    &::after {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      width: 5rem;
+      height: 100%;
+      content: "";
+      pointer-events: none;
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(90deg, colors.$near-black, transparent);
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(270deg, colors.$near-black, transparent);
+    }
+  }
+
+  &__track {
+    display: flex;
+    width: max-content;
+    animation: project-preview-scroll 30s linear infinite;
+    will-change: transform;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  &__group {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+    padding-right: clamp(2rem, 5vw, 5rem);
+  }
+
+  &__item {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.85rem;
+    color: colors.$white;
+    white-space: nowrap;
+
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+      color: colors.$light-purple;
+    }
+
+    span {
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+  }
+
+  &__projects {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__projects-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+
+    h3 {
+      margin: 0.75rem 0 0;
+      color: colors.$white;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+    }
+  }
+
+  &__project-count {
+    padding-bottom: 0.4rem;
+    color: colors.$muted-text;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    width: 100%;
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-width: 0;
+    aspect-ratio: 0.82;
+    overflow: hidden;
+    border: 1px solid colors.$subtle-border;
+    border-radius: 1.25rem;
+    background-color: colors.$dark-slate;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    isolation: isolate;
+    transition:
+      transform 300ms ease,
+      border-color 300ms ease;
+
+    &::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(colors.$black, 0.05) 15%,
+        rgba(colors.$black, 0.2) 40%,
+        rgba(colors.$black, 0.9) 100%
+      );
+      content: "";
+      transition: background 300ms ease;
+    }
+
+    &:hover {
+      transform: translateY(-0.5rem);
+      border-color: colors.$light-purple;
+
+      &::before {
+        background: linear-gradient(
+          180deg,
+          rgba(colors.$black, 0.1) 10%,
+          rgba(colors.$black, 0.35) 45%,
+          rgba(colors.$black, 0.95) 100%
+        );
+      }
+
+      .project-preview__card-number {
+        color: colors.$light-purple;
+        transform: translateX(0.4rem);
+      }
+
+      .project-preview__card-title h4 {
+        transform: translateX(0.4rem);
+      }
+    }
+
+    &--business {
+      background-image: url("../../../assets/images/business.webp");
+    }
+
+    &--ecommerce {
+      background-image: url("../../../assets/images/ecommerce.webp");
+      background-position: 0 -2px;
+    }
+
+    &--personal {
+      background-image: url("../../../assets/images/personal.webp");
+    }
+
+    &--service {
+      background-image: url("../../../assets/images/service.webp");
+    }
+  }
+
+  &__card-content {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1.25rem;
+  }
+
+  &__card-number {
+    align-self: flex-start;
+    color: rgba(colors.$white, 0.7);
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition:
+      color 300ms ease,
+      transform 300ms ease;
+  }
+
+  &__card-title {
+    text-align: right;
+
+    span {
+      color: colors.$light-purple;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    h4 {
+      margin: 0.4rem 0 0;
+      color: colors.$white;
+      font-size: clamp(1.1rem, 1.8vw, 1.65rem);
+      font-weight: 600;
+      transition: transform 300ms ease;
+    }
+  }
+}
+
+@keyframes project-preview-scroll {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 900px) {
+  .project-preview {
+    padding: 6rem 5%;
+
+    &__header {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    &__description {
+      max-width: 35rem;
+    }
+
+    &__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &__card {
+      aspect-ratio: 1;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .project-preview {
+    gap: 3rem;
+    padding: 5rem 1rem;
+
+    &__heading h2 {
+      font-size: clamp(3rem, 13vw, 4rem);
+    }
+
+    &__marquee {
+      padding: 1.25rem 0;
+    }
+
+    &__group {
+      gap: 2rem;
+      padding-right: 2rem;
+    }
+
+    &__item {
+      gap: 0.6rem;
+
+      svg {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+
+      span {
+        font-size: 0.8rem;
+      }
+    }
+
+    &__projects-heading {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    &__grid {
+      gap: 0.75rem;
+    }
+
+    &__card {
+      aspect-ratio: 0.78;
+      border-radius: 0.9rem;
+    }
+
+    &__card-content {
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 0.85rem;
+    }
+
+    &__card-title {
+      text-align: left;
+
+      span {
+        font-size: 0.55rem;
+      }
+
+      h4 {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-preview {
+    &__track {
+      animation: none;
+      will-change: auto;
+    }
+
+    &__card,
+    &__card-number,
+    &__card-title h4 {
+      transition: none;
+    }
+  }
+}

@@ -5,6 +5,8 @@ import logo from "./assets/images/logo.webp";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 import * as Helmet from "./components/universal/helmet";
 import AuthLayer from "./components/Layers/AuthLayer";
+import DefaultNav from "./components/common/DefaultNav/DefaultNav";
+import DefaultFooter from "./components/common/DefaultFooter/DefaultFooter";
 export const LoadingScreen: React.FC = () => {
   return (
     <main className="loading-screen">
@@ -51,7 +53,9 @@ function App() {
         ) : (
           <Helmet.NotFoundHelmet />
         )}
+        <DefaultNav />
         <Outlet />
+        <DefaultFooter />
       </AuthLayer>
     </>
   );
