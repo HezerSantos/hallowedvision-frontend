@@ -5,7 +5,7 @@ const Contact = lazy(() => import("./Pages/Contact/Contact"));
 const Portfolio = lazy(() => import("./Pages/Portfolio/Portfolio"));
 const PricingOverview = lazy(() => import("./Pages/Pricing/PricingOverview"));
 const Project = lazy(() => import("./Pages/Project/Project"));
-const Terms = lazy(() => import("./Pages/terms/Terms"));
+const Terms = lazy(() => import("./Pages/Terms/Terms"));
 const NotFound = lazy(() => import("./Pages/Errors/NotFound"));
 const routes = [
   {

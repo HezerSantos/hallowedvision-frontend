@@ -8,6 +8,7 @@ import {
   FaNode,
   FaPython,
   FaCloudflare,
+  FaGolang,
 } from "react-icons/fa6";
 import { SiExpress, SiSocketdotio } from "react-icons/si";
 import { DiMysql } from "react-icons/di";
@@ -16,6 +17,7 @@ import { BiLogoTypescript } from "react-icons/bi";
 
 import "./PortfolioContent.scss";
 import RectangleLoader from "../../common/RectangleLoader/RectangleLoader";
+import { PortfolioSectionHeader } from "../common/PortfolioDetailsSection/PortfolioDetailsSection";
 
 interface PortfolioItemProps {
   imageUrl: string;
@@ -40,6 +42,7 @@ const technologyMap: Map<string, React.ReactElement> = new Map([
   ["WebSocket", <SiSocketdotio />],
   ["Cloudflare R2", <FaCloudflare />],
   ["TypeScript", <BiLogoTypescript />],
+  ["Go", <FaGolang />],
 ]);
 
 interface TechnologyItemProps {
@@ -190,6 +193,11 @@ const PortfolioContent: React.FC<PortfolioContentProps> = ({
 }) => {
   return (
     <section className="page-section__child portfolio-content">
+      <PortfolioSectionHeader
+        header="Projects"
+        subtitle="Checkout my work!"
+        number="04"
+      />
       <div className="portfolio-content__container">
         {isLoading ? (
           <>

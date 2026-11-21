@@ -9,9 +9,24 @@ interface PortfolioProject {
   imageUrl: string;
   languages: string[];
 }
+
+interface ExperienceItem {
+  header?: { name: string; imageUrl: string };
+  meta: {
+    position: string;
+    type: "Full-time" | "Part-time" | "Internship";
+    location: string;
+    remote: boolean;
+  };
+  bullets?: string[];
+  period: { start: number; end?: number };
+  child?: ExperienceItem;
+}
+
 interface PortfolioResponse {
   profileImageUrl: string;
   portfolioProjects: PortfolioProject[];
+  experiences: ExperienceItem[];
 }
 
 export interface ProjectResponse {

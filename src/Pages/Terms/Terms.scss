@@ -1,0 +1,222 @@
+@use "../../common/styles/colors";
+
+.term__wrapper-parent {
+  margin-top: 5rem;
+  background: colors.$dark-background;
+  color: colors.$white;
+}
+
+.terms {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 20rem minmax(0, 1fr);
+  }
+
+  &__nav-wrapper {
+    border-right: 1px solid colors.$purple-border;
+  }
+
+  &__nav {
+    position: sticky;
+    top: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 5rem 2rem 5rem 3rem;
+
+    & > ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      & > li > p {
+        margin: 0 0 0.25rem;
+        color: colors.$light-purple;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      & > li > a {
+        color: colors.$muted-text;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: colors.$light-purple;
+        }
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    min-width: 0;
+    padding: 5rem 10%;
+  }
+
+  &__header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 0.25;
+    min-height: 12rem;
+    overflow: hidden;
+    padding: 3rem;
+    border: 1px solid colors.$purple-border;
+    border-radius: 1rem;
+    background:
+      url("../../assets/images/termsHeaderMask.png") no-repeat 100% 50% /
+        contain,
+      url("../../assets/images/termsHeader.svg") no-repeat center / cover;
+
+    & > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    & > h1 {
+      margin: 0 0 0.75rem;
+      color: colors.$white;
+      font-size: clamp(1.8rem, 3vw, 2.75rem);
+    }
+
+    & > p {
+      margin: 0;
+      color: colors.$dark-background;
+      font-size: 1rem;
+    }
+
+    & > p:nth-of-type(2) {
+      margin-top: 1rem;
+      color: colors.$near-black;
+      font-size: 0.75rem;
+      line-height: 1.6;
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-block: 2.5rem;
+    border-bottom: 1px solid colors.$purple-border;
+    color: colors.$white;
+    scroll-margin-top: 7rem;
+
+    & > h1 {
+      margin: 0;
+      color: colors.$light-purple;
+      font-size: clamp(1.4rem, 2vw, 1.8rem);
+    }
+
+    & > p {
+      margin: 0;
+      color: colors.$muted-text;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      white-space: pre-line;
+    }
+
+    &:last-child {
+      border: none;
+    }
+
+    &:target {
+      &::after {
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        margin-block: 2rem;
+        border: 1px solid colors.$light-purple;
+        border-radius: 0.75rem;
+        content: "";
+        pointer-events: none;
+        animation: terms-target 2s ease-in-out;
+      }
+    }
+  }
+
+  &__footer {
+    background: colors.$dark-background;
+  }
+}
+
+@keyframes terms-target {
+  0% {
+    opacity: 0.5;
+    background: colors.$purple-glow;
+  }
+
+  100% {
+    opacity: 0;
+    background: transparent;
+  }
+}
+
+@media (max-width: 1000px) {
+  .terms {
+    &__wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    &__nav-wrapper {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 685px) {
+  .terms {
+    &__content {
+      gap: 2rem;
+      padding: 3rem 1rem;
+    }
+
+    &__header {
+      aspect-ratio: auto;
+      min-height: 14rem;
+      align-items: center;
+      padding: 2rem 1rem;
+      text-align: center;
+
+      &::after {
+        position: absolute;
+        inset: 0;
+        background: colors.$black;
+        content: "";
+        opacity: 0.45;
+      }
+
+      & > p,
+      & > p:nth-of-type(2) {
+        color: colors.$white;
+      }
+    }
+
+    &__item {
+      padding-block: 2rem;
+
+      & > p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terms__item:target::after {
+    animation: none;
+  }
+}

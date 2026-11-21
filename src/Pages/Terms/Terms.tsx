@@ -1,9 +1,7 @@
-import "../../assets/styles/terms/terms.css";
-import TermsNav from "../../components/terms/termsNav";
-import TermsHeader from "../../components/terms/termsHeader";
-import TermsContent from "../../components/terms/termsContent";
-import FooterHV from "../../components/universal/footer";
-
+import TermsNav from "../../components/Terms/TermsNav";
+import TermsHeader from "../../components/Terms/TermsHeader";
+import TermsContent from "../../components/Terms/TermsContent";
+import "./Terms.scss";
 const Terms: React.FC = () => {
   return (
     <>
@@ -18,9 +16,6 @@ const Terms: React.FC = () => {
           </div>
         </div>
       </div>
-      <footer className="terms__footer page-section">
-        <FooterHV />
-      </footer>
     </>
   );
 };

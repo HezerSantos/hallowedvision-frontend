@@ -32,7 +32,9 @@ const DefaultFooter: React.FC = () => {
 
           <div>
             <h3>{defaultFooter.additionalInfo.heading}</h3>
-            <Link to="/">{defaultFooter.additionalInfo.terms}</Link>
+            <Link to="/terms-and-conditions">
+              {defaultFooter.additionalInfo.terms}
+            </Link>
             <Link to="/">{defaultFooter.additionalInfo.privacyPolicy}</Link>
           </div>
         </div>
