@@ -1,0 +1,208 @@
+@use "../../../../../../common/styles/colors";
+
+.experience-item {
+  position: relative;
+  display: flex;
+  flex: 1 0 27rem;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: auto;
+  min-width: 27rem;
+  max-width: none;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid colors.$purple-border;
+  border-radius: 0.85rem;
+  background: colors.$surface-background;
+  scroll-snap-align: start;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: colors.$muted-purple;
+    background: colors.$surface-hover;
+  }
+
+  &--current {
+    border-color: colors.$light-purple;
+    background: colors.$surface-background;
+    box-shadow: 0 0 1.25rem colors.$purple-glow;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 1.75rem;
+      width: 2.5rem;
+      height: 3px;
+      border-radius: 0 0 4px 4px;
+      background: colors.$light-purple;
+      content: "";
+    }
+
+    & > p:first-child {
+      color: colors.$light-purple;
+    }
+  }
+
+  &__content {
+    display: contents;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+
+    &__image {
+      display: flex;
+      flex: 0 0 3.5rem;
+      align-items: center;
+      justify-content: center;
+      width: 3.5rem;
+      height: 3.5rem;
+      overflow: hidden;
+      border: 1px solid colors.$purple-border;
+      border-radius: 0.75rem;
+      background: colors.$white;
+
+      & > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0.25rem;
+        object-fit: contain;
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+
+      & > p {
+        margin: 0;
+      }
+
+      & > p:first-child {
+        color: colors.$white;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      & > p:last-child {
+        color: colors.$light-purple;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__separator {
+    position: relative;
+    display: flex;
+    flex: 0 0 5rem;
+    align-items: center;
+    justify-content: space-evenly;
+    align-self: stretch;
+    min-width: 5rem;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      right: 0.5rem;
+      left: 0.5rem;
+      height: 2px;
+      transform: translateY(-50%);
+      background: colors.$purple-border;
+      content: "";
+    }
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0.65rem;
+      height: 0.65rem;
+      transform: translate(-50%, -50%);
+      border: 2px solid colors.$muted-purple;
+      border-radius: 50%;
+      background: colors.$dark-background;
+      content: "";
+    }
+
+    & > div {
+      position: relative;
+      z-index: 1;
+      width: 0.35rem;
+      height: 0.35rem;
+      border: 1px solid colors.$muted-purple;
+      border-radius: 50%;
+      background: colors.$dark-background;
+
+      &:nth-child(2),
+      &:nth-child(4) {
+        opacity: 0.6;
+      }
+
+      &:nth-child(3) {
+        opacity: 0;
+      }
+    }
+  }
+
+  & > p {
+    margin: 0;
+  }
+
+  & > p:first-child {
+    color: colors.$white;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  & > p:nth-child(2) {
+    width: fit-content;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid colors.$subtle-border;
+    border-radius: 2rem;
+    background: colors.$purple-glow;
+    color: colors.$light-purple;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  & > p:nth-child(3),
+  & > p:nth-child(4) {
+    color: colors.$muted-text;
+    font-size: 0.8rem;
+  }
+
+  & > p:last-of-type {
+    margin-top: 0.25rem;
+    color: colors.$light-purple;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  & > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+
+    & > li {
+      padding-left: 0.25rem;
+      color: colors.$muted-text;
+      font-size: 0.85rem;
+      line-height: 1.75;
+
+      &::marker {
+        color: colors.$muted-purple;
+      }
+    }
+  }
+}

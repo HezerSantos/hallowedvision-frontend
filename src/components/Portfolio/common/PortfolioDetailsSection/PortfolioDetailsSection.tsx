@@ -30,6 +30,23 @@ interface PortfolioDetailsSectionProps {
   number: string;
   contentClass: string;
 }
+
+export const PortfolioDetailsContainer = ({
+  children,
+  base,
+}: {
+  children: ReactNode;
+  base: boolean;
+}) => {
+  return (
+    <section
+      className={`page-section__child portfolio-details portfolio-details--${base ? "base" : "full"}`}
+    >
+      {children}
+    </section>
+  );
+};
+
 const PortfolioDetailsSection = ({
   children,
   header,
@@ -48,22 +65,6 @@ const PortfolioDetailsSection = ({
         {children}
       </div>
     </div>
-  );
-};
-
-export const PortfolioDetailsContainer = ({
-  children,
-  base,
-}: {
-  children: ReactNode;
-  base: boolean;
-}) => {
-  return (
-    <section
-      className={`page-section__child portfolio-details portfolio-details--${base ? "base" : "full"}`}
-    >
-      {children}
-    </section>
   );
 };
 

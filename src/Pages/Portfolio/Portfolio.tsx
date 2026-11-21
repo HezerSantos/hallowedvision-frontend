@@ -14,7 +14,10 @@ const Portfolio: React.FC = () => {
         profileImage={data?.profileImageUrl ?? ""}
       />
       <main className="portfolio">
-        <PortfolioDetails experienceData={data?.experiences} />
+        <PortfolioDetails
+          experienceData={data?.experiences}
+          isLoading={isLoading}
+        />
         <PortfolioContent
           portfolioItems={data?.portfolioProjects}
           isLoading={isLoading}

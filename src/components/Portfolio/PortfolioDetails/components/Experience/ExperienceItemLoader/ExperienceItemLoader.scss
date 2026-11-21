@@ -1,0 +1,34 @@
+@use "../../../../../../common/styles/colors";
+
+.experience-item--loader {
+  pointer-events: none;
+
+  &:hover {
+    border-color: colors.$purple-border;
+    background: colors.$surface-background;
+  }
+
+  & > ul {
+    padding-left: 0.25rem;
+    list-style: none;
+
+    & > li {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0;
+    }
+  }
+}
+
+.experience-item__loader-dot {
+  flex: 0 0 6px;
+}
+
+.experience-item__loader-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}

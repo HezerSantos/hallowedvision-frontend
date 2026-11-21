@@ -1,0 +1,82 @@
+@use "../../../../../common/styles/colors";
+
+.experience-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+// The root content wrapper is the only horizontal scroll container.
+.experience-container > .experience-item__content {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: colors.$deep-purple colors.$dark-background;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 1rem;
+    background: colors.$surface-background;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background: colors.$deep-purple;
+
+    &:hover {
+      background: colors.$muted-purple;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .experience-item {
+    flex-basis: 23rem;
+    min-width: 23rem;
+    padding: 1.5rem;
+
+    &__separator {
+      flex-basis: 3.5rem;
+      min-width: 3.5rem;
+    }
+
+    &__header {
+      &__image {
+        flex-basis: 3rem;
+        width: 3rem;
+        height: 3rem;
+      }
+
+      &__info > p:first-child {
+        font-size: 1.05rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .experience-item {
+    flex-basis: calc(100vw - 3rem);
+    min-width: calc(100vw - 3rem);
+    padding: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-item {
+    transition: none;
+  }
+}
